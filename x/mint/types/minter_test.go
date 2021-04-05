@@ -13,6 +13,8 @@ func TestNextInflation(t *testing.T) {
 	minter := DefaultInitialMinter()
 	params := DefaultParams()
 	blocksPerYr := sdk.NewDec(int64(params.BlocksPerYear))
+	// Set totalSupply to stabilization regime > 25000000
+	totalStakingSupply := sdk.NewDec(int64(26000000))
 
 	// Governing Mechanism:
 	//    inflationRateChangePerYear = (1- BondedRatio/ GoalBonded) * MaxInflationRateChange
@@ -46,7 +48,7 @@ func TestNextInflation(t *testing.T) {
 	for i, tc := range tests {
 		minter.Inflation = tc.setInflation
 
-		inflation := minter.NextInflationRate(params, tc.bondedRatio)
+		inflation := minter.NextInflationRate(params, tc.bondedRatio, totalStakingSupply)
 		diffInflation := inflation.Sub(tc.setInflation)
 
 		require.True(t, diffInflation.Equal(tc.expChange),
@@ -105,15 +107,17 @@ func BenchmarkBlockProvision(b *testing.B) {
 
 // Next inflation benchmarking
 // BenchmarkNextInflation-4 1000000 1828 ns/op
-func BenchmarkNextInflation(b *testing.B) {
+func ddddddd(b *testing.B) {
 	b.ReportAllocs()
 	minter := InitialMinter(sdk.NewDecWithPrec(1, 1))
 	params := DefaultParams()
 	bondedRatio := sdk.NewDecWithPrec(1, 1)
+	// Initialize in the stabilization regime
+	totalStakingSupply := sdk.NewDec(int64(26000000))
 
 	// run the NextInflationRate function b.N times
 	for n := 0; n < b.N; n++ {
-		minter.NextInflationRate(params, bondedRatio)
+		minter.NextInflationRate(params, bondedRatio, totalStakingSupply)
 	}
 
 }
