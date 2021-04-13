@@ -3,8 +3,8 @@ package keeper
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/staking/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/staking/types"
 )
 
 // Validator Set

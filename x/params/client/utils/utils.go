@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/rest"
-	"github.com/cosmos/cosmos-sdk/x/params/types/proposal"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/rest"
+	"github.com/onomyprotocol/cosmos-sdk/x/params/types/proposal"
 )
 
 type (

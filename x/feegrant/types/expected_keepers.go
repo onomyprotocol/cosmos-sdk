@@ -1,9 +1,9 @@
 package types
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	auth "github.com/cosmos/cosmos-sdk/x/auth/types"
-	// supply "github.com/cosmos/cosmos-sdk/x/supply/exported"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	auth "github.com/onomyprotocol/cosmos-sdk/x/auth/types"
+	// supply "github.com/onomyprotocol/cosmos-sdk/x/supply/exported"
 )
 
 // AccountKeeper defines the expected auth Account Keeper (noalias)

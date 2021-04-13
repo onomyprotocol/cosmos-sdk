@@ -5,10 +5,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	v036gov "github.com/cosmos/cosmos-sdk/x/gov/legacy/v036"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	sdkerrors "github.com/onomyprotocol/cosmos-sdk/types/errors"
+	v036gov "github.com/onomyprotocol/cosmos-sdk/x/gov/legacy/v036"
 )
 
 const (

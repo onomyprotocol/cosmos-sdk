@@ -9,17 +9,17 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/crypto/hd"
-	"github.com/cosmos/cosmos-sdk/crypto/keyring"
-	"github.com/cosmos/cosmos-sdk/testutil/network"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/rest"
-	"github.com/cosmos/cosmos-sdk/x/authz/client/cli"
-	authztestutil "github.com/cosmos/cosmos-sdk/x/authz/client/testutil"
-	types "github.com/cosmos/cosmos-sdk/x/authz/types"
-	banktestutil "github.com/cosmos/cosmos-sdk/x/bank/client/testutil"
-	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
+	"github.com/onomyprotocol/cosmos-sdk/client/flags"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/hd"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keyring"
+	"github.com/onomyprotocol/cosmos-sdk/testutil/network"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/rest"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/client/cli"
+	authztestutil "github.com/onomyprotocol/cosmos-sdk/x/authz/client/testutil"
+	types "github.com/onomyprotocol/cosmos-sdk/x/authz/types"
+	banktestutil "github.com/onomyprotocol/cosmos-sdk/x/bank/client/testutil"
+	banktypes "github.com/onomyprotocol/cosmos-sdk/x/bank/types"
 )
 
 type IntegrationTestSuite struct {

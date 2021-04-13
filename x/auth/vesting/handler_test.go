@@ -6,10 +6,10 @@ import (
 	"github.com/stretchr/testify/suite"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/cosmos/cosmos-sdk/simapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/auth/vesting"
-	"github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/auth/vesting"
+	"github.com/onomyprotocol/cosmos-sdk/x/auth/vesting/types"
 )
 
 type HandlerTestSuite struct {

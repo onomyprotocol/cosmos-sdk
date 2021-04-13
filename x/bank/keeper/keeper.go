@@ -1,14 +1,14 @@
 package keeper
 
 import (
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/store/prefix"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	vestexported "github.com/cosmos/cosmos-sdk/x/auth/vesting/exported"
-	"github.com/cosmos/cosmos-sdk/x/bank/types"
-	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	"github.com/onomyprotocol/cosmos-sdk/store/prefix"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	sdkerrors "github.com/onomyprotocol/cosmos-sdk/types/errors"
+	authtypes "github.com/onomyprotocol/cosmos-sdk/x/auth/types"
+	vestexported "github.com/onomyprotocol/cosmos-sdk/x/auth/vesting/exported"
+	"github.com/onomyprotocol/cosmos-sdk/x/bank/types"
+	paramtypes "github.com/onomyprotocol/cosmos-sdk/x/params/types"
 )
 
 var _ Keeper = (*BaseKeeper)(nil)

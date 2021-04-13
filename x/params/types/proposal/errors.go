@@ -1,7 +1,7 @@
 package proposal
 
 import (
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "github.com/onomyprotocol/cosmos-sdk/types/errors"
 )
 
 // x/params module sentinel errors

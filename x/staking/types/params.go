@@ -8,9 +8,9 @@ import (
 
 	yaml "gopkg.in/yaml.v2"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	paramtypes "github.com/onomyprotocol/cosmos-sdk/x/params/types"
 )
 
 // Staking params default values

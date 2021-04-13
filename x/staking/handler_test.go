@@ -13,17 +13,17 @@ import (
 
 	"github.com/golang/protobuf/proto"
 
-	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
-	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
-	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	"github.com/cosmos/cosmos-sdk/simapp"
-	"github.com/cosmos/cosmos-sdk/testutil/testdata"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/staking"
-	"github.com/cosmos/cosmos-sdk/x/staking/keeper"
-	"github.com/cosmos/cosmos-sdk/x/staking/teststaking"
-	"github.com/cosmos/cosmos-sdk/x/staking/types"
+	cryptocodec "github.com/onomyprotocol/cosmos-sdk/crypto/codec"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/ed25519"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/secp256k1"
+	cryptotypes "github.com/onomyprotocol/cosmos-sdk/crypto/types"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	"github.com/onomyprotocol/cosmos-sdk/testutil/testdata"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/staking"
+	"github.com/onomyprotocol/cosmos-sdk/x/staking/keeper"
+	"github.com/onomyprotocol/cosmos-sdk/x/staking/teststaking"
+	"github.com/onomyprotocol/cosmos-sdk/x/staking/types"
 )
 
 func bootstrapHandlerGenesisTest(t *testing.T, power int64, numAddrs int, accAmount sdk.Int) (*simapp.SimApp, sdk.Context, []sdk.AccAddress, []sdk.ValAddress) {

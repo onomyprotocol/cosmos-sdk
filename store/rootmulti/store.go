@@ -17,17 +17,17 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/cosmos/cosmos-sdk/snapshots"
-	snapshottypes "github.com/cosmos/cosmos-sdk/snapshots/types"
-	"github.com/cosmos/cosmos-sdk/store/cachemulti"
-	"github.com/cosmos/cosmos-sdk/store/dbadapter"
-	"github.com/cosmos/cosmos-sdk/store/iavl"
-	"github.com/cosmos/cosmos-sdk/store/listenkv"
-	"github.com/cosmos/cosmos-sdk/store/mem"
-	"github.com/cosmos/cosmos-sdk/store/tracekv"
-	"github.com/cosmos/cosmos-sdk/store/transient"
-	"github.com/cosmos/cosmos-sdk/store/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	"github.com/onomyprotocol/cosmos-sdk/snapshots"
+	snapshottypes "github.com/onomyprotocol/cosmos-sdk/snapshots/types"
+	"github.com/onomyprotocol/cosmos-sdk/store/cachemulti"
+	"github.com/onomyprotocol/cosmos-sdk/store/dbadapter"
+	"github.com/onomyprotocol/cosmos-sdk/store/iavl"
+	"github.com/onomyprotocol/cosmos-sdk/store/listenkv"
+	"github.com/onomyprotocol/cosmos-sdk/store/mem"
+	"github.com/onomyprotocol/cosmos-sdk/store/tracekv"
+	"github.com/onomyprotocol/cosmos-sdk/store/transient"
+	"github.com/onomyprotocol/cosmos-sdk/store/types"
+	sdkerrors "github.com/onomyprotocol/cosmos-sdk/types/errors"
 )
 
 const (

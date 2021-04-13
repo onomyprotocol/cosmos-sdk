@@ -10,16 +10,16 @@ import (
 	"github.com/stretchr/testify/suite"
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/crypto/hd"
-	"github.com/cosmos/cosmos-sdk/crypto/keyring"
-	clitestutil "github.com/cosmos/cosmos-sdk/testutil/cli"
-	"github.com/cosmos/cosmos-sdk/testutil/network"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/feegrant/client/cli"
-	"github.com/cosmos/cosmos-sdk/x/feegrant/types"
-	govtestutil "github.com/cosmos/cosmos-sdk/x/gov/client/testutil"
-	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
+	"github.com/onomyprotocol/cosmos-sdk/client/flags"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/hd"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keyring"
+	clitestutil "github.com/onomyprotocol/cosmos-sdk/testutil/cli"
+	"github.com/onomyprotocol/cosmos-sdk/testutil/network"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/feegrant/client/cli"
+	"github.com/onomyprotocol/cosmos-sdk/x/feegrant/types"
+	govtestutil "github.com/onomyprotocol/cosmos-sdk/x/gov/client/testutil"
+	govtypes "github.com/onomyprotocol/cosmos-sdk/x/gov/types"
 )
 
 type IntegrationTestSuite struct {

@@ -3,16 +3,16 @@ package simulation
 import (
 	"math/rand"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	"github.com/cosmos/cosmos-sdk/codec"
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	"github.com/cosmos/cosmos-sdk/simapp/helpers"
-	simappparams "github.com/cosmos/cosmos-sdk/simapp/params"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	"github.com/cosmos/cosmos-sdk/x/bank/keeper"
-	"github.com/cosmos/cosmos-sdk/x/bank/types"
-	"github.com/cosmos/cosmos-sdk/x/simulation"
+	"github.com/onomyprotocol/cosmos-sdk/baseapp"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	cryptotypes "github.com/onomyprotocol/cosmos-sdk/crypto/types"
+	"github.com/onomyprotocol/cosmos-sdk/simapp/helpers"
+	simappparams "github.com/onomyprotocol/cosmos-sdk/simapp/params"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	simtypes "github.com/onomyprotocol/cosmos-sdk/types/simulation"
+	"github.com/onomyprotocol/cosmos-sdk/x/bank/keeper"
+	"github.com/onomyprotocol/cosmos-sdk/x/bank/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/simulation"
 )
 
 // Simulation operation weights constants

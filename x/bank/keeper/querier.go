@@ -3,11 +3,11 @@ package keeper
 import (
 	abci "github.com/tendermint/tendermint/abci/types"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"github.com/cosmos/cosmos-sdk/x/bank/types"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	sdkerrors "github.com/onomyprotocol/cosmos-sdk/types/errors"
+	"github.com/onomyprotocol/cosmos-sdk/x/bank/types"
 )
 
 // NewQuerier returns a new sdk.Keeper instance.
@@ -85,7 +85,7 @@ func queryTotalSupply(ctx sdk.Context, req abci.RequestQuery, k Keeper, legacyQu
 	}
 
 	// TODO: paginate
-	// https://github.com/cosmos/cosmos-sdk/issues/8761
+	// https://github.com/onomyprotocol/cosmos-sdk/issues/8761
 	totalSupply := k.GetTotalSupply(ctx)
 
 	start, end := client.Paginate(len(totalSupply), params.Page, params.Limit, 100)

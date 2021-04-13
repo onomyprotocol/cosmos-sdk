@@ -6,19 +6,19 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/codec/legacy"
-	"github.com/cosmos/cosmos-sdk/codec/types"
-	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
-	"github.com/cosmos/cosmos-sdk/crypto/keyring"
-	kmultisig "github.com/cosmos/cosmos-sdk/crypto/keys/multisig"
-	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	"github.com/cosmos/cosmos-sdk/crypto/types/multisig"
-	"github.com/cosmos/cosmos-sdk/simapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/tx/signing"
-	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	"github.com/onomyprotocol/cosmos-sdk/codec/legacy"
+	"github.com/onomyprotocol/cosmos-sdk/codec/types"
+	cryptocodec "github.com/onomyprotocol/cosmos-sdk/crypto/codec"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keyring"
+	kmultisig "github.com/onomyprotocol/cosmos-sdk/crypto/keys/multisig"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/secp256k1"
+	cryptotypes "github.com/onomyprotocol/cosmos-sdk/crypto/types"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/types/multisig"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/tx/signing"
+	"github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/legacytx"
 )
 
 func TestNewMultiSig(t *testing.T) {
@@ -390,7 +390,7 @@ func TestAminoUnmarshalJSON(t *testing.T) {
 	// v0.39, hence the `threshold` field as a string.
 	// We are testing that when unmarshaling this JSON into a LegacyAminoPubKey
 	// with amino, there's no error.
-	// ref: https://github.com/cosmos/cosmos-sdk/issues/8776
+	// ref: https://github.com/onomyprotocol/cosmos-sdk/issues/8776
 	pkJSON := `{
 	"type": "tendermint/PubKeyMultisigThreshold",
 	"value": {

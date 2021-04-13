@@ -92,7 +92,7 @@ validation failing on the receiving chain.
 
 In the SDK every time a `Coin` is initialized through the constructor function `NewCoin`, a validation
 of a coin's denom is performed according to a
-[Regex](https://github.com/cosmos/cosmos-sdk/blob/a940214a4923a3bf9a9161cd14bd3072299cd0c9/types/coin.go#L583),
+[Regex](https://github.com/onomyprotocol/cosmos-sdk/blob/a940214a4923a3bf9a9161cd14bd3072299cd0c9/types/coin.go#L583),
 where only lowercase alphanumeric characters are accepted. While this is desirable for native denominations
 to keep a clean UX, it presents a challenge for IBC as ports and channels might be randomly
 generated with special and uppercase characters as per the [ICS 024 - Host
@@ -199,7 +199,7 @@ func (msg MsgTransfer) ValidateBasic() error {
 // ValidateIBCDenom validates that the given denomination is either:
 //
 //  - A valid base denomination (eg: 'uatom')
-//  - A valid fungible token representation (i.e 'ibc/{hash}') per ADR 001 https://github.com/cosmos/cosmos-sdk/blob/master/docs/architecture/adr-001-coin-source-tracing.md
+//  - A valid fungible token representation (i.e 'ibc/{hash}') per ADR 001 https://github.com/onomyprotocol/cosmos-sdk/blob/master/docs/architecture/adr-001-coin-source-tracing.md
 func ValidateIBCDenom(denom string) error {
   denomSplit := strings.SplitN(denom, "/", 2)
 
@@ -347,7 +347,7 @@ function will now:
 - Bump the maximum character length to 128, as the hex representation used by Tendermint's
   `HexBytes` type contains 64 characters.
 
-Additional validation logic, such as verifying the length of the hash, the  may be added to the bank module in the future if the [custom base denomination validation](https://github.com/cosmos/cosmos-sdk/pull/6755) is integrated into the SDK.
+Additional validation logic, such as verifying the length of the hash, the  may be added to the bank module in the future if the [custom base denomination validation](https://github.com/onomyprotocol/cosmos-sdk/pull/6755) is integrated into the SDK.
 
 ### Positive
 
@@ -373,4 +373,4 @@ Additional validation logic, such as verifying the length of the hash, the  may 
 ## References
 
 - [ICS 20 - Fungible token transfer](https://github.com/cosmos/ibc/tree/master/spec/app/ics-020-fungible-token-transfer)
-- [Custom Coin Denomination validation](https://github.com/cosmos/cosmos-sdk/pull/6755)
+- [Custom Coin Denomination validation](https://github.com/onomyprotocol/cosmos-sdk/pull/6755)

@@ -6,8 +6,8 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/flags"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/client/flags"
 )
 
 const flagHex = "hex"

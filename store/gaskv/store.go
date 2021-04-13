@@ -4,8 +4,8 @@ import (
 	"io"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/store/types"
-	"github.com/cosmos/cosmos-sdk/telemetry"
+	"github.com/onomyprotocol/cosmos-sdk/store/types"
+	"github.com/onomyprotocol/cosmos-sdk/telemetry"
 )
 
 var _ types.KVStore = &Store{}

@@ -9,8 +9,8 @@ import (
 	math "math"
 	math_bits "math/bits"
 
-	types "github.com/cosmos/cosmos-sdk/codec/types"
-	types1 "github.com/cosmos/cosmos-sdk/crypto/types"
+	types "github.com/onomyprotocol/cosmos-sdk/codec/types"
+	types1 "github.com/onomyprotocol/cosmos-sdk/crypto/types"
 	proto "github.com/gogo/protobuf/proto"
 )
 

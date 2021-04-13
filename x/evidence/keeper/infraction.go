@@ -3,9 +3,9 @@ package keeper
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
 
-	"github.com/cosmos/cosmos-sdk/x/evidence/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/evidence/types"
 )
 
 // HandleEquivocationEvidence implements an equivocation evidence handler. Assuming the

@@ -5,7 +5,7 @@ import (
 
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
 )
 
 // Authorization represents the interface of various Authorization types.

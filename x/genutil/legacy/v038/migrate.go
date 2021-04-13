@@ -1,20 +1,20 @@
 package v038
 
 import (
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
-	v036auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v036"
-	v038auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v038"
-	v036distr "github.com/cosmos/cosmos-sdk/x/distribution/legacy/v036"
-	v038distr "github.com/cosmos/cosmos-sdk/x/distribution/legacy/v038"
-	v036genaccounts "github.com/cosmos/cosmos-sdk/x/genaccounts/legacy/v036"
-	"github.com/cosmos/cosmos-sdk/x/genutil/types"
-	v036gov "github.com/cosmos/cosmos-sdk/x/gov/legacy/v036"
-	v036params "github.com/cosmos/cosmos-sdk/x/params/legacy/v036"
-	v036staking "github.com/cosmos/cosmos-sdk/x/staking/legacy/v036"
-	v038staking "github.com/cosmos/cosmos-sdk/x/staking/legacy/v038"
-	v038upgrade "github.com/cosmos/cosmos-sdk/x/upgrade/legacy/v038"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	cryptocodec "github.com/onomyprotocol/cosmos-sdk/crypto/codec"
+	v036auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v036"
+	v038auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v038"
+	v036distr "github.com/onomyprotocol/cosmos-sdk/x/distribution/legacy/v036"
+	v038distr "github.com/onomyprotocol/cosmos-sdk/x/distribution/legacy/v038"
+	v036genaccounts "github.com/onomyprotocol/cosmos-sdk/x/genaccounts/legacy/v036"
+	"github.com/onomyprotocol/cosmos-sdk/x/genutil/types"
+	v036gov "github.com/onomyprotocol/cosmos-sdk/x/gov/legacy/v036"
+	v036params "github.com/onomyprotocol/cosmos-sdk/x/params/legacy/v036"
+	v036staking "github.com/onomyprotocol/cosmos-sdk/x/staking/legacy/v036"
+	v038staking "github.com/onomyprotocol/cosmos-sdk/x/staking/legacy/v038"
+	v038upgrade "github.com/onomyprotocol/cosmos-sdk/x/upgrade/legacy/v038"
 )
 
 // Migrate migrates exported state from v0.36/v0.37 to a v0.38 genesis state.

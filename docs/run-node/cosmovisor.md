@@ -6,7 +6,7 @@
 
 Run:
 
-`go get github.com/cosmos/cosmos-sdk/cosmovisor/cmd/cosmovisor`
+`go get github.com/onomyprotocol/cosmos-sdk/cosmovisor/cmd/cosmovisor`
 
 ## Command Line Arguments And Environment Variables
 

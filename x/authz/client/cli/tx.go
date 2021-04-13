@@ -9,17 +9,17 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/client/tx"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/msgservice"
-	"github.com/cosmos/cosmos-sdk/version"
-	authclient "github.com/cosmos/cosmos-sdk/x/auth/client"
-	"github.com/cosmos/cosmos-sdk/x/authz/exported"
-	"github.com/cosmos/cosmos-sdk/x/authz/types"
-	bank "github.com/cosmos/cosmos-sdk/x/bank/types"
-	staking "github.com/cosmos/cosmos-sdk/x/staking/types"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/client/flags"
+	"github.com/onomyprotocol/cosmos-sdk/client/tx"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/msgservice"
+	"github.com/onomyprotocol/cosmos-sdk/version"
+	authclient "github.com/onomyprotocol/cosmos-sdk/x/auth/client"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/exported"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/types"
+	bank "github.com/onomyprotocol/cosmos-sdk/x/bank/types"
+	staking "github.com/onomyprotocol/cosmos-sdk/x/staking/types"
 )
 
 const FlagSpendLimit = "spend-limit"

@@ -1,5 +1,5 @@
 // Package v040 is copy-pasted from:
-// https://github.com/cosmos/cosmos-sdk/blob/v0.41.1/x/gov/types/vote.go
+// https://github.com/onomyprotocol/cosmos-sdk/blob/v0.41.1/x/gov/types/vote.go
 package v040
 
 import (
@@ -7,8 +7,8 @@ import (
 
 	yaml "gopkg.in/yaml.v2"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/gov/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/gov/types"
 )
 
 // NewVote creates a new Vote instance

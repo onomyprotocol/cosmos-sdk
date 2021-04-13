@@ -7,8 +7,8 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	stakingtypes "github.com/onomyprotocol/cosmos-sdk/x/staking/types"
 )
 
 var (

@@ -7,12 +7,12 @@ import (
 	gogotypes "github.com/gogo/protobuf/types"
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
-	"github.com/cosmos/cosmos-sdk/simapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/kv"
-	"github.com/cosmos/cosmos-sdk/x/auth/simulation"
-	"github.com/cosmos/cosmos-sdk/x/auth/types"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/ed25519"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/kv"
+	"github.com/onomyprotocol/cosmos-sdk/x/auth/simulation"
+	"github.com/onomyprotocol/cosmos-sdk/x/auth/types"
 )
 
 var (

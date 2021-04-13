@@ -5,11 +5,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/simapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	v038evidence "github.com/cosmos/cosmos-sdk/x/evidence/legacy/v038"
-	v040evidence "github.com/cosmos/cosmos-sdk/x/evidence/legacy/v040"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	v038evidence "github.com/onomyprotocol/cosmos-sdk/x/evidence/legacy/v038"
+	v040evidence "github.com/onomyprotocol/cosmos-sdk/x/evidence/legacy/v040"
 )
 
 func TestMigrate(t *testing.T) {

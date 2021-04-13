@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"math/rand"
 
-	"github.com/cosmos/cosmos-sdk/types/module"
-	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	"github.com/cosmos/cosmos-sdk/x/feegrant/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/module"
+	simtypes "github.com/onomyprotocol/cosmos-sdk/types/simulation"
+	"github.com/onomyprotocol/cosmos-sdk/x/feegrant/types"
 )
 
 // Simulation parameter constants

@@ -20,7 +20,7 @@ One of the main interfaces for an application is the [command-line interface](..
 
 Here is an example from the `auth` module:
 
-+++ https://github.com/cosmos/cosmos-sdk/blob/64b6bb5270e1a3b688c2d98a8f481ae04bb713ca/x/auth/client/cli/tx_sign.go#L160-L194
++++ https://github.com/onomyprotocol/cosmos-sdk/blob/64b6bb5270e1a3b688c2d98a8f481ae04bb713ca/x/auth/client/cli/tx_sign.go#L160-L194
 
 This getter function creates the command for the `Sign` transaction. It does the following:
 
@@ -39,7 +39,7 @@ This getter function creates the command for the `Sign` transaction. It does the
 
 Finally, the module needs to have a `GetTxCmd()`, which aggregates all of the transaction commands of the module. Often, each command getter function has its own file in the module's `cli` folder, and a separate `tx.go` file contains `GetTxCmd()`. Application developers wishing to include the module's transactions will call this function to add them as subcommands in their CLI. Here is the `auth` `GetTxCmd()` function, which adds the `Sign`, `MultiSign`, `ValidateSignatures` and `SignBatch` commands.
 
-+++ https://github.com/cosmos/cosmos-sdk/blob/351192aa0b52a42b66ff06e81cfa7a9e26667a7f/x/auth/client/cli/tx.go#L10-L26
++++ https://github.com/onomyprotocol/cosmos-sdk/blob/351192aa0b52a42b66ff06e81cfa7a9e26667a7f/x/auth/client/cli/tx.go#L10-L26
 
 An application using this module likely adds `auth` module commands to its root `TxCmd` command by calling `txCmd.AddCommand(authModuleClient.GetTxCmd())`.
 
@@ -47,7 +47,7 @@ An application using this module likely adds `auth` module commands to its root 
 
 [Queries](./messages-and-queries.md#queries) allow users to gather information about the application or network state; they are routed by the application and processed by the module in which they are defined. Query commands typically have their own `query.go` file in the module `x/moduleName/client/cli` folder. Like transaction commands, they are specified in getter functions. Here is an example of a query command from the `auth` module:
 
-+++ https://github.com/cosmos/cosmos-sdk/blob/d55c1a26657a0af937fa2273b38dcfa1bb3cff9f/x/auth/client/cli/query.go#L76-L108
++++ https://github.com/onomyprotocol/cosmos-sdk/blob/d55c1a26657a0af937fa2273b38dcfa1bb3cff9f/x/auth/client/cli/query.go#L76-L108
 
 This query returns the account at a given address. The getter function does the following:
 
@@ -71,7 +71,7 @@ For full details on flags, visit the [Cobra Documentation](https://github.com/sp
 
 For example, the SDK `./client/flags` package includes a `AddTxFlagsToCmd(cmd *cobra.Command)` function that adds necessary flags to a transaction command, such as the `from` flag to indicate which address the transaction originates from.
 
-+++ https://github.com/cosmos/cosmos-sdk/blob/cfb5fc03e5092395403d10156c0ee96e6ff1ddbe/client/flags/flags.go#L85-L112
++++ https://github.com/onomyprotocol/cosmos-sdk/blob/cfb5fc03e5092395403d10156c0ee96e6ff1ddbe/client/flags/flags.go#L85-L112
 
 Here is an example of how to add a flag using the `from` flag from this function.
 
@@ -101,7 +101,7 @@ In order to do that, module should implement `RegisterGRPCGatewayRoutes(clientCt
 
 Here's an example from the `auth` module:
 
-+++ https://github.com/cosmos/cosmos-sdk/blob/64b6bb5270e1a3b688c2d98a8f481ae04bb713ca/x/auth/module.go#L69-L72
++++ https://github.com/onomyprotocol/cosmos-sdk/blob/64b6bb5270e1a3b688c2d98a8f481ae04bb713ca/x/auth/module.go#L69-L72
 
 ## gRPC-gateway REST
 
@@ -144,7 +144,7 @@ Request types, which define structured interactions from users, must be defined 
 
 Here is an example of a request to send coins from the `bank` module:
 
-+++ https://github.com/cosmos/cosmos-sdk/blob/7f59723d889b69ca19966167f0b3a7fec7a39e53/x/bank/client/rest/tx.go#L15-L19
++++ https://github.com/onomyprotocol/cosmos-sdk/blob/7f59723d889b69ca19966167f0b3a7fec7a39e53/x/bank/client/rest/tx.go#L15-L19
 
 The `BaseReq` includes basic information that every request needs to have, similar to required flags in a CLI. All of these values, including `GasPrices` and `AccountNumber`, will be provided in the request body. The user will also need to specify the argument `Amount` fields in the body.
 
@@ -170,7 +170,7 @@ Request handlers must be defined for both transaction and query requests. Handle
 
 Here is an example of a request handler for the `bank` module `SendReq` request (the same one shown above):
 
-+++ https://github.com/cosmos/cosmos-sdk/blob/7f59723d889b69ca19966167f0b3a7fec7a39e53/x/bank/client/rest/tx.go#L21-L51
++++ https://github.com/onomyprotocol/cosmos-sdk/blob/7f59723d889b69ca19966167f0b3a7fec7a39e53/x/bank/client/rest/tx.go#L21-L51
 
 The request handler can be broken down as follows:
 

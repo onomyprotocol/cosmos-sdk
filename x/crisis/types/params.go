@@ -3,8 +3,8 @@ package types
 import (
 	"fmt"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	paramtypes "github.com/onomyprotocol/cosmos-sdk/x/params/types"
 )
 
 var (

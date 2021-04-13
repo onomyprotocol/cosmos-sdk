@@ -5,11 +5,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
-	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
-	v034staking "github.com/cosmos/cosmos-sdk/x/staking/legacy/v034"
-	v036staking "github.com/cosmos/cosmos-sdk/x/staking/legacy/v036"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/ed25519"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/secp256k1"
+	v034staking "github.com/onomyprotocol/cosmos-sdk/x/staking/legacy/v034"
+	v036staking "github.com/onomyprotocol/cosmos-sdk/x/staking/legacy/v036"
 )
 
 func TestMigrate(t *testing.T) {

@@ -3,10 +3,10 @@ package utils
 import (
 	"fmt"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
-	"github.com/cosmos/cosmos-sdk/x/gov/types"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	authtx "github.com/onomyprotocol/cosmos-sdk/x/auth/tx"
+	"github.com/onomyprotocol/cosmos-sdk/x/gov/types"
 )
 
 const (

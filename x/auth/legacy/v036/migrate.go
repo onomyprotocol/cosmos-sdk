@@ -2,7 +2,7 @@
 package v036
 
 import (
-	v034auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v034"
+	v034auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v034"
 )
 
 // Migrate accepts exported genesis state from v0.34 and migrates it to v0.36

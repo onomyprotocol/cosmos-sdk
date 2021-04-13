@@ -7,12 +7,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	"github.com/cosmos/cosmos-sdk/types/module"
-	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	"github.com/cosmos/cosmos-sdk/x/authz/simulation"
-	"github.com/cosmos/cosmos-sdk/x/authz/types"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	codectypes "github.com/onomyprotocol/cosmos-sdk/codec/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/module"
+	simtypes "github.com/onomyprotocol/cosmos-sdk/types/simulation"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/simulation"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/types"
 )
 
 func TestRandomizedGenState(t *testing.T) {

@@ -1,8 +1,8 @@
 package v038
 
 import (
-	v036auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v036"
-	v036genaccounts "github.com/cosmos/cosmos-sdk/x/genaccounts/legacy/v036"
+	v036auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v036"
+	v036genaccounts "github.com/onomyprotocol/cosmos-sdk/x/genaccounts/legacy/v036"
 )
 
 // Migrate accepts exported genesis state from v0.34 and migrates it to v0.38

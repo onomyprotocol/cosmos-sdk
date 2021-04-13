@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"reflect"
 
-	auth "github.com/cosmos/cosmos-sdk/x/auth/types"
+	auth "github.com/onomyprotocol/cosmos-sdk/x/auth/types"
 
 	"github.com/tendermint/tendermint/crypto"
 
@@ -14,8 +14,8 @@ import (
 	crgtypes "github.com/tendermint/cosmos-rosetta-gateway/types"
 	tmcoretypes "github.com/tendermint/tendermint/rpc/core/types"
 
-	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
-	"github.com/cosmos/cosmos-sdk/types/tx/signing"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/secp256k1"
+	"github.com/onomyprotocol/cosmos-sdk/types/tx/signing"
 
 	rosettatypes "github.com/coinbase/rosetta-sdk-go/types"
 	"github.com/gogo/protobuf/proto"
@@ -23,13 +23,13 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	tmtypes "github.com/tendermint/tendermint/types"
 
-	sdkclient "github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
-	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
+	sdkclient "github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	codectypes "github.com/onomyprotocol/cosmos-sdk/codec/types"
+	cryptotypes "github.com/onomyprotocol/cosmos-sdk/crypto/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	authsigning "github.com/onomyprotocol/cosmos-sdk/x/auth/signing"
+	banktypes "github.com/onomyprotocol/cosmos-sdk/x/bank/types"
 )
 
 // Converter is a utility that can be used to convert

@@ -10,16 +10,16 @@ import (
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/cosmos/cosmos-sdk/baseapp"
-	"github.com/cosmos/cosmos-sdk/codec"
-	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
-	"github.com/cosmos/cosmos-sdk/simapp"
-	"github.com/cosmos/cosmos-sdk/store"
-	"github.com/cosmos/cosmos-sdk/store/prefix"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/address"
-	"github.com/cosmos/cosmos-sdk/types/query"
-	"github.com/cosmos/cosmos-sdk/x/bank/types"
+	"github.com/onomyprotocol/cosmos-sdk/baseapp"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/secp256k1"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	"github.com/onomyprotocol/cosmos-sdk/store"
+	"github.com/onomyprotocol/cosmos-sdk/store/prefix"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/address"
+	"github.com/onomyprotocol/cosmos-sdk/types/query"
+	"github.com/onomyprotocol/cosmos-sdk/x/bank/types"
 )
 
 const (

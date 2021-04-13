@@ -9,15 +9,15 @@ import (
 	abci "github.com/tendermint/tendermint/abci/types"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/cosmos/cosmos-sdk/simapp"
-	simappparams "github.com/cosmos/cosmos-sdk/simapp/params"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	simtypes "github.com/cosmos/cosmos-sdk/types/simulation"
-	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
-	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
-	"github.com/cosmos/cosmos-sdk/x/staking/simulation"
-	"github.com/cosmos/cosmos-sdk/x/staking/teststaking"
-	"github.com/cosmos/cosmos-sdk/x/staking/types"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	simappparams "github.com/onomyprotocol/cosmos-sdk/simapp/params"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	simtypes "github.com/onomyprotocol/cosmos-sdk/types/simulation"
+	distrtypes "github.com/onomyprotocol/cosmos-sdk/x/distribution/types"
+	minttypes "github.com/onomyprotocol/cosmos-sdk/x/mint/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/staking/simulation"
+	"github.com/onomyprotocol/cosmos-sdk/x/staking/teststaking"
+	"github.com/onomyprotocol/cosmos-sdk/x/staking/types"
 )
 
 // TestWeightedOperations tests the weights of the operations.

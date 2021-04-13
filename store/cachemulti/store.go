@@ -6,9 +6,9 @@ import (
 
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/cosmos/cosmos-sdk/store/cachekv"
-	"github.com/cosmos/cosmos-sdk/store/dbadapter"
-	"github.com/cosmos/cosmos-sdk/store/types"
+	"github.com/onomyprotocol/cosmos-sdk/store/cachekv"
+	"github.com/onomyprotocol/cosmos-sdk/store/dbadapter"
+	"github.com/onomyprotocol/cosmos-sdk/store/types"
 )
 
 //----------------------------------------

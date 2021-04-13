@@ -5,11 +5,11 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/cosmos/cosmos-sdk/codec"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	v034distr "github.com/cosmos/cosmos-sdk/x/distribution/legacy/v034"
-	"github.com/cosmos/cosmos-sdk/x/distribution/types"
-	v036gov "github.com/cosmos/cosmos-sdk/x/gov/legacy/v036"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	v034distr "github.com/onomyprotocol/cosmos-sdk/x/distribution/legacy/v034"
+	"github.com/onomyprotocol/cosmos-sdk/x/distribution/types"
+	v036gov "github.com/onomyprotocol/cosmos-sdk/x/gov/legacy/v036"
 )
 
 // ----------------------------------------------------------------------------

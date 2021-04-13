@@ -5,14 +5,14 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/cosmos-sdk/simapp"
-	"github.com/cosmos/cosmos-sdk/store/prefix"
-	"github.com/cosmos/cosmos-sdk/testutil"
-	"github.com/cosmos/cosmos-sdk/testutil/testdata"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	v040bank "github.com/cosmos/cosmos-sdk/x/bank/legacy/v040"
-	v043bank "github.com/cosmos/cosmos-sdk/x/bank/legacy/v043"
-	"github.com/cosmos/cosmos-sdk/x/bank/types"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	"github.com/onomyprotocol/cosmos-sdk/store/prefix"
+	"github.com/onomyprotocol/cosmos-sdk/testutil"
+	"github.com/onomyprotocol/cosmos-sdk/testutil/testdata"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	v040bank "github.com/onomyprotocol/cosmos-sdk/x/bank/legacy/v040"
+	v043bank "github.com/onomyprotocol/cosmos-sdk/x/bank/legacy/v043"
+	"github.com/onomyprotocol/cosmos-sdk/x/bank/types"
 )
 
 func TestSupplyMigration(t *testing.T) {

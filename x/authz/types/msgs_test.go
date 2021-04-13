@@ -6,11 +6,11 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
+	banktypes "github.com/onomyprotocol/cosmos-sdk/x/bank/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/authz/exported"
-	"github.com/cosmos/cosmos-sdk/x/authz/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/exported"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/types"
 )
 
 var (

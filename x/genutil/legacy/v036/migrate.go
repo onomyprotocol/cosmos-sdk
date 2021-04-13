@@ -1,22 +1,22 @@
 package v036
 
 import (
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
-	v034auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v034"
-	v036auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v036"
-	v036bank "github.com/cosmos/cosmos-sdk/x/bank/legacy/v036"
-	v034distr "github.com/cosmos/cosmos-sdk/x/distribution/legacy/v034"
-	v036distr "github.com/cosmos/cosmos-sdk/x/distribution/legacy/v036"
-	v034genAccounts "github.com/cosmos/cosmos-sdk/x/genaccounts/legacy/v034"
-	v036genAccounts "github.com/cosmos/cosmos-sdk/x/genaccounts/legacy/v036"
-	"github.com/cosmos/cosmos-sdk/x/genutil/types"
-	v034gov "github.com/cosmos/cosmos-sdk/x/gov/legacy/v034"
-	v036gov "github.com/cosmos/cosmos-sdk/x/gov/legacy/v036"
-	v036params "github.com/cosmos/cosmos-sdk/x/params/legacy/v036"
-	v034staking "github.com/cosmos/cosmos-sdk/x/staking/legacy/v034"
-	v036staking "github.com/cosmos/cosmos-sdk/x/staking/legacy/v036"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	cryptocodec "github.com/onomyprotocol/cosmos-sdk/crypto/codec"
+	v034auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v034"
+	v036auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v036"
+	v036bank "github.com/onomyprotocol/cosmos-sdk/x/bank/legacy/v036"
+	v034distr "github.com/onomyprotocol/cosmos-sdk/x/distribution/legacy/v034"
+	v036distr "github.com/onomyprotocol/cosmos-sdk/x/distribution/legacy/v036"
+	v034genAccounts "github.com/onomyprotocol/cosmos-sdk/x/genaccounts/legacy/v034"
+	v036genAccounts "github.com/onomyprotocol/cosmos-sdk/x/genaccounts/legacy/v036"
+	"github.com/onomyprotocol/cosmos-sdk/x/genutil/types"
+	v034gov "github.com/onomyprotocol/cosmos-sdk/x/gov/legacy/v034"
+	v036gov "github.com/onomyprotocol/cosmos-sdk/x/gov/legacy/v036"
+	v036params "github.com/onomyprotocol/cosmos-sdk/x/params/legacy/v036"
+	v034staking "github.com/onomyprotocol/cosmos-sdk/x/staking/legacy/v034"
+	v036staking "github.com/onomyprotocol/cosmos-sdk/x/staking/legacy/v036"
 )
 
 // Migrate migrates exported state from v0.34 to a v0.36 genesis state.

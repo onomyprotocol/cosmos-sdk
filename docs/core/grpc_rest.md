@@ -21,7 +21,7 @@ The node also exposes some other endpoints, such as the Tendermint P2P endpoint,
 ## gRPC Server
 
 ::: warning
-A patch introduced in `go-grpc v1.34.0` made gRPC incompatible with the `gogoproto` library, making some [gRPC queries](https://github.com/cosmos/cosmos-sdk/issues/8426) panic. As such, the SDK requires that `go-grpc <=v1.33.2` is installed in your `go.mod`.
+A patch introduced in `go-grpc v1.34.0` made gRPC incompatible with the `gogoproto` library, making some [gRPC queries](https://github.com/onomyprotocol/cosmos-sdk/issues/8426) panic. As such, the SDK requires that `go-grpc <=v1.33.2` is installed in your `go.mod`.
 
 To make sure that gRPC is working properly, it is **highly recommended** to add the following line in your application's `go.mod`:
 
@@ -29,14 +29,14 @@ To make sure that gRPC is working properly, it is **highly recommended** to add 
 replace google.golang.org/grpc => google.golang.org/grpc v1.33.2
 ```
 
-Please see [issue #8392](https://github.com/cosmos/cosmos-sdk/issues/8392) for more info.
+Please see [issue #8392](https://github.com/onomyprotocol/cosmos-sdk/issues/8392) for more info.
 :::
 
 Cosmos SDK v0.40 introduced Protobuf as the main [encoding](./encoding) library, and this brings a wide range of Protobuf-based tools that can be plugged into the SDK. One such tool is [gRPC](https://grpc.io), a modern open source high performance RPC framework that has decent client support in several languages.
 
 Each module exposes [`Msg` and `Query` Protobuf services](../building-modules/messages-and-queries.md) to define state transitions and state queries. These services are hooked up to gRPC via the following function inside the application:
 
-<https://github.com/cosmos/cosmos-sdk/blob/v0.41.0/server/types/app.go#L39-L41>
+<https://github.com/onomyprotocol/cosmos-sdk/blob/v0.41.0/server/types/app.go#L39-L41>
 
 The `grpc.Server` is a concrete gRPC server, which spawns and serves any gRPC requests. This server can be configured inside `~/.simapp/config/app.toml`:
 
@@ -67,7 +67,7 @@ If, for various reasons, you cannot use gRPC (for example, you are building a we
 
 [gRPC-gateway](https://grpc-ecosystem.github.io/grpc-gateway/) is a tool to expose gRPC endpoints as REST endpoints. For each RPC endpoint defined in a Protobuf service, the SDK offers a REST equivalent. For instance, querying a balance could be done via the `/cosmos.bank.v1beta1.Query/AllBalances` gRPC endpoint, or alternatively via the gRPC-gateway `"/cosmos/bank/v1beta1/balances/{address}"` REST endpoint: both will return the same result. For each RPC method defined in a Protobuf service, the corresponding REST endpoint is defined as an option:
 
-+++ https://github.com/cosmos/cosmos-sdk/blob/v0.41.0/proto/cosmos/bank/v1beta1/query.proto#L19-L22
++++ https://github.com/onomyprotocol/cosmos-sdk/blob/v0.41.0/proto/cosmos/bank/v1beta1/query.proto#L19-L22
 
 For application developers, gRPC-gateway REST routes needs to be wired up to the REST server, this is done by calling the `RegisterGRPCGatewayRoutes` function on the ModuleManager.
 
@@ -83,7 +83,7 @@ A [Swagger](https://swagger.io/) (or OpenAPIv2) specification file is exposed un
 
 Enabling the `/swagger` endpoint is configurable inside `~/.simapp/config/app.toml` via the `api.swagger` field, which is set to true by default.
 
-For application developers, you may want to generate your own Swagger definitions based on your custom modules. The SDK's [Swagger generation script](https://github.com/cosmos/cosmos-sdk/blob/v0.40.0-rc4/scripts/protoc-swagger-gen.sh) is a good place to start.
+For application developers, you may want to generate your own Swagger definitions based on your custom modules. The SDK's [Swagger generation script](https://github.com/onomyprotocol/cosmos-sdk/blob/v0.40.0-rc4/scripts/protoc-swagger-gen.sh) is a good place to start.
 
 ## Tendermint RPC
 

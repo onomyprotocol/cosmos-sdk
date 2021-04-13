@@ -1,15 +1,15 @@
 package v039
 
 import (
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	v038auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v038"
-	v039auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v039"
-	v036distr "github.com/cosmos/cosmos-sdk/x/distribution/legacy/v036"
-	"github.com/cosmos/cosmos-sdk/x/genutil/types"
-	v036gov "github.com/cosmos/cosmos-sdk/x/gov/legacy/v036"
-	v036params "github.com/cosmos/cosmos-sdk/x/params/legacy/v036"
-	v038upgrade "github.com/cosmos/cosmos-sdk/x/upgrade/legacy/v038"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	v038auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v038"
+	v039auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v039"
+	v036distr "github.com/onomyprotocol/cosmos-sdk/x/distribution/legacy/v036"
+	"github.com/onomyprotocol/cosmos-sdk/x/genutil/types"
+	v036gov "github.com/onomyprotocol/cosmos-sdk/x/gov/legacy/v036"
+	v036params "github.com/onomyprotocol/cosmos-sdk/x/params/legacy/v036"
+	v038upgrade "github.com/onomyprotocol/cosmos-sdk/x/upgrade/legacy/v038"
 )
 
 // Migrate migrates exported state from v0.38 to a v0.39 genesis state.

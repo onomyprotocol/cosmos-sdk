@@ -7,21 +7,21 @@ import (
 
 	"github.com/tendermint/tendermint/crypto"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/codec"
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/codec"
+	cryptotypes "github.com/onomyprotocol/cosmos-sdk/crypto/types"
 
-	"github.com/cosmos/cosmos-sdk/simapp"
-	"github.com/cosmos/cosmos-sdk/simapp/helpers"
-	"github.com/cosmos/cosmos-sdk/testutil/testdata"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/simulation"
-	"github.com/cosmos/cosmos-sdk/types/tx/signing"
-	"github.com/cosmos/cosmos-sdk/x/auth/ante"
-	authsign "github.com/cosmos/cosmos-sdk/x/auth/signing"
-	"github.com/cosmos/cosmos-sdk/x/auth/tx"
-	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	"github.com/cosmos/cosmos-sdk/x/feegrant/types"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	"github.com/onomyprotocol/cosmos-sdk/simapp/helpers"
+	"github.com/onomyprotocol/cosmos-sdk/testutil/testdata"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/simulation"
+	"github.com/onomyprotocol/cosmos-sdk/types/tx/signing"
+	"github.com/onomyprotocol/cosmos-sdk/x/auth/ante"
+	authsign "github.com/onomyprotocol/cosmos-sdk/x/auth/signing"
+	"github.com/onomyprotocol/cosmos-sdk/x/auth/tx"
+	authtypes "github.com/onomyprotocol/cosmos-sdk/x/auth/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/feegrant/types"
 )
 
 func (suite *AnteTestSuite) TestDeductFeesNoDelegation() {

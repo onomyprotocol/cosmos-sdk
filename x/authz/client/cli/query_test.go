@@ -9,13 +9,13 @@ import (
 
 	tmcli "github.com/tendermint/tendermint/libs/cli"
 
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	clitestutil "github.com/cosmos/cosmos-sdk/testutil/cli"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/authz/client/cli"
+	"github.com/onomyprotocol/cosmos-sdk/client/flags"
+	clitestutil "github.com/onomyprotocol/cosmos-sdk/testutil/cli"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/client/cli"
 
-	authztestutil "github.com/cosmos/cosmos-sdk/x/authz/client/testutil"
-	"github.com/cosmos/cosmos-sdk/x/authz/types"
+	authztestutil "github.com/onomyprotocol/cosmos-sdk/x/authz/client/testutil"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/types"
 )
 
 func (s *IntegrationTestSuite) TestQueryAuthorizations() {

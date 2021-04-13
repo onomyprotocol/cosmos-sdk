@@ -3,10 +3,10 @@ package testdata
 import (
 	"encoding/json"
 
-	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256k1"
-	"github.com/cosmos/cosmos-sdk/crypto/keys/secp256r1"
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/secp256k1"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keys/secp256r1"
+	cryptotypes "github.com/onomyprotocol/cosmos-sdk/crypto/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 )
 

@@ -1,5 +1,5 @@
 // Package v040 is taken from:
-// https://github.com/cosmos/cosmos-sdk/blob/v0.41.1/x/gov/types/gov.pb.go
+// https://github.com/onomyprotocol/cosmos-sdk/blob/v0.41.1/x/gov/types/gov.pb.go
 // by copy-pasted only the relevants parts for Vote.
 package v040
 
@@ -8,7 +8,7 @@ import (
 	"io"
 	math_bits "math/bits"
 
-	"github.com/cosmos/cosmos-sdk/x/gov/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/gov/types"
 )
 
 type Vote struct {

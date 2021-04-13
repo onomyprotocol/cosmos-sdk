@@ -40,7 +40,7 @@ This isn’t really documented anywhere and clients would need to know the inter
 of the SDK to parse that value and return it to users.
 
 Also, there may be cases where we want to use these return values programatically.
-For instance, https://github.com/cosmos/cosmos-sdk/issues/7093 proposes a method for
+For instance, https://github.com/onomyprotocol/cosmos-sdk/issues/7093 proposes a method for
 doing inter-module Ocaps using the `Msg` router. A well-defined return type would
 improve the developer UX for this approach.
 
@@ -82,7 +82,7 @@ With this approach, we would get an auto-generated `MsgServer` interface:
 
 In addition to clearly specifying return types, this has the benefit of generating client and server code. On the server
 side, this is almost like an automatically generated keeper method and could maybe be used intead of keepers eventually
-(see [\#7093](https://github.com/cosmos/cosmos-sdk/issues/7093)):
+(see [\#7093](https://github.com/onomyprotocol/cosmos-sdk/issues/7093)):
 
 ```go
 package gov
@@ -189,8 +189,8 @@ func (am AppModule) RegisterServices(cfg Configurator) {
 ```
 
 The `RegisterServices` method and the `Configurator` interface are intended to
-evolve to satisfy the use cases discussed in [\#7093](https://github.com/cosmos/cosmos-sdk/issues/7093)
-and [\#7122](https://github.com/cosmos/cosmos-sdk/issues/7421).
+evolve to satisfy the use cases discussed in [\#7093](https://github.com/onomyprotocol/cosmos-sdk/issues/7093)
+and [\#7122](https://github.com/onomyprotocol/cosmos-sdk/issues/7421).
 
 When `Msg` services are registered, the framework _should_ verify that all `Msg...Request` types
 implement the `MsgRequest` interface described above and throw an error during initialization rather
@@ -227,7 +227,7 @@ Finally, closing a module to client API opens desirable OCAP patterns discussed 
 ### Pros
 - communicates return type clearly
 - manual handler registration and return type marshaling is no longer needed, just implement the interface and register it
-- communication interface is automatically generated, the developer can now focus only on the state transition methods - this would improve the UX of [\#7093](https://github.com/cosmos/cosmos-sdk/issues/7093) approach (1) if we chose to adopt that
+- communication interface is automatically generated, the developer can now focus only on the state transition methods - this would improve the UX of [\#7093](https://github.com/onomyprotocol/cosmos-sdk/issues/7093) approach (1) if we chose to adopt that
 - generated client code could be useful for clients and tests
 - dramatically reduces and simplifies the code
 
@@ -239,7 +239,7 @@ Finally, closing a module to client API opens desirable OCAP patterns discussed 
 
 ## References
 
-- [Initial Github Issue \#7122](https://github.com/cosmos/cosmos-sdk/issues/7122)
+- [Initial Github Issue \#7122](https://github.com/onomyprotocol/cosmos-sdk/issues/7122)
 - [proto 3 Language Guide: Defining Services](https://developers.google.com/protocol-buffers/docs/proto3#services)
 - [Initial pre-`Any` `Msg` designs](https://docs.google.com/document/d/1eEgYgvgZqLE45vETjhwIw4VOqK-5hwQtZtjVbiXnIGc)
 - [ADR 020](./adr-020-protobuf-transaction-encoding.md)

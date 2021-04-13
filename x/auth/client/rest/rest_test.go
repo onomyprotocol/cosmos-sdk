@@ -10,27 +10,27 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/cosmos/cosmos-sdk/client/flags"
-	"github.com/cosmos/cosmos-sdk/client/tx"
-	"github.com/cosmos/cosmos-sdk/crypto/hd"
-	"github.com/cosmos/cosmos-sdk/crypto/keyring"
-	kmultisig "github.com/cosmos/cosmos-sdk/crypto/keys/multisig"
-	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
-	"github.com/cosmos/cosmos-sdk/testutil"
-	clitestutil "github.com/cosmos/cosmos-sdk/testutil/cli"
-	"github.com/cosmos/cosmos-sdk/testutil/network"
-	"github.com/cosmos/cosmos-sdk/testutil/testdata"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/rest"
-	txtypes "github.com/cosmos/cosmos-sdk/types/tx"
-	"github.com/cosmos/cosmos-sdk/types/tx/signing"
-	authclient "github.com/cosmos/cosmos-sdk/x/auth/client"
-	authcli "github.com/cosmos/cosmos-sdk/x/auth/client/cli"
-	authrest "github.com/cosmos/cosmos-sdk/x/auth/client/rest"
-	authtest "github.com/cosmos/cosmos-sdk/x/auth/client/testutil"
-	"github.com/cosmos/cosmos-sdk/x/auth/legacy/legacytx"
-	bankcli "github.com/cosmos/cosmos-sdk/x/bank/client/testutil"
-	"github.com/cosmos/cosmos-sdk/x/bank/types"
+	"github.com/onomyprotocol/cosmos-sdk/client/flags"
+	"github.com/onomyprotocol/cosmos-sdk/client/tx"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/hd"
+	"github.com/onomyprotocol/cosmos-sdk/crypto/keyring"
+	kmultisig "github.com/onomyprotocol/cosmos-sdk/crypto/keys/multisig"
+	cryptotypes "github.com/onomyprotocol/cosmos-sdk/crypto/types"
+	"github.com/onomyprotocol/cosmos-sdk/testutil"
+	clitestutil "github.com/onomyprotocol/cosmos-sdk/testutil/cli"
+	"github.com/onomyprotocol/cosmos-sdk/testutil/network"
+	"github.com/onomyprotocol/cosmos-sdk/testutil/testdata"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/rest"
+	txtypes "github.com/onomyprotocol/cosmos-sdk/types/tx"
+	"github.com/onomyprotocol/cosmos-sdk/types/tx/signing"
+	authclient "github.com/onomyprotocol/cosmos-sdk/x/auth/client"
+	authcli "github.com/onomyprotocol/cosmos-sdk/x/auth/client/cli"
+	authrest "github.com/onomyprotocol/cosmos-sdk/x/auth/client/rest"
+	authtest "github.com/onomyprotocol/cosmos-sdk/x/auth/client/testutil"
+	"github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/legacytx"
+	bankcli "github.com/onomyprotocol/cosmos-sdk/x/bank/client/testutil"
+	"github.com/onomyprotocol/cosmos-sdk/x/bank/types"
 )
 
 type IntegrationTestSuite struct {
@@ -135,7 +135,7 @@ func (s *IntegrationTestSuite) TestQueryAccountWithColon() {
 	val := s.network.Validators[0]
 	// This address is not a valid simapp address! It is only used to test that addresses with
 	// colon don't 501. See
-	// https://github.com/cosmos/cosmos-sdk/issues/8650
+	// https://github.com/onomyprotocol/cosmos-sdk/issues/8650
 	addrWithColon := "cosmos:1m4f6lwd9eh8e5nxt0h00d46d3fr03apfh8qf4g"
 
 	res, err := rest.GetRequest(fmt.Sprintf("%s/cosmos/auth/v1beta1/accounts/%s", val.APIAddress, addrWithColon))
@@ -440,7 +440,7 @@ func (s *IntegrationTestSuite) testQueryIBCTx(txRes sdk.TxResponse, cmd *cobra.C
 
 // TestLegacyMultiSig creates a legacy multisig transaction, and makes sure
 // we can query it via the legacy REST endpoint.
-// ref: https://github.com/cosmos/cosmos-sdk/issues/8679
+// ref: https://github.com/onomyprotocol/cosmos-sdk/issues/8679
 func (s *IntegrationTestSuite) TestLegacyMultisig() {
 	val1 := *s.network.Validators[0]
 

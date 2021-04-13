@@ -7,8 +7,8 @@ import (
 
 	"github.com/gogo/protobuf/proto"
 
-	"github.com/cosmos/cosmos-sdk/codec/types"
-	"github.com/cosmos/cosmos-sdk/testutil/testdata"
+	"github.com/onomyprotocol/cosmos-sdk/codec/types"
+	"github.com/onomyprotocol/cosmos-sdk/testutil/testdata"
 )
 
 type errOnMarshal struct {
@@ -28,7 +28,7 @@ const fauxURL = "/anyhere"
 var eom = &errOnMarshal{}
 
 // Ensure that returning an error doesn't suddenly allocate and waste bytes.
-// See https://github.com/cosmos/cosmos-sdk/issues/8537
+// See https://github.com/onomyprotocol/cosmos-sdk/issues/8537
 func TestNewAnyWithCustomTypeURLWithErrorNoAllocation(t *testing.T) {
 	var ms1, ms2 runtime.MemStats
 	runtime.ReadMemStats(&ms1)

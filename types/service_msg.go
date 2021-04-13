@@ -48,7 +48,7 @@ func (msg ServiceMsg) ValidateBasic() error {
 func (msg ServiceMsg) GetSignBytes() []byte {
 	// Here, we're gracefully supporting Amino JSON for service
 	// Msgs.
-	// ref: https://github.com/cosmos/cosmos-sdk/issues/8346
+	// ref: https://github.com/onomyprotocol/cosmos-sdk/issues/8346
 	// If `msg` is a service Msg, then we cast its `Request` to a sdk.Msg
 	// and call GetSignBytes on the `Request`.
 	msgRequest, ok := msg.Request.(Msg)

@@ -24,8 +24,8 @@ Contributing to this repo can mean many things such as participated in
 discussion or proposing code changes. To ensure a smooth workflow for all
 contributors, the general procedure for contributing has been established:
 
-1. Either [open](https://github.com/cosmos/cosmos-sdk/issues/new/choose) or
-   [find](https://github.com/cosmos/cosmos-sdk/issues) an issue you'd like to help with
+1. Either [open](https://github.com/onomyprotocol/cosmos-sdk/issues/new/choose) or
+   [find](https://github.com/onomyprotocol/cosmos-sdk/issues) an issue you'd like to help with
 2. Participate in thoughtful discussion on that issue
 3. If you would like to contribute:
    1. If the issue is a proposal, ensure that the proposal has been accepted
@@ -57,7 +57,7 @@ overall information on repository workflow and standards. Note, we use `make too
 Other notes:
 
 - Looking for a good place to start contributing? How about checking out some
-  [good first issues](https://github.com/cosmos/cosmos-sdk/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
+  [good first issues](https://github.com/onomyprotocol/cosmos-sdk/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
 - Please make sure to run `make format` before every commit - the easiest way
   to do this is have your editor run it for you upon saving a file. Additionally
   please ensure that your code is lint compliant by running `golangci-lint run`.
@@ -106,12 +106,12 @@ Please note that Go requires code to live under absolute paths, which complicate
 While my fork lives at `https://github.com/rigeyrigerige/cosmos-sdk`,
 the code should never exist at `$GOPATH/src/github.com/rigeyrigerige/cosmos-sdk`.
 Instead, we use `git remote` to add the fork as a new remote for the original repo,
-`$GOPATH/src/github.com/cosmos/cosmos-sdk`, and do all the work there.
+`$GOPATH/src/github.com/onomyprotocol/cosmos-sdk`, and do all the work there.
 
 For instance, to create a fork and work on a branch of it, I would:
 
 - Create the fork on github, using the fork button.
-- Go to the original repo checked out locally (i.e. `$GOPATH/src/github.com/cosmos/cosmos-sdk`)
+- Go to the original repo checked out locally (i.e. `$GOPATH/src/github.com/onomyprotocol/cosmos-sdk`)
 - `git remote rename origin upstream`
 - `git remote add origin git@github.com:rigeyrigerige/cosmos-sdk.git`
 
@@ -221,7 +221,7 @@ only pull requests targeted directly against master.
 - `master` must never fail `make lint test test-race`
 - `master` should not fail `make lint`
 - no `--force` onto `master` (except when reverting a broken commit, which should seldom happen)
-- create a development branch either on github.com/cosmos/cosmos-sdk, or your fork (using `git remote add origin`)
+- create a development branch either on github.com/onomyprotocol/cosmos-sdk, or your fork (using `git remote add origin`)
 - before submitting a pull request, begin `git rebase` on top of `master`
 
 ### Pull Merge Procedure
@@ -346,7 +346,7 @@ is broken up into three distinct stages: **Strategy Discovery**, **Concept Appro
 
 * Architecture Decision Records (ADRs) may be proposed by any contributors or maintainers of the Cosmos SDK,
     and should follow the guidelines outlined in the
-    [ADR Creation Process](https://github.com/cosmos/cosmos-sdk/blob/master/docs/architecture/PROCESS.md)
+    [ADR Creation Process](https://github.com/onomyprotocol/cosmos-sdk/blob/master/docs/architecture/PROCESS.md)
 * After proposal, a time bound period for Request for Comment (RFC) on ADRs commences
 * ADRs are intended to be iterative, and may be merged into `master` while still in a `Proposed` status
 

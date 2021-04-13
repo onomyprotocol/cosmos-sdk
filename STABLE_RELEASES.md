@@ -86,7 +86,7 @@ As rule of thumb, the following changes will **NOT** be automatically accepted i
  
 ## Stable Release Exception - Procedure
 
-1. Check that the bug is either fixed or not reproducible in `master`. It is, in general, not appropriate to release bug fixes for stable releases without first testing them in `master`. Please apply the label [0.39 «Launchpad»](https://github.com/cosmos/cosmos-sdk/labels/0.39%20LTS%20%28Launchpad%29) to the issue.
+1. Check that the bug is either fixed or not reproducible in `master`. It is, in general, not appropriate to release bug fixes for stable releases without first testing them in `master`. Please apply the label [0.39 «Launchpad»](https://github.com/onomyprotocol/cosmos-sdk/labels/0.39%20LTS%20%28Launchpad%29) to the issue.
 2. Add a comment to the issue and ensure it contains the following information (see the bug template below):
  * **[Impact]** An explanation of the bug on users and justification for backporting the fix to the stable release.
  * A **[Test Case]** section containing detailed instructions on how to reproduce the bug.

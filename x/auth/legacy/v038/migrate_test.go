@@ -4,10 +4,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	v034auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v034"
-	v036auth "github.com/cosmos/cosmos-sdk/x/auth/legacy/v036"
-	v036genaccounts "github.com/cosmos/cosmos-sdk/x/genaccounts/legacy/v036"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	v034auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v034"
+	v036auth "github.com/onomyprotocol/cosmos-sdk/x/auth/legacy/v036"
+	v036genaccounts "github.com/onomyprotocol/cosmos-sdk/x/genaccounts/legacy/v036"
 
 	"github.com/stretchr/testify/require"
 )

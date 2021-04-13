@@ -1,10 +1,10 @@
 package authz
 
 import (
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/authz/exported"
-	"github.com/cosmos/cosmos-sdk/x/authz/keeper"
-	"github.com/cosmos/cosmos-sdk/x/authz/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/exported"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/keeper"
+	"github.com/onomyprotocol/cosmos-sdk/x/authz/types"
 )
 
 // InitGenesis new authz genesis

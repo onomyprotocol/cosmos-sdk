@@ -7,12 +7,12 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	"github.com/cosmos/cosmos-sdk/simapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	v040gov "github.com/cosmos/cosmos-sdk/x/gov/legacy/v040"
-	v043gov "github.com/cosmos/cosmos-sdk/x/gov/legacy/v043"
-	"github.com/cosmos/cosmos-sdk/x/gov/types"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	"github.com/onomyprotocol/cosmos-sdk/simapp"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	v040gov "github.com/onomyprotocol/cosmos-sdk/x/gov/legacy/v040"
+	v043gov "github.com/onomyprotocol/cosmos-sdk/x/gov/legacy/v043"
+	"github.com/onomyprotocol/cosmos-sdk/x/gov/types"
 )
 
 func TestMigrateJSON(t *testing.T) {

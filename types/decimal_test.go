@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/suite"
 	yaml "gopkg.in/yaml.v2"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
 )
 
 type decimalTestSuite struct {

@@ -7,14 +7,14 @@ import (
 	gogogrpc "github.com/gogo/protobuf/grpc"
 	grpc "google.golang.org/grpc"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
 )
 
 var _ gogogrpc.ClientConn = &ServiceMsgClientConn{}
 
 // ServiceMsgClientConn is an instance of grpc.ClientConn that is used to test building
 // transactions with MsgClient's. It is intended to be replaced by the work in
-// https://github.com/cosmos/cosmos-sdk/issues/7541 when that is ready.
+// https://github.com/onomyprotocol/cosmos-sdk/issues/7541 when that is ready.
 type ServiceMsgClientConn struct {
 	msgs []sdk.Msg
 }

@@ -8,14 +8,14 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/cosmos/cosmos-sdk/client"
-	clientrest "github.com/cosmos/cosmos-sdk/client/rest"
-	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/types/rest"
-	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
-	"github.com/cosmos/cosmos-sdk/x/auth/types"
-	genutilrest "github.com/cosmos/cosmos-sdk/x/genutil/client/rest"
+	"github.com/onomyprotocol/cosmos-sdk/client"
+	clientrest "github.com/onomyprotocol/cosmos-sdk/client/rest"
+	codectypes "github.com/onomyprotocol/cosmos-sdk/codec/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	"github.com/onomyprotocol/cosmos-sdk/types/rest"
+	authtx "github.com/onomyprotocol/cosmos-sdk/x/auth/tx"
+	"github.com/onomyprotocol/cosmos-sdk/x/auth/types"
+	genutilrest "github.com/onomyprotocol/cosmos-sdk/x/genutil/client/rest"
 )
 
 // QueryAccountRequestHandlerFn is the query accountREST Handler.
@@ -39,7 +39,7 @@ func QueryAccountRequestHandlerFn(storeName string, clientCtx client.Context) ht
 		account, height, err := accGetter.GetAccountWithHeight(clientCtx, addr)
 		if err != nil {
 			// TODO: Handle more appropriately based on the error type.
-			// Ref: https://github.com/cosmos/cosmos-sdk/issues/4923
+			// Ref: https://github.com/onomyprotocol/cosmos-sdk/issues/4923
 			if err := accGetter.EnsureExists(clientCtx, addr); err != nil {
 				clientCtx = clientCtx.WithHeight(height)
 				rest.PostProcessResponse(w, clientCtx, types.BaseAccount{})

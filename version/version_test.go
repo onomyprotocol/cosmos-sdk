@@ -10,8 +10,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/tendermint/libs/cli"
 
-	"github.com/cosmos/cosmos-sdk/testutil"
-	"github.com/cosmos/cosmos-sdk/version"
+	"github.com/onomyprotocol/cosmos-sdk/testutil"
+	"github.com/onomyprotocol/cosmos-sdk/version"
 )
 
 func TestNewInfo(t *testing.T) {

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cosmos/cosmos-sdk/version"
+	"github.com/onomyprotocol/cosmos-sdk/version"
 
 	abcitypes "github.com/tendermint/tendermint/abci/types"
 
@@ -22,11 +22,11 @@ import (
 	crgerrs "github.com/tendermint/cosmos-rosetta-gateway/errors"
 	crgtypes "github.com/tendermint/cosmos-rosetta-gateway/types"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
-	grpctypes "github.com/cosmos/cosmos-sdk/types/grpc"
-	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
-	auth "github.com/cosmos/cosmos-sdk/x/auth/types"
-	bank "github.com/cosmos/cosmos-sdk/x/bank/types"
+	sdk "github.com/onomyprotocol/cosmos-sdk/types"
+	grpctypes "github.com/onomyprotocol/cosmos-sdk/types/grpc"
+	authtx "github.com/onomyprotocol/cosmos-sdk/x/auth/tx"
+	auth "github.com/onomyprotocol/cosmos-sdk/x/auth/types"
+	bank "github.com/onomyprotocol/cosmos-sdk/x/bank/types"
 
 	tmrpc "github.com/tendermint/tendermint/rpc/client"
 )

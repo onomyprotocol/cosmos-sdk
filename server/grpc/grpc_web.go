@@ -6,7 +6,7 @@ import (
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
 	"google.golang.org/grpc"
 
-	"github.com/cosmos/cosmos-sdk/server/config"
+	"github.com/onomyprotocol/cosmos-sdk/server/config"
 )
 
 // StartGRPCWeb starts a gRPC-Web server on the given address.

@@ -12,7 +12,7 @@ long as it contains precommits from +2/3 of total voting power.
 
 Proposers are incentivized to include precommits from all validators in the Tendermint `LastCommitInfo`
 by receiving additional fees proportional to the difference between the voting
-power included in the `LastCommitInfo` and +2/3 (see [fee distribution](https://github.com/cosmos/cosmos-sdk/blob/master/docs/spec/fee_distribution)).
+power included in the `LastCommitInfo` and +2/3 (see [fee distribution](https://github.com/onomyprotocol/cosmos-sdk/blob/master/docs/spec/fee_distribution)).
 
 ```
 type LastCommitInfo struct {
@@ -48,4 +48,4 @@ bonded validator. The `SignedBlocksWindow` parameter defines the size
 
 The information stored for tracking validator liveness is as follows:
 
-+++ https://github.com/cosmos/cosmos-sdk/blob/v0.40.0/proto/cosmos/slashing/v1beta1/slashing.proto#L11-L33
++++ https://github.com/onomyprotocol/cosmos-sdk/blob/v0.40.0/proto/cosmos/slashing/v1beta1/slashing.proto#L11-L33

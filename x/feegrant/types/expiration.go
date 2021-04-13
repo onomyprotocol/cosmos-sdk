@@ -3,7 +3,7 @@ package types
 import (
 	"time"
 
-	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
+	sdkerrors "github.com/onomyprotocol/cosmos-sdk/types/errors"
 )
 
 // ExpiresAtTime creates an expiration at the given time
