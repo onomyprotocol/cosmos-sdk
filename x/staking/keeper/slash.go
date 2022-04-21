@@ -48,6 +48,29 @@ func (k Keeper) Slash(ctx sdk.Context, consAddr sdk.ConsAddress, infractionHeigh
 		return
 	}
 
+	// check delegation exists from protected module account, undelegate and save undelegated amount
+	protectedModule := "protected_delegator"
+	bondDenom := k.BondDenom(ctx)
+	moduleAcc := k.authKeeper.GetModuleAccount(ctx, protectedModule)
+	delegation, found := k.GetDelegation(ctx, moduleAcc.GetAddress(), validator.GetOperator())
+	delegationAmount := sdk.ZeroInt()
+	var err error
+	if found {
+		delegationAmount, err = k.Unbond(ctx, moduleAcc.GetAddress(), validator.GetOperator(), delegation.Shares)
+		if err != nil {
+			return
+		}
+
+		if validator.IsBonded() {
+			k.bondedTokensToNotBonded(ctx, delegationAmount)
+		}
+
+		err = k.bankKeeper.UndelegateCoinsFromModuleToAccount(ctx, types.NotBondedPoolName, moduleAcc.GetAddress(), sdk.Coins{sdk.NewCoin(bondDenom, delegationAmount)})
+		if err != nil {
+			return
+		}
+	}
+
 	// should not be slashing an unbonded validator
 	if validator.IsUnbonded() {
 		panic(fmt.Sprintf("should not be slashing unbonded validator: %s", validator.GetOperator()))
@@ -132,6 +155,19 @@ func (k Keeper) Slash(ctx sdk.Context, consAddr sdk.ConsAddress, infractionHeigh
 		}
 	default:
 		panic("invalid validator status")
+	}
+
+	// call delegate if undelegation is done before slash
+	if delegationAmount.IsPositive() {
+		validator, found = k.GetValidator(ctx, validator.GetOperator())
+		if !found {
+			return
+		}
+
+		_, err = k.Delegate(ctx, moduleAcc.GetAddress(), delegationAmount, types.Unbonded, validator, true)
+		if err != nil {
+			return
+		}
 	}
 
 	logger.Info(
