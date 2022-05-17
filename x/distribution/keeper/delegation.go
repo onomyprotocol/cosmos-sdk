@@ -5,6 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
+	vestexported "github.com/cosmos/cosmos-sdk/x/auth/vesting/exported"
 	"github.com/cosmos/cosmos-sdk/x/distribution/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 )
@@ -161,9 +162,11 @@ func (k Keeper) withdrawDelegationRewards(ctx sdk.Context, val stakingtypes.Vali
 		)
 	}
 
+	lockedReward := k.calculateVestingReward(ctx, del, rewards)
+	rewards = rewardsRaw.Sub(lockedReward)
+
 	// truncate coins, return remainder to community pool
 	coins, remainder := rewards.TruncateDecimal()
-
 	// add coins to user account
 	if !coins.IsZero() {
 		withdrawAddr := k.GetDelegatorWithdrawAddr(ctx, del.GetDelegatorAddr())
@@ -189,4 +192,35 @@ func (k Keeper) withdrawDelegationRewards(ctx sdk.Context, val stakingtypes.Vali
 	k.DeleteDelegatorStartingInfo(ctx, del.GetValidatorAddr(), del.GetDelegatorAddr())
 
 	return coins, nil
+}
+
+func (k Keeper) calculateVestingReward(ctx sdk.Context, del stakingtypes.DelegationI, rewards sdk.DecCoins) sdk.DecCoins {
+	bondDenom := k.stakingKeeper.BondDenom(ctx)
+
+	vacc, ok := k.authKeeper.GetAccount(ctx, del.GetDelegatorAddr()).(vestexported.VestingAccount)
+	if !ok {
+		return sdk.DecCoins{}
+	}
+	vestingAmount := vacc.GetVestingCoins(ctx.BlockTime()).AmountOf(bondDenom).ToDec()
+	bondReward := rewards.AmountOf(bondDenom)
+	if vestingAmount.IsZero() || bondReward.IsZero() {
+		return sdk.DecCoins{}
+	}
+
+	delBonded := sdk.ZeroDec()
+	k.stakingKeeper.IterateValidators(ctx, func(_ int64, ival stakingtypes.ValidatorI) (stop bool) {
+		idel := k.stakingKeeper.Delegation(ctx, del.GetDelegatorAddr(), ival.GetOperator())
+		if idel == nil || del.GetShares().IsZero() {
+			return false
+		}
+		delBonded = delBonded.Add(ival.TokensFromShares(del.GetShares()))
+		return false
+	})
+
+	delBondTokenBalance := k.bankKeeper.GetAllBalances(ctx, del.GetDelegatorAddr()).AmountOf(bondDenom).ToDec()
+	delTotalBalance := delBondTokenBalance.Add(delBonded)
+	// total - ((total del balance + total delegate - locked) / (total del balance + total delegate) * reward)
+	lockedRewardAmount := delTotalBalance.Sub(delTotalBalance.Sub(vestingAmount)).Quo(delTotalBalance).Mul(bondReward)
+
+	return sdk.NewDecCoins(sdk.NewDecCoinFromDec(bondDenom, lockedRewardAmount))
 }

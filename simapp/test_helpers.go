@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
+	"reflect"
 	"strconv"
 	"testing"
 	"time"
@@ -26,6 +27,7 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/errors"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
+	vestingtypes "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	minttypes "github.com/cosmos/cosmos-sdk/x/mint/types"
@@ -247,6 +249,30 @@ func AddTestAddrsFromPubKeys(app *SimApp, ctx sdk.Context, pubKeys []cryptotypes
 // initial balance of accAmt in random order
 func AddTestAddrs(app *SimApp, ctx sdk.Context, accNum int, accAmt sdk.Int) []sdk.AccAddress {
 	return addTestAddrs(app, ctx, accNum, accAmt, createRandomAccounts)
+}
+
+// AddTestVestingAddrs constructs and returns accNum amount of accounts with an
+// initial balance of accAmt in random order, and some amount of locked coins
+func AddTestVestingAddrs(app *SimApp, ctx sdk.Context, accNum int, accAmt, locked sdk.Int) []sdk.AccAddress {
+	addrs := addTestAddrs(app, ctx, accNum, accAmt, createRandomAccounts)
+	lockedCoins := sdk.NewCoins(sdk.NewCoin(app.StakingKeeper.BondDenom(ctx), locked))
+	for _, addr := range addrs {
+		bacc := app.AccountKeeper.GetAccount(ctx, addr).(*authtypes.BaseAccount)
+		balances := app.BankKeeper.GetAllBalances(ctx, addr)
+		vestingAcc := vestingtypes.NewPeriodicVestingAccount(bacc, balances, ctx.BlockTime().Unix()-1, vestingtypes.Periods{
+			{1, balances.Sub(lockedCoins)}, // -1 nano in past
+			{2, lockedCoins},               // +2 nano in future
+		})
+		app.AccountKeeper.SetAccount(ctx, vestingAcc)
+		if !reflect.DeepEqual(locked, app.BankKeeper.LockedCoins(ctx, addr).AmountOf(app.StakingKeeper.BondDenom(ctx))) {
+			panic("error creating vesting acc")
+		}
+		if !reflect.DeepEqual(balances, app.BankKeeper.GetAllBalances(ctx, addr)) {
+			panic("error creating vesting acc")
+		}
+	}
+
+	return addrs
 }
 
 // AddTestAddrs constructs and returns accNum amount of accounts with an

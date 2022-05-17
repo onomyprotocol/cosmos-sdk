@@ -4,13 +4,13 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/require"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
 	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	"github.com/cosmos/cosmos-sdk/x/staking/teststaking"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 )
 
 func TestCalculateRewardsBasic(t *testing.T) {
@@ -337,6 +337,127 @@ func TestWithdrawDelegationRewardsBasic(t *testing.T) {
 		sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, exp)},
 		app.BankKeeper.GetAllBalances(ctx, sdk.AccAddress(valAddrs[0])),
 	)
+}
+
+func TestWithdrawDelegationRewardsVesting(t *testing.T) {
+	app := simapp.Setup(false)
+	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
+
+	valBalAmount := app.StakingKeeper.TokensFromConsensusPower(ctx, 1000)
+	valVestingAmount := valBalAmount.QuoRaw(4)
+	valVestingRate := sdk.OneDec().Sub(valVestingAmount.ToDec().Quo(valBalAmount.ToDec())) // 25% locked in vesting
+	valDelAmount := app.StakingKeeper.TokensFromConsensusPower(ctx, 100)
+	valCommission := sdk.NewDecWithPrec(5, 1) // 50%
+
+	del1BalAmount := app.StakingKeeper.TokensFromConsensusPower(ctx, 1000)
+	del1VestingAmount := del1BalAmount                                                        // all coins vested
+	del1DelAmount := del1BalAmount                                                            // full delegation
+	del1VestingRate := sdk.OneDec().Sub(del1VestingAmount.ToDec().Quo(del1BalAmount.ToDec())) // 0% locked in vesting
+
+	del2BalAmount := app.StakingKeeper.TokensFromConsensusPower(ctx, 1000)
+	del2VestingAmount := sdk.ZeroInt()                                                        // zero in vesting
+	del2DelAmount := del2BalAmount                                                            // full delegation
+	del2VestingRate := sdk.OneDec().Sub(del2VestingAmount.ToDec().Quo(del2BalAmount.ToDec())) // 100% locked in vesting
+
+	allocatedReward := app.StakingKeeper.TokensFromConsensusPower(ctx, 200)
+	allocatedRewardWithoutCommission := allocatedReward.ToDec().Mul(valCommission)
+
+	delTotalAmount := valDelAmount.Add(del1DelAmount).Add(del2DelAmount)
+
+	valFullReward := valDelAmount.ToDec().Quo(delTotalAmount.ToDec()).Mul(allocatedRewardWithoutCommission)
+	del1FullReward := del1DelAmount.ToDec().Quo(delTotalAmount.ToDec()).Mul(allocatedRewardWithoutCommission)
+	del2FullReward := del2DelAmount.ToDec().Quo(delTotalAmount.ToDec()).Mul(allocatedRewardWithoutCommission)
+
+	valAddr := simapp.ConvertAddrsToValAddrs(simapp.AddTestVestingAddrs(app, ctx, 1, valBalAmount, valVestingAmount))[0]
+	del1Addr := simapp.AddTestVestingAddrs(app, ctx, 1, del1BalAmount, del1VestingAmount)[0]
+	del2Addr := simapp.AddTestVestingAddrs(app, ctx, 1, del2BalAmount, del2VestingAmount)[0]
+
+	tstaking := teststaking.NewHelper(t, ctx, app.StakingKeeper)
+
+	// set module account coins
+	distrAcc := app.DistrKeeper.GetDistributionAccount(ctx)
+	require.NoError(t, simapp.FundModuleAccount(app.BankKeeper, ctx, distrAcc.GetName(), sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, valBalAmount))))
+	app.AccountKeeper.SetModuleAccount(ctx, distrAcc)
+
+	// create validator with 50% commission
+	tstaking.Commission = stakingtypes.NewCommissionRates(valCommission, valCommission, sdk.NewDec(0))
+	tstaking.CreateValidator(valAddr, valConsPk1, valDelAmount, true)
+
+	tstaking.Delegate(del1Addr, valAddr, del1DelAmount)
+	tstaking.Delegate(del2Addr, valAddr, del2DelAmount)
+
+	// assert correct initial balance
+	expTokens := valBalAmount.Sub(valDelAmount)
+	require.Equal(t,
+		sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, expTokens)},
+		app.BankKeeper.GetAllBalances(ctx, sdk.AccAddress(valAddr)),
+	)
+
+	// end block to bond validator
+	staking.EndBlocker(ctx, app.StakingKeeper)
+
+	// next block
+	ctx = ctx.WithBlockHeight(ctx.BlockHeight() + 1)
+
+	// fetch validator and delegation
+	val := app.StakingKeeper.Validator(ctx, valAddr)
+
+	// allocate some rewards
+	app.DistrKeeper.AllocateTokensToValidator(ctx, val, sdk.DecCoins{sdk.NewDecCoin(sdk.DefaultBondDenom, allocatedReward)})
+
+	// historical count should be 4 (initial + latest for delegation)
+	require.Equal(t, uint64(4), app.DistrKeeper.GetValidatorHistoricalReferenceCount(ctx))
+
+	// withdraw rewards
+
+	// val1
+	valReward, err := app.DistrKeeper.WithdrawDelegationRewards(ctx, sdk.AccAddress(valAddr), valAddr)
+	require.Nil(t, err)
+	require.Equal(t, valFullReward.Mul(valVestingRate).TruncateInt(), valReward.AmountOf(sdk.DefaultBondDenom))
+
+	valExpReward := valBalAmount.Sub(valDelAmount).Add(valFullReward.Mul(valVestingRate).TruncateInt())
+	require.Equal(t,
+		sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, valExpReward)},
+		app.BankKeeper.GetAllBalances(ctx, sdk.AccAddress(valAddr)),
+	)
+
+	// del1
+	del1Reward, err := app.DistrKeeper.WithdrawDelegationRewards(ctx, del1Addr, valAddr)
+	require.Nil(t, err)
+	require.Equal(t, del1FullReward.Mul(del1VestingRate).TruncateInt(), del1Reward.AmountOf(sdk.DefaultBondDenom))
+
+	require.Equal(t,
+		sdk.Coins{}, // zero, all coins are locked
+		app.BankKeeper.GetAllBalances(ctx, del1Addr),
+	)
+
+	// del2
+	del2Reward, err := app.DistrKeeper.WithdrawDelegationRewards(ctx, del2Addr, valAddr)
+	require.Nil(t, err)
+	require.Equal(t, del2FullReward.Mul(del2VestingRate).TruncateInt(), del2Reward.AmountOf(sdk.DefaultBondDenom))
+
+	del2ExpReward := del2BalAmount.Sub(del2DelAmount).Add(del2FullReward.Mul(del2VestingRate).TruncateInt())
+	require.Equal(t,
+		sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, del2ExpReward)}, // full reward
+		app.BankKeeper.GetAllBalances(ctx, del2Addr),
+	)
+
+	// validator commission
+
+	valCommissionReward, err := app.DistrKeeper.WithdrawValidatorCommission(ctx, valAddr)
+	require.Equal(t, allocatedReward.ToDec().Mul(valCommission).TruncateInt(), valCommissionReward.AmountOf(sdk.DefaultBondDenom))
+	require.Nil(t, err)
+
+	// assert correct validator balance + commission
+	valExpFinalBalance := valBalAmount.Sub(valDelAmount).
+		Add(valFullReward.Mul(valVestingRate).TruncateInt()).         // reward
+		Add(allocatedReward.ToDec().Mul(valCommission).TruncateInt()) // commission
+
+	require.Equal(t,
+		sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, valExpFinalBalance)},
+		app.BankKeeper.GetAllBalances(ctx, sdk.AccAddress(valAddr)),
+	)
+
 }
 
 func TestCalculateRewardsAfterManySlashesInSameBlock(t *testing.T) {
