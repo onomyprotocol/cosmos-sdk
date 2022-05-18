@@ -61,6 +61,51 @@ rewards = rewards + (R(B) - R(PN)) * stake
 The historical rewards are calculated retroactively by playing back all the slashes and then attenuating the delegator's stake at each step.
 The final calculated stake is equivalent to the actual staked coins in the delegation with a margin of error due to rounding errors.
 
+There is an exception for the vesting accounts. The total amount of the reward will be calculated based on the logic above, but
+then it will be limited based on the vested to original vesting ratio. The remaining part will be locked for a further withdrawal.
+If at the time of a withdrawal the delegator has prev locked reward, the current reward will be increased to the delta
+of the current vested to original vesting ratio and the previous ratio.
+In case all vesting periods have passed the full reward and full locked reward will be withdrawn.
+The locked reward relates to the delegator and validator agnostic, hence it can be withdrawn from the delegation to any validator.
+
+Example of the vesting account reward withdrawal:
+```
+// first withdrowal, 1/10 vested
+
+balance = 0
+rewards = 10
+vested = 1
+original vesting = 10
+locked = 0
+
+vesting reward = 10 * (1/10) + (0 * 0) = 1
+locked = 10 - 1 = 9
+
+// next withdrowal, 2/10 vested
+
+balance = 0 + 1 = 1
+rewards = 10
+vested = 2
+original vesting = 10
+
+vesting reward := 10 * (2/10) + (9 * (2/10 - 1/10)) = 2 + 0.9 = 2.9
+locked = 10 - 2.9 + 9 = 16.1
+
+// all vested 
+
+balance = 1 + 2.9 = 3.9
+rewards = 10
+vested = 10
+original vesting = 10
+
+vesting reward := 10 * (10/10) + (16.1 * (10/10 - 2/10)) = 26.1
+
+// final  
+
+balance = 3.9 + 26.1 = 30
+
+```
+
 Response:
 
 +++ https://github.com/cosmos/cosmos-sdk/blob/v0.42.4/proto/cosmos/distribution/v1beta1/tx.proto#L42-L50

@@ -253,18 +253,34 @@ func AddTestAddrs(app *SimApp, ctx sdk.Context, accNum int, accAmt sdk.Int) []sd
 
 // AddTestVestingAddrs constructs and returns accNum amount of accounts with an
 // initial balance of accAmt in random order, and some amount of locked coins
-func AddTestVestingAddrs(app *SimApp, ctx sdk.Context, accNum int, accAmt, locked sdk.Int) []sdk.AccAddress {
+func AddTestVestingAddrs(app *SimApp, ctx sdk.Context, accNum int, accAmt sdk.Int, locked ...sdk.Int) []sdk.AccAddress {
 	addrs := addTestAddrs(app, ctx, accNum, accAmt, createRandomAccounts)
-	lockedCoins := sdk.NewCoins(sdk.NewCoin(app.StakingKeeper.BondDenom(ctx), locked))
+
 	for _, addr := range addrs {
 		bacc := app.AccountKeeper.GetAccount(ctx, addr).(*authtypes.BaseAccount)
 		balances := app.BankKeeper.GetAllBalances(ctx, addr)
-		vestingAcc := vestingtypes.NewPeriodicVestingAccount(bacc, balances, ctx.BlockTime().Unix()-1, vestingtypes.Periods{
-			{1, balances.Sub(lockedCoins)}, // -1 nano in past
-			{2, lockedCoins},               // +2 nano in future
-		})
+
+		unlockedAmt := accAmt
+		for _, lockedAmt := range locked {
+			unlockedAmt = unlockedAmt.Sub(lockedAmt)
+		}
+
+		periods := vestingtypes.Periods{
+			{1, sdk.NewCoins(sdk.NewCoin(app.StakingKeeper.BondDenom(ctx), unlockedAmt))}, // -1 nano in past to activate now
+		}
+
+		lockedTotal := sdk.ZeroInt()
+		for i := 0; i < len(locked); i++ {
+			periods = append(periods, vestingtypes.Period{
+				Length: 2 + int64(i), // 1 nano step
+				Amount: sdk.NewCoins(sdk.NewCoin(app.StakingKeeper.BondDenom(ctx), locked[i])),
+			})
+			lockedTotal = lockedTotal.Add(locked[i])
+		}
+
+		vestingAcc := vestingtypes.NewPeriodicVestingAccount(bacc, balances, ctx.BlockTime().Unix()-1, periods)
 		app.AccountKeeper.SetAccount(ctx, vestingAcc)
-		if !reflect.DeepEqual(locked, app.BankKeeper.LockedCoins(ctx, addr).AmountOf(app.StakingKeeper.BondDenom(ctx))) {
+		if !reflect.DeepEqual(lockedTotal, app.BankKeeper.LockedCoins(ctx, addr).AmountOf(app.StakingKeeper.BondDenom(ctx))) {
 			panic("error creating vesting acc")
 		}
 		if !reflect.DeepEqual(balances, app.BankKeeper.GetAllBalances(ctx, addr)) {

@@ -234,6 +234,7 @@
     - [CommunityPoolSpendProposalWithDeposit](#cosmos.distribution.v1beta1.CommunityPoolSpendProposalWithDeposit)
     - [DelegationDelegatorReward](#cosmos.distribution.v1beta1.DelegationDelegatorReward)
     - [DelegatorStartingInfo](#cosmos.distribution.v1beta1.DelegatorStartingInfo)
+    - [DelegatorVestingLockedRewards](#cosmos.distribution.v1beta1.DelegatorVestingLockedRewards)
     - [FeePool](#cosmos.distribution.v1beta1.FeePool)
     - [Params](#cosmos.distribution.v1beta1.Params)
     - [ValidatorAccumulatedCommission](#cosmos.distribution.v1beta1.ValidatorAccumulatedCommission)
@@ -3579,6 +3580,23 @@ thus sdk.Dec is used.
 | `previous_period` | [uint64](#uint64) |  |  |
 | `stake` | [string](#string) |  |  |
 | `height` | [uint64](#uint64) |  |  |
+
+
+
+
+
+
+<a name="cosmos.distribution.v1beta1.DelegatorVestingLockedRewards"></a>
+
+### DelegatorVestingLockedRewards
+DelegatorVestingLockedRewards represents locked rewards for a vesting delegator with the vesting ratio at the moment of the
+locking.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `rewards` | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated |  |
+| `vested_ratio` | [string](#string) |  |  |
 
 
 

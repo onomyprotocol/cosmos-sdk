@@ -155,3 +155,18 @@ message CommunityPoolSpendProposalWithDeposit {
   string amount      = 4 [(gogoproto.moretags) = "yaml:\"amount\""];
   string deposit     = 5 [(gogoproto.moretags) = "yaml:\"deposit\""];
 }
+
+// DelegatorVestingLockedRewards represents locked rewards for a vesting delegator with the vesting ratio at the moment of the
+// locking.
+message DelegatorVestingLockedRewards {
+  repeated cosmos.base.v1beta1.DecCoin rewards = 1 [
+    (gogoproto.moretags)     = "yaml:\"rewards\"",
+    (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins",
+    (gogoproto.nullable)     = false
+  ];
+  string vested_ratio = 2 [
+    (gogoproto.moretags)   = "yaml:\"vested_ratio\"",
+    (gogoproto.customtype) = "github.com/cosmos/cosmos-sdk/types.Dec",
+    (gogoproto.nullable)   = false
+  ];
+}

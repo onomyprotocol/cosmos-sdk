@@ -162,11 +162,12 @@ func (k Keeper) withdrawDelegationRewards(ctx sdk.Context, val stakingtypes.Vali
 		)
 	}
 
-	lockedReward := k.calculateVestingReward(ctx, del, rewards)
-	rewards = rewardsRaw.Sub(lockedReward)
+	// the updated rewards might be increased or decreased, in any case we shouldn't update the 'rewards' variable
+	// because we need it's original value for the ValidatorOutstandingRewards calculation
+	updatedRewards := k.updateWithVestingRewards(ctx, del.GetDelegatorAddr(), rewards)
 
 	// truncate coins, return remainder to community pool
-	coins, remainder := rewards.TruncateDecimal()
+	coins, remainder := updatedRewards.TruncateDecimal()
 	// add coins to user account
 	if !coins.IsZero() {
 		withdrawAddr := k.GetDelegatorWithdrawAddr(ctx, del.GetDelegatorAddr())
@@ -194,33 +195,67 @@ func (k Keeper) withdrawDelegationRewards(ctx sdk.Context, val stakingtypes.Vali
 	return coins, nil
 }
 
-func (k Keeper) calculateVestingReward(ctx sdk.Context, del stakingtypes.DelegationI, rewards sdk.DecCoins) sdk.DecCoins {
+func (k Keeper) updateWithVestingRewards(ctx sdk.Context, delAddr sdk.AccAddress, rewards sdk.DecCoins) sdk.DecCoins {
+	vacc, ok := k.authKeeper.GetAccount(ctx, delAddr).(vestexported.VestingAccount)
+	if !ok {
+		return rewards
+	}
+
+	rewards, lockedRewardAmt, vestedRatio := k.calculateVestedReward(ctx, vacc, rewards)
+
+	if !lockedRewardAmt.IsZero() {
+		bondDenom := k.stakingKeeper.BondDenom(ctx)
+		k.SetDelegatorVestingLockedRewards(ctx, delAddr, types.DelegatorVestingLockedRewards{
+			Rewards:     sdk.NewDecCoins(sdk.NewDecCoinFromDec(bondDenom, lockedRewardAmt)),
+			VestedRatio: vestedRatio,
+		})
+	}
+
+	if lockedRewardAmt.IsZero() {
+		k.DeleteDelegatorVestingLockedRewards(ctx, delAddr)
+	}
+
+	return rewards
+}
+
+func (k Keeper) calculateVestedReward(ctx sdk.Context, vacc vestexported.VestingAccount, rewards sdk.DecCoins) (sdk.DecCoins, sdk.Dec, sdk.Dec) {
 	bondDenom := k.stakingKeeper.BondDenom(ctx)
 
-	vacc, ok := k.authKeeper.GetAccount(ctx, del.GetDelegatorAddr()).(vestexported.VestingAccount)
-	if !ok {
-		return sdk.DecCoins{}
+	vestedAmt := vacc.GetVestedCoins(ctx.BlockTime()).AmountOf(bondDenom).ToDec()
+	originalVestingAmt := vacc.GetOriginalVesting().AmountOf(bondDenom).ToDec()
+
+	// vested / vesting + vested
+	vestedRatio := vestedAmt.Quo(originalVestingAmt)
+
+	prevLockedRewards := k.GetDelegatorVestingLockedRewards(ctx, vacc.GetAddress())
+	prevLockedRewardAmt := prevLockedRewards.Rewards.AmountOf(bondDenom)
+
+	prevUnlockedRewardAmt := calculatePrevUnlockedReward(prevLockedRewards.VestedRatio, vestedRatio, prevLockedRewardAmt)
+	rewardAmt := rewards.AmountOf(bondDenom)
+	// reward * vestedRatio + prevUnlockedRewardAmt from the prev locked reward
+	vestedReward := rewardAmt.Mul(vestedRatio).Add(prevUnlockedRewardAmt)
+	// reward - (reward * vested ratio) - prev unlocked + prev locked
+	lockedRewardAmt := rewardAmt.Sub(vestedReward).Add(prevLockedRewardAmt)
+
+	rewards = rewards.Sub(sdk.NewDecCoins(sdk.NewDecCoinFromDec(bondDenom, rewardAmt))).
+		Add(sdk.NewDecCoinFromDec(bondDenom, vestedReward))
+	return rewards, lockedRewardAmt, vestedRatio
+}
+
+func calculatePrevUnlockedReward(prevUnlockedRatio, unlockedRatio, lockedBondRewardAmt sdk.Dec) sdk.Dec {
+	if unlockedRatio.Equal(sdk.OneDec()) {
+		return lockedBondRewardAmt
 	}
-	vestingAmount := vacc.GetVestingCoins(ctx.BlockTime()).AmountOf(bondDenom).ToDec()
-	bondReward := rewards.AmountOf(bondDenom)
-	if vestingAmount.IsZero() || bondReward.IsZero() {
-		return sdk.DecCoins{}
+
+	if lockedBondRewardAmt.IsNil() || lockedBondRewardAmt.IsZero() || prevUnlockedRatio.IsNil() {
+		return sdk.ZeroDec() // no ratio / first reward
 	}
 
-	delBonded := sdk.ZeroDec()
-	k.stakingKeeper.IterateValidators(ctx, func(_ int64, ival stakingtypes.ValidatorI) (stop bool) {
-		idel := k.stakingKeeper.Delegation(ctx, del.GetDelegatorAddr(), ival.GetOperator())
-		if idel == nil || del.GetShares().IsZero() {
-			return false
-		}
-		delBonded = delBonded.Add(ival.TokensFromShares(del.GetShares()))
-		return false
-	})
+	unlockedRatioDelta := unlockedRatio.Sub(prevUnlockedRatio)
+	if unlockedRatioDelta.IsNegative() { // increased, nothing to unlock
+		unlockedRatioDelta = sdk.ZeroDec()
+	}
 
-	delBondTokenBalance := k.bankKeeper.GetAllBalances(ctx, del.GetDelegatorAddr()).AmountOf(bondDenom).ToDec()
-	delTotalBalance := delBondTokenBalance.Add(delBonded)
-	// total - ((total del balance + total delegate - locked) / (total del balance + total delegate) * reward)
-	lockedRewardAmount := delTotalBalance.Sub(delTotalBalance.Sub(vestingAmount)).Quo(delTotalBalance).Mul(bondReward)
-
-	return sdk.NewDecCoins(sdk.NewDecCoinFromDec(bondDenom, lockedRewardAmount))
+	// unlock the increase
+	return lockedBondRewardAmt.Mul(unlockedRatioDelta)
 }

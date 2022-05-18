@@ -382,3 +382,24 @@ func (k Keeper) DeleteAllValidatorSlashEvents(ctx sdk.Context) {
 		store.Delete(iter.Key())
 	}
 }
+
+// get delegator locked rewards
+func (k Keeper) GetDelegatorVestingLockedRewards(ctx sdk.Context, del sdk.AccAddress) (rewards types.DelegatorVestingLockedRewards) {
+	store := ctx.KVStore(k.storeKey)
+	bz := store.Get(types.GetDelegatorVestingLockedRewardsKey(del))
+	k.cdc.MustUnmarshal(bz, &rewards)
+	return
+}
+
+// set delegator locked rewards
+func (k Keeper) SetDelegatorVestingLockedRewards(ctx sdk.Context, del sdk.AccAddress, rewards types.DelegatorVestingLockedRewards) {
+	store := ctx.KVStore(k.storeKey)
+	b := k.cdc.MustMarshal(&rewards)
+	store.Set(types.GetDelegatorVestingLockedRewardsKey(del), b)
+}
+
+// delete delegator locked rewards
+func (k Keeper) DeleteDelegatorVestingLockedRewards(ctx sdk.Context, del sdk.AccAddress) {
+	store := ctx.KVStore(k.storeKey)
+	store.Delete(types.GetDelegatorVestingLockedRewardsKey(del))
+}

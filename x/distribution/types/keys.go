@@ -52,6 +52,7 @@ var (
 	ValidatorCurrentRewardsPrefix        = []byte{0x06} // key for current validator rewards
 	ValidatorAccumulatedCommissionPrefix = []byte{0x07} // key for accumulated validator commission
 	ValidatorSlashEventPrefix            = []byte{0x08} // key for validator slash fraction
+	DelegatorVestingLockedRewardsPrefix  = []byte{0x20} // key for locked rewards
 )
 
 // GetValidatorOutstandingRewardsAddress creates an address from a validator's outstanding rewards key.
@@ -211,4 +212,9 @@ func GetValidatorSlashEventKey(v sdk.ValAddress, height, period uint64) []byte {
 	prefix := GetValidatorSlashEventKeyPrefix(v, height)
 
 	return append(prefix, periodBz...)
+}
+
+// GetDelegatorVestingLockedRewardsKey creates the locked rewards key for a validator.
+func GetDelegatorVestingLockedRewardsKey(valAddr sdk.AccAddress) []byte {
+	return append(DelegatorVestingLockedRewardsPrefix, address.MustLengthPrefix(valAddr.Bytes())...)
 }
