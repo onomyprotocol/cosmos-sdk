@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: Cosmos SDK - Legacy REST and gRPC Gateway docs
-  description: 'A REST interface for state queries, legacy transactions'
+  description: A REST interface for state queries, legacy transactions
   version: 1.0.0
 paths:
   /node_info:
@@ -59,7 +59,7 @@ paths:
                     type: string
                   listen_addr:
                     type: string
-                    example: '192.168.56.1:26656'
+                    example: 192.168.56.1:26656
                   version:
                     description: Tendermint version
                     type: string
@@ -73,7 +73,7 @@ paths:
                         example: 'on'
                       rpc_address:
                         type: string
-                        example: 'tcp://0.0.0.0:26657'
+                        example: tcp://0.0.0.0:26657
         '500':
           description: Failed to query node status
   /syncing:
@@ -337,7 +337,7 @@ paths:
                                 7uTC74QlknqYWEwg7Vn6M8Om7FuZ0EO4bjvuj6rwH1mTUJrRuMMZvAAqT9VjNgP0RA/TDp6u/92AqrZfXJSpBQ==
         '500':
           description: Server internal error
-  '/blocks/{height}':
+  /blocks/{height}:
     get:
       summary: Get a block at a certain height
       tags:
@@ -627,7 +627,7 @@ paths:
                       example: '1000'
         '500':
           description: Server internal error
-  '/validatorsets/{height}':
+  /validatorsets/{height}:
     get:
       summary: Get a validator set a certain height
       tags:
@@ -674,7 +674,7 @@ paths:
           description: Block at height not available
         '500':
           description: Server internal error
-  '/txs/{hash}':
+  /txs/{hash}:
     get:
       deprecated: true
       summary: Get a Tx by hash
@@ -1233,7 +1233,7 @@ paths:
           description: The tx was malformated
         '500':
           description: Server internal error
-  '/bank/balances/{address}':
+  /bank/balances/{address}:
     get:
       deprecated: true
       summary: Get the account balances
@@ -1264,7 +1264,7 @@ paths:
                   example: '50'
         '500':
           description: Server internal error
-  '/bank/accounts/{address}/transfers':
+  /bank/accounts/{address}/transfers:
     post:
       deprecated: true
       summary: Send coins from one account to another
@@ -1297,7 +1297,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -1422,7 +1422,7 @@ paths:
                       example: '50'
         '500':
           description: Internal Server Error
-  '/bank/total/{denomination}':
+  /bank/total/{denomination}:
     parameters:
       - in: path
         name: denomination
@@ -1446,7 +1446,7 @@ paths:
           description: Invalid coin denomination
         '500':
           description: Internal Server Error
-  '/auth/accounts/{address}':
+  /auth/accounts/{address}:
     get:
       deprecated: true
       summary: Get the account information on blockchain
@@ -1498,7 +1498,7 @@ paths:
                     type: string
         '500':
           description: Server internel error
-  '/staking/delegators/{delegatorAddr}/delegations':
+  /staking/delegators/{delegatorAddr}/delegations:
     parameters:
       - in: path
         name: delegatorAddr
@@ -1558,7 +1558,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -1670,7 +1670,7 @@ paths:
           description: Key password is wrong
         '500':
           description: Internal Server Error
-  '/staking/delegators/{delegatorAddr}/delegations/{validatorAddr}':
+  /staking/delegators/{delegatorAddr}/delegations/{validatorAddr}:
     parameters:
       - in: path
         name: delegatorAddr
@@ -1716,7 +1716,7 @@ paths:
           description: Invalid delegator address or validator address
         '500':
           description: Internal Server Error
-  '/staking/delegators/{delegatorAddr}/unbonding_delegations':
+  /staking/delegators/{delegatorAddr}/unbonding_delegations:
     parameters:
       - in: path
         name: delegatorAddr
@@ -1773,7 +1773,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -1885,7 +1885,7 @@ paths:
           description: Key password is wrong
         '500':
           description: Internal Server Error
-  '/staking/delegators/{delegatorAddr}/unbonding_delegations/{validatorAddr}':
+  /staking/delegators/{delegatorAddr}/unbonding_delegations/{validatorAddr}:
     parameters:
       - in: path
         name: delegatorAddr
@@ -1966,7 +1966,7 @@ paths:
               $ref: '#/definitions/Redelegation'
         '500':
           description: Internal Server Error
-  '/staking/delegators/{delegatorAddr}/redelegations':
+  /staking/delegators/{delegatorAddr}/redelegations:
     parameters:
       - in: path
         name: delegatorAddr
@@ -1993,7 +1993,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -2101,7 +2101,7 @@ paths:
           description: Invalid delegator address or redelegation request body
         '500':
           description: Internal Server Error
-  '/staking/delegators/{delegatorAddr}/validators':
+  /staking/delegators/{delegatorAddr}/validators:
     parameters:
       - in: path
         name: delegatorAddr
@@ -2184,7 +2184,7 @@ paths:
           description: Invalid delegator address
         '500':
           description: Internal Server Error
-  '/staking/delegators/{delegatorAddr}/validators/{validatorAddr}':
+  /staking/delegators/{delegatorAddr}/validators/{validatorAddr}:
     parameters:
       - in: path
         name: delegatorAddr
@@ -2365,7 +2365,7 @@ paths:
                       example: '1970-01-01T00:00:00Z'
         '500':
           description: Internal Server Error
-  '/staking/validators/{validatorAddr}':
+  /staking/validators/{validatorAddr}:
     parameters:
       - in: path
         name: validatorAddr
@@ -2446,7 +2446,7 @@ paths:
           description: Invalid validator address
         '500':
           description: Internal Server Error
-  '/staking/validators/{validatorAddr}/delegations':
+  /staking/validators/{validatorAddr}/delegations:
     parameters:
       - in: path
         name: validatorAddr
@@ -2488,7 +2488,7 @@ paths:
           description: Invalid validator address
         '500':
           description: Internal Server Error
-  '/staking/validators/{validatorAddr}/unbonding_delegations':
+  /staking/validators/{validatorAddr}/unbonding_delegations:
     parameters:
       - in: path
         name: validatorAddr
@@ -2627,7 +2627,7 @@ paths:
           description: Invalid validator public key for one of the validators
         '500':
           description: Internal Server Error
-  '/slashing/validators/{validatorAddr}/unjail':
+  /slashing/validators/{validatorAddr}/unjail:
     post:
       deprecated: true
       summary: Unjail a jailed validator
@@ -2813,7 +2813,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -3030,7 +3030,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -3154,7 +3154,7 @@ paths:
           description: Invalid proposal body
         '500':
           description: Internal Server Error
-  '/gov/proposals/{proposalId}':
+  /gov/proposals/{proposalId}:
     get:
       deprecated: true
       summary: Query a proposal
@@ -3219,7 +3219,7 @@ paths:
           description: Invalid proposal id
         '500':
           description: Internal Server Error
-  '/gov/proposals/{proposalId}/proposer':
+  /gov/proposals/{proposalId}/proposer:
     get:
       deprecated: true
       summary: Query proposer
@@ -3248,7 +3248,7 @@ paths:
           description: Invalid proposal ID
         '500':
           description: Internal Server Error
-  '/gov/proposals/{proposalId}/deposits':
+  /gov/proposals/{proposalId}/deposits:
     get:
       deprecated: true
       summary: Query deposits
@@ -3325,7 +3325,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -3429,7 +3429,7 @@ paths:
           description: Key password is wrong
         '500':
           description: Internal Server Error
-  '/gov/proposals/{proposalId}/deposits/{depositor}':
+  /gov/proposals/{proposalId}/deposits/{depositor}:
     get:
       deprecated: true
       summary: Query deposit
@@ -3480,7 +3480,7 @@ paths:
           description: Found no deposit
         '500':
           description: Internal Server Error
-  '/gov/proposals/{proposalId}/votes':
+  /gov/proposals/{proposalId}/votes:
     get:
       deprecated: true
       summary: Query voters
@@ -3549,7 +3549,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -3645,7 +3645,7 @@ paths:
           description: Key password is wrong
         '500':
           description: Internal Server Error
-  '/gov/proposals/{proposalId}/votes/{voter}':
+  /gov/proposals/{proposalId}/votes/{voter}:
     get:
       deprecated: true
       summary: Query vote
@@ -3685,7 +3685,7 @@ paths:
           description: Found no vote
         '500':
           description: Internal Server Error
-  '/gov/proposals/{proposalId}/tally':
+  /gov/proposals/{proposalId}/tally:
     get:
       deprecated: true
       summary: Get a proposal's tally result at the current time
@@ -3817,7 +3817,7 @@ paths:
           description: Found no voting parameters
         '500':
           description: Internal Server Error
-  '/distribution/delegators/{delegatorAddr}/rewards':
+  /distribution/delegators/{delegatorAddr}/rewards:
     parameters:
       - in: path
         name: delegatorAddr
@@ -3900,7 +3900,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -3989,7 +3989,7 @@ paths:
           description: Key password is wrong
         '500':
           description: Internal Server Error
-  '/distribution/delegators/{delegatorAddr}/rewards/{validatorAddr}':
+  /distribution/delegators/{delegatorAddr}/rewards/{validatorAddr}:
     parameters:
       - in: path
         name: delegatorAddr
@@ -4053,7 +4053,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -4142,7 +4142,7 @@ paths:
           description: Key password is wrong
         '500':
           description: Internal Server Error
-  '/distribution/delegators/{delegatorAddr}/withdraw_address':
+  /distribution/delegators/{delegatorAddr}/withdraw_address:
     parameters:
       - in: path
         name: delegatorAddr
@@ -4195,7 +4195,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -4288,7 +4288,7 @@ paths:
           description: Key password is wrong
         '500':
           description: Internal Server Error
-  '/distribution/validators/{validatorAddr}':
+  /distribution/validators/{validatorAddr}:
     parameters:
       - in: path
         name: validatorAddr
@@ -4340,7 +4340,7 @@ paths:
           description: Invalid validator address
         '500':
           description: Internal Server Error
-  '/distribution/validators/{validatorAddr}/outstanding_rewards':
+  /distribution/validators/{validatorAddr}/outstanding_rewards:
     parameters:
       - in: path
         name: validatorAddr
@@ -4371,7 +4371,7 @@ paths:
                   example: '50'
         '500':
           description: Internal Server Error
-  '/distribution/validators/{validatorAddr}/rewards':
+  /distribution/validators/{validatorAddr}/rewards:
     parameters:
       - in: path
         name: validatorAddr
@@ -4429,7 +4429,7 @@ paths:
                     description: Sender address or Keybase name to generate a transaction
                   memo:
                     type: string
-                    example: "Sent via Cosmos Voyager \U0001F680"
+                    example: Sent via Cosmos Voyager 🚀
                   chain_id:
                     type: string
                     example: Cosmos-Hub
@@ -4623,6 +4623,7 @@ paths:
   /cosmos/auth/v1beta1/accounts:
     get:
       summary: Accounts returns all the existing accounts
+      description: 'Since: cosmos-sdk 0.43'
       operationId: Accounts
       responses:
         '200':
@@ -4829,8 +4830,11 @@ paths:
             description: >-
               QueryAccountsResponse is the response type for the Query/Accounts
               RPC method.
+
+
+              Since: cosmos-sdk 0.43
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -5065,18 +5069,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/auth/v1beta1/accounts/{address}':
+  /cosmos/auth/v1beta1/accounts/{address}:
     get:
       summary: Account returns account details based on address.
       operationId: Account
@@ -5261,7 +5266,7 @@ paths:
               QueryAccountResponse is the response type for the Query/Account
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -5490,7 +5495,7 @@ paths:
               QueryParamsResponse is the response type for the Query/Params RPC
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -5680,7 +5685,7 @@ paths:
                         }
       tags:
         - Query
-  '/cosmos/bank/v1beta1/balances/{address}':
+  /cosmos/bank/v1beta1/balances/{address}:
     get:
       summary: AllBalances queries the balance of all coins for a single account.
       operationId: AllBalances
@@ -5732,7 +5737,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -5805,18 +5810,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/bank/v1beta1/balances/{address}/{denom}':
+  /cosmos/bank/v1beta1/balances/{address}/by_denom:
     get:
       summary: Balance queries the balance of a single coin for a single account.
       operationId: Balance
@@ -5845,7 +5851,7 @@ paths:
               QueryBalanceResponse is the response type for the Query/Balance
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -5874,169 +5880,14 @@ paths:
           type: string
         - name: denom
           description: denom is the coin denom to query balances for.
-          in: path
-          required: true
-          type: string
-      tags:
-        - Query
-  '/cosmos/bank/v1beta1/denom_owners/{denom}':
-    get:
-      summary: >-
-        DenomOwners queries for all account addresses that own a particular
-        token
-
-        denomination.
-      operationId: DenomOwners
-      responses:
-        '200':
-          description: A successful response.
-          schema:
-            type: object
-            properties:
-              denom_owners:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    address:
-                      type: string
-                      description: >-
-                        address defines the address that owns a particular
-                        denomination.
-                    balance:
-                      type: object
-                      properties:
-                        denom:
-                          type: string
-                        amount:
-                          type: string
-                      description: >-
-                        Coin defines a token with a denomination and an amount.
-
-
-                        NOTE: The amount field is an Int which implements the
-                        custom method
-
-                        signatures required by gogoproto.
-                  description: >-
-                    DenomOwner defines structure representing an account that
-                    owns or holds a
-
-                    particular denominated token. It contains the account
-                    address and account
-
-                    balance of the denominated token.
-              pagination:
-                description: pagination defines the pagination in the response.
-                type: object
-                properties:
-                  next_key:
-                    type: string
-                    format: byte
-                    title: |-
-                      next_key is the key to be passed to PageRequest.key to
-                      query the next page most efficiently
-                  total:
-                    type: string
-                    format: uint64
-                    title: >-
-                      total is total number of results available if
-                      PageRequest.count_total
-
-                      was set, its value is undefined otherwise
-            description: >-
-              QueryDenomOwnersResponse defines the RPC response of a DenomOwners
-              RPC query.
-        default:
-          description: An unexpected error response
-          schema:
-            type: object
-            properties:
-              error:
-                type: string
-              code:
-                type: integer
-                format: int32
-              message:
-                type: string
-              details:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    type_url:
-                      type: string
-                    value:
-                      type: string
-                      format: byte
-      parameters:
-        - name: denom
-          description: >-
-            denom defines the coin denomination to query all account holders
-            for.
-          in: path
-          required: true
-          type: string
-        - name: pagination.key
-          description: |-
-            key is a value returned in PageResponse.next_key to begin
-            querying the next page most efficiently. Only one of offset or key
-            should be set.
           in: query
           required: false
           type: string
-          format: byte
-        - name: pagination.offset
-          description: >-
-            offset is a numeric offset that can be used when key is unavailable.
-
-            It is less efficient than using key. Only one of offset or key
-            should
-
-            be set.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.limit
-          description: >-
-            limit is the total number of results to be returned in the result
-            page.
-
-            If left empty it will default to a value to be set by each app.
-          in: query
-          required: false
-          type: string
-          format: uint64
-        - name: pagination.count_total
-          description: >-
-            count_total is set to true  to indicate that the result set should
-            include
-
-            a count of the total number of items available for pagination in
-            UIs.
-
-            count_total is only respected when offset is used. It is ignored
-            when key
-
-            is set.
-          in: query
-          required: false
-          type: boolean
-          format: boolean
-        - name: pagination.reverse
-          description: >-
-            reverse is set to true if results are to be returned in the
-            descending order.
-          in: query
-          required: false
-          type: boolean
-          format: boolean
       tags:
         - Query
   /cosmos/bank/v1beta1/denoms_metadata:
     get:
-      summary: |-
+      summary: >-
         DenomsMetadata queries the client metadata for all registered coin
         denominations.
       operationId: DenomsMetadata
@@ -6104,6 +5955,7 @@ paths:
                         displayed in clients.
                     name:
                       type: string
+                      description: 'Since: cosmos-sdk 0.43'
                       title: 'name defines the name of the token (eg: Cosmos Atom)'
                     symbol:
                       type: string
@@ -6112,18 +5964,9 @@ paths:
                         (eg: ATOM). This can
 
                         be the same as the display.
-                    uri:
-                      type: string
-                      description: >-
-                        URI to a document (on or off-chain) that contains
-                        additional information. Optional.
-                    uri_hash:
-                      type: string
-                      description: >-
-                        URIHash is a sha256 hash of a document pointed by URI.
-                        It's used to verify that
 
-                        the document didn't change. Optional.
+
+                        Since: cosmos-sdk 0.43
                   description: |-
                     Metadata represents a struct that describes
                     a basic token.
@@ -6154,7 +5997,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -6222,18 +6065,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/bank/v1beta1/denoms_metadata/{denom}':
+  /cosmos/bank/v1beta1/denoms_metadata/{denom}:
     get:
       summary: DenomsMetadata queries the client metadata of a given coin denomination.
       operationId: DenomMetadata
@@ -6299,6 +6143,7 @@ paths:
                       displayed in clients.
                   name:
                     type: string
+                    description: 'Since: cosmos-sdk 0.43'
                     title: 'name defines the name of the token (eg: Cosmos Atom)'
                   symbol:
                     type: string
@@ -6307,18 +6152,9 @@ paths:
                       ATOM). This can
 
                       be the same as the display.
-                  uri:
-                    type: string
-                    description: >-
-                      URI to a document (on or off-chain) that contains
-                      additional information. Optional.
-                  uri_hash:
-                    type: string
-                    description: >-
-                      URIHash is a sha256 hash of a document pointed by URI.
-                      It's used to verify that
 
-                      the document didn't change. Optional.
+
+                      Since: cosmos-sdk 0.43
                 description: |-
                   Metadata represents a struct that describes
                   a basic token.
@@ -6328,7 +6164,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -6379,7 +6215,6 @@ paths:
                           type: string
                         enabled:
                           type: boolean
-                          format: boolean
                       description: >-
                         SendEnabled maps coin denom to a send_enabled status
                         (whether a denom is
@@ -6387,13 +6222,12 @@ paths:
                         sendable).
                   default_send_enabled:
                     type: boolean
-                    format: boolean
                 description: Params defines the parameters for the bank module.
             description: >-
               QueryParamsResponse defines the response type for querying x/bank
               parameters.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -6445,7 +6279,10 @@ paths:
                     signatures required by gogoproto.
                 title: supply is the supply of the coins
               pagination:
-                description: pagination defines the pagination in the response.
+                description: |-
+                  pagination defines the pagination in the response.
+
+                  Since: cosmos-sdk 0.43
                 type: object
                 properties:
                   next_key:
@@ -6468,7 +6305,7 @@ paths:
 
               method
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -6536,18 +6373,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/bank/v1beta1/supply/{denom}':
+  /cosmos/bank/v1beta1/supply/{denom}:
     get:
       summary: SupplyOf queries the supply of a single coin.
       operationId: SupplyOf
@@ -6576,7 +6414,7 @@ paths:
               QuerySupplyOfResponse is the response type for the Query/SupplyOf
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -7173,7 +7011,7 @@ paths:
               GetLatestBlockResponse is the response type for the
               Query/GetLatestBlock RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -7363,7 +7201,7 @@ paths:
                         }
       tags:
         - Service
-  '/cosmos/base/tendermint/v1beta1/blocks/{height}':
+  /cosmos/base/tendermint/v1beta1/blocks/{height}:
     get:
       summary: GetBlockByHeight queries block for given height.
       operationId: GetBlockByHeight
@@ -7931,7 +7769,7 @@ paths:
               GetBlockByHeightResponse is the response type for the
               Query/GetBlockByHeight RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -8204,12 +8042,13 @@ paths:
                       title: Module is the type for VersionInfo
                   cosmos_sdk_version:
                     type: string
+                    title: 'Since: cosmos-sdk 0.43'
                 description: VersionInfo is the type for the GetNodeInfoResponse message.
             description: >-
               GetNodeInfoResponse is the request type for the Query/GetNodeInfo
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -8411,12 +8250,11 @@ paths:
             properties:
               syncing:
                 type: boolean
-                format: boolean
             description: >-
               GetSyncingResponse is the response type for the Query/GetSyncing
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -8832,7 +8670,7 @@ paths:
               GetLatestValidatorSetResponse is the response type for the
               Query/GetValidatorSetByHeight RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -9067,18 +8905,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Service
-  '/cosmos/base/tendermint/v1beta1/validatorsets/{height}':
+  /cosmos/base/tendermint/v1beta1/validatorsets/{height}:
     get:
       summary: GetValidatorSetByHeight queries validator-set at a given height.
       operationId: GetValidatorSetByHeight
@@ -9304,7 +9143,7 @@ paths:
               GetValidatorSetByHeightResponse is the response type for the
               Query/GetValidatorSetByHeight RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -9544,15 +9383,16 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Service
   /cosmos/distribution/v1beta1/community_pool:
@@ -9590,7 +9430,7 @@ paths:
 
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -9613,7 +9453,7 @@ paths:
                       format: byte
       tags:
         - Query
-  '/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards':
+  /cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards:
     get:
       summary: |-
         DelegationTotalRewards queries the total rewards accrued by a each
@@ -9677,7 +9517,7 @@ paths:
               QueryDelegationTotalRewardsResponse is the response type for the
               Query/DelegationTotalRewards RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -9706,7 +9546,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}':
+  /cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}:
     get:
       summary: DelegationRewards queries the total rewards accrued by a delegation.
       operationId: DelegationRewards
@@ -9739,7 +9579,7 @@ paths:
               QueryDelegationRewardsResponse is the response type for the
               Query/DelegationRewards RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -9773,7 +9613,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/distribution/v1beta1/delegators/{delegator_address}/validators':
+  /cosmos/distribution/v1beta1/delegators/{delegator_address}/validators:
     get:
       summary: DelegatorValidators queries the validators of a delegator.
       operationId: DelegatorValidators
@@ -9794,7 +9634,7 @@ paths:
               QueryDelegatorValidatorsResponse is the response type for the
               Query/DelegatorValidators RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -9823,7 +9663,73 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address':
+  /cosmos/distribution/v1beta1/delegators/{delegator_address}/vesting-locked-rewards:
+    get:
+      summary: >-
+        DelegatorVestingLockedRewards queries the total vesting locked rewards
+        accrued by a delegation.
+      operationId: DelegatorVestingLockedRewards
+      responses:
+        '200':
+          description: A successful response.
+          schema:
+            type: object
+            properties:
+              rewards:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    denom:
+                      type: string
+                    amount:
+                      type: string
+                  description: >-
+                    DecCoin defines a token with a denomination and a decimal
+                    amount.
+
+
+                    NOTE: The amount field is an Dec which implements the custom
+                    method
+
+                    signatures required by gogoproto.
+                description: rewards defines the rewards accrued by a delegation.
+            description: >-
+              QueryDelegatorVestingLockedRewardsResponse is the response type
+              for the
+
+              Query/DelegatorVestingLockedRewards RPC method.
+        default:
+          description: An unexpected error response.
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+              code:
+                type: integer
+                format: int32
+              message:
+                type: string
+              details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type_url:
+                      type: string
+                    value:
+                      type: string
+                      format: byte
+      parameters:
+        - name: delegator_address
+          description: delegator_address defines the delegator address to query for.
+          in: path
+          required: true
+          type: string
+      tags:
+        - Query
+  /cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address:
     get:
       summary: DelegatorWithdrawAddress queries withdraw address of a delegator.
       operationId: DelegatorWithdrawAddress
@@ -9840,7 +9746,7 @@ paths:
               QueryDelegatorWithdrawAddressResponse is the response type for the
               Query/DelegatorWithdrawAddress RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -9891,12 +9797,11 @@ paths:
                     type: string
                   withdraw_addr_enabled:
                     type: boolean
-                    format: boolean
             description: >-
               QueryParamsResponse is the response type for the Query/Params RPC
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -9919,7 +9824,7 @@ paths:
                       format: byte
       tags:
         - Query
-  '/cosmos/distribution/v1beta1/validators/{validator_address}/commission':
+  /cosmos/distribution/v1beta1/validators/{validator_address}/commission:
     get:
       summary: ValidatorCommission queries accumulated commission for a validator.
       operationId: ValidatorCommission
@@ -9955,7 +9860,7 @@ paths:
               QueryValidatorCommissionResponse is the response type for the
               Query/ValidatorCommission RPC method
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -9984,7 +9889,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/distribution/v1beta1/validators/{validator_address}/outstanding_rewards':
+  /cosmos/distribution/v1beta1/validators/{validator_address}/outstanding_rewards:
     get:
       summary: ValidatorOutstandingRewards queries rewards of a validator address.
       operationId: ValidatorOutstandingRewards
@@ -10027,7 +9932,7 @@ paths:
 
               Query/ValidatorOutstandingRewards RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -10056,7 +9961,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/distribution/v1beta1/validators/{validator_address}/slashes':
+  /cosmos/distribution/v1beta1/validators/{validator_address}/slashes:
     get:
       summary: ValidatorSlashes queries slash events of a validator.
       operationId: ValidatorSlashes
@@ -10109,7 +10014,7 @@ paths:
               QueryValidatorSlashesResponse is the response type for the
               Query/ValidatorSlashes RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -10198,15 +10103,16 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
   /cosmos/evidence/v1beta1/evidence:
@@ -10421,7 +10327,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -10656,18 +10562,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/evidence/v1beta1/evidence/{evidence_hash}':
+  /cosmos/evidence/v1beta1/evidence/{evidence_hash}:
     get:
       summary: Evidence queries evidence based on evidence hash.
       operationId: Evidence
@@ -10852,7 +10759,7 @@ paths:
               QueryEvidenceResponse is the response type for the Query/Evidence
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -11049,7 +10956,7 @@ paths:
           format: byte
       tags:
         - Query
-  '/cosmos/gov/v1beta1/params/{params_type}':
+  /cosmos/gov/v1beta1/params/{params_type}:
     get:
       summary: Params queries all parameters of the gov module.
       operationId: GovParams
@@ -11122,7 +11029,7 @@ paths:
               QueryParamsResponse is the response type for the Query/Params RPC
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -11613,7 +11520,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -11884,18 +11791,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}':
+  /cosmos/gov/v1beta1/proposals/{proposal_id}:
     get:
       summary: Proposal queries proposal details based on ProposalID.
       operationId: Proposal
@@ -12161,7 +12069,7 @@ paths:
               QueryProposalResponse is the response type for the Query/Proposal
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -12358,7 +12266,7 @@ paths:
           format: uint64
       tags:
         - Query
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/deposits':
+  /cosmos/gov/v1beta1/proposals/{proposal_id}/deposits:
     get:
       summary: Deposits queries all deposits of a single proposal.
       operationId: Deposits
@@ -12423,7 +12331,7 @@ paths:
               QueryDepositsResponse is the response type for the Query/Deposits
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -12664,18 +12572,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/deposits/{depositor}':
+  /cosmos/gov/v1beta1/proposals/{proposal_id}/deposits/{depositor}:
     get:
       summary: >-
         Deposit queries single deposit information based proposalID,
@@ -12721,7 +12630,7 @@ paths:
               QueryDepositResponse is the response type for the Query/Deposit
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -12923,7 +12832,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/tally':
+  /cosmos/gov/v1beta1/proposals/{proposal_id}/tally:
     get:
       summary: TallyResult queries the tally of a proposal vote.
       operationId: TallyResult
@@ -12951,7 +12860,7 @@ paths:
               QueryTallyResultResponse is the response type for the Query/Tally
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -13148,7 +13057,7 @@ paths:
           format: uint64
       tags:
         - Query
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/votes':
+  /cosmos/gov/v1beta1/proposals/{proposal_id}/votes:
     get:
       summary: Votes queries votes of a given proposal.
       operationId: Votes
@@ -13214,6 +13123,10 @@ paths:
                         description: >-
                           WeightedVoteOption defines a unit of vote for vote
                           split.
+
+
+                          Since: cosmos-sdk 0.43
+                      title: 'Since: cosmos-sdk 0.43'
                   description: >-
                     Vote defines a vote on a governance proposal.
 
@@ -13242,7 +13155,7 @@ paths:
               QueryVotesResponse is the response type for the Query/Votes RPC
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -13483,20 +13396,21 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/gov/v1beta1/proposals/{proposal_id}/votes/{voter}':
+  /cosmos/gov/v1beta1/proposals/{proposal_id}/votes/{voter}:
     get:
-      summary: 'Vote queries voted information based on proposalID, voterAddr.'
+      summary: Vote queries voted information based on proposalID, voterAddr.
       operationId: Vote
       responses:
         '200':
@@ -13558,6 +13472,10 @@ paths:
                       description: >-
                         WeightedVoteOption defines a unit of vote for vote
                         split.
+
+
+                        Since: cosmos-sdk 0.43
+                    title: 'Since: cosmos-sdk 0.43'
                 description: >-
                   Vote defines a vote on a governance proposal.
 
@@ -13567,7 +13485,7 @@ paths:
               QueryVoteResponse is the response type for the Query/Vote RPC
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -13789,7 +13707,7 @@ paths:
               QueryAnnualProvisionsResponse is the response type for the
               Query/AnnualProvisions RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -13832,7 +13750,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -13892,7 +13810,7 @@ paths:
               QueryParamsResponse is the response type for the Query/Params RPC
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -13941,7 +13859,7 @@ paths:
               QueryParamsResponse is response type for the Query/Params RPC
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -14009,7 +13927,7 @@ paths:
               QueryParamsResponse is the response type for the Query/Params RPC
               method
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -14075,7 +13993,6 @@ paths:
                         liveness downtime.
                     tombstoned:
                       type: boolean
-                      format: boolean
                       description: >-
                         Whether or not a validator has been tombstoned (killed
                         out of validator set). It is set
@@ -14129,7 +14046,7 @@ paths:
 
               method
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -14197,18 +14114,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/slashing/v1beta1/signing_infos/{cons_address}':
+  /cosmos/slashing/v1beta1/signing_infos/{cons_address}:
     get:
       summary: SigningInfo queries the signing info of given cons address
       operationId: SigningInfo
@@ -14249,7 +14167,6 @@ paths:
                       liveness downtime.
                   tombstoned:
                     type: boolean
-                    format: boolean
                     description: >-
                       Whether or not a validator has been tombstoned (killed out
                       of validator set). It is set
@@ -14278,7 +14195,7 @@ paths:
 
               method
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -14307,7 +14224,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/staking/v1beta1/delegations/{delegator_addr}':
+  /cosmos/staking/v1beta1/delegations/{delegator_addr}:
     get:
       summary: >-
         DelegatorDelegations queries all delegations of a given delegator
@@ -14394,7 +14311,7 @@ paths:
               QueryDelegatorDelegationsResponse is response type for the
               Query/DelegatorDelegations RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -14634,18 +14551,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/staking/v1beta1/delegators/{delegator_addr}/redelegations':
+  /cosmos/staking/v1beta1/delegators/{delegator_addr}/redelegations:
     get:
       summary: Redelegations queries redelegations of given address.
       operationId: Redelegations
@@ -14792,7 +14710,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -15042,18 +14960,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/staking/v1beta1/delegators/{delegator_addr}/unbonding_delegations':
+  /cosmos/staking/v1beta1/delegators/{delegator_addr}/unbonding_delegations:
     get:
       summary: >-
         DelegatorUnbondingDelegations queries all unbonding delegations of a
@@ -15142,7 +15061,7 @@ paths:
 
               Query/UnbondingDelegatorDelegations RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -15382,18 +15301,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/staking/v1beta1/delegators/{delegator_addr}/validators':
+  /cosmos/staking/v1beta1/delegators/{delegator_addr}/validators:
     get:
       summary: |-
         DelegatorValidators queries all validators info for given delegator
@@ -15594,7 +15514,6 @@ paths:
                             }
                     jailed:
                       type: boolean
-                      format: boolean
                       description: >-
                         jailed defined whether the validator has been jailed
                         from bonded status or not.
@@ -15741,7 +15660,7 @@ paths:
               QueryDelegatorValidatorsResponse is response type for the
               Query/DelegatorValidators RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -15981,18 +15900,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/staking/v1beta1/delegators/{delegator_addr}/validators/{validator_addr}':
+  /cosmos/staking/v1beta1/delegators/{delegator_addr}/validators/{validator_addr}:
     get:
       summary: |-
         DelegatorValidator queries validator info for given delegator validator
@@ -16189,7 +16109,6 @@ paths:
                           }
                   jailed:
                     type: boolean
-                    format: boolean
                     description: >-
                       jailed defined whether the validator has been jailed from
                       bonded status or not.
@@ -16316,7 +16235,7 @@ paths:
               QueryDelegatorValidatorResponse response type for the
               Query/DelegatorValidator RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -16517,7 +16436,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/staking/v1beta1/historical_info/{height}':
+  /cosmos/staking/v1beta1/historical_info/{height}:
     get:
       summary: HistoricalInfo queries the historical info for given height.
       operationId: HistoricalInfo
@@ -16798,7 +16717,6 @@ paths:
                                 }
                         jailed:
                           type: boolean
-                          format: boolean
                           description: >-
                             jailed defined whether the validator has been jailed
                             from bonded status or not.
@@ -16929,7 +16847,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -17162,11 +17080,16 @@ paths:
                   bond_denom:
                     type: string
                     description: bond_denom defines the bondable coin denomination.
+                  min_global_self_delegation:
+                    type: string
+                    description: >-
+                      min_global_self_delegation is the validators' self
+                      declared minimum self delegation.
             description: >-
               QueryParamsResponse is response type for the Query/Params RPC
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -17376,7 +17299,7 @@ paths:
                     type: string
             description: QueryPoolResponse is response type for the Query/Pool RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -17765,7 +17688,6 @@ paths:
                             }
                     jailed:
                       type: boolean
-                      format: boolean
                       description: >-
                         jailed defined whether the validator has been jailed
                         from bonded status or not.
@@ -17912,7 +17834,7 @@ paths:
               QueryValidatorsResponse is response type for the Query/Validators
               RPC method
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -18152,18 +18074,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/staking/v1beta1/validators/{validator_addr}':
+  /cosmos/staking/v1beta1/validators/{validator_addr}:
     get:
       summary: Validator queries validator info for given validator address.
       operationId: Validator
@@ -18358,7 +18281,6 @@ paths:
                           }
                   jailed:
                     type: boolean
-                    format: boolean
                     description: >-
                       jailed defined whether the validator has been jailed from
                       bonded status or not.
@@ -18485,7 +18407,7 @@ paths:
               QueryValidatorResponse is response type for the Query/Validator
               RPC method
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -18681,7 +18603,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/staking/v1beta1/validators/{validator_addr}/delegations':
+  /cosmos/staking/v1beta1/validators/{validator_addr}/delegations:
     get:
       summary: ValidatorDelegations queries delegate info for given validator.
       operationId: ValidatorDelegations
@@ -18763,7 +18685,7 @@ paths:
               QueryValidatorDelegationsResponse is response type for the
               Query/ValidatorDelegations RPC method
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -19003,18 +18925,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}':
+  /cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}:
     get:
       summary: Delegation queries delegate info for given validator delegator pair.
       operationId: Delegation
@@ -19076,7 +18999,7 @@ paths:
               QueryDelegationResponse is response type for the Query/Delegation
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -19277,7 +19200,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}/unbonding_delegation':
+  /cosmos/staking/v1beta1/validators/{validator_addr}/delegations/{delegator_addr}/unbonding_delegation:
     get:
       summary: |-
         UnbondingDelegation queries unbonding info for given validator delegator
@@ -19342,7 +19265,7 @@ paths:
 
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -19543,7 +19466,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/staking/v1beta1/validators/{validator_addr}/unbonding_delegations':
+  /cosmos/staking/v1beta1/validators/{validator_addr}/unbonding_delegations:
     get:
       summary: >-
         ValidatorUnbondingDelegations queries unbonding delegations of a
@@ -19630,7 +19553,7 @@ paths:
 
               Query/ValidatorUnbondingDelegations RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -19870,15 +19793,16 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
   /cosmos/tx/v1beta1/simulate:
@@ -19943,7 +19867,6 @@ paths:
                                 format: byte
                               index:
                                 type: boolean
-                                format: boolean
                             description: >-
                               EventAttribute is a single key-value pair,
                               associated with an event.
@@ -19964,7 +19887,7 @@ paths:
               SimulateResponse is the response type for the
               Service.SimulateRPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -20170,7 +20093,7 @@ paths:
           schema:
             $ref: '#/definitions/cosmos.tx.v1beta1.GetTxsEventResponse'
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -20413,15 +20336,16 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: order_by
           description: |2-
              - ORDER_BY_UNSPECIFIED: ORDER_BY_UNSPECIFIED specifies an unknown sorting order. OrderBy defaults to ASC in this case.
@@ -20465,7 +20389,7 @@ paths:
                     description: Response code.
                   data:
                     type: string
-                    description: 'Result bytes, if any.'
+                    description: Result bytes, if any.
                   raw_log:
                     type: string
                     description: >-
@@ -20717,6 +20641,52 @@ paths:
                       For height == 1,
 
                       it's genesis time.
+                  events:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        attributes:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                                format: byte
+                              value:
+                                type: string
+                                format: byte
+                              index:
+                                type: boolean
+                            description: >-
+                              EventAttribute is a single key-value pair,
+                              associated with an event.
+                      description: >-
+                        Event allows application developers to attach additional
+                        information to
+
+                        ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx
+                        and ResponseDeliverTx.
+
+                        Later, transactions may be queried using these events.
+                    description: >-
+                      Events defines all the events emitted by processing a
+                      transaction. Note,
+
+                      these events include those emitted by processing all the
+                      messages and those
+
+                      emitted from the ante handler. Whereas Logs contains the
+                      events, with
+
+                      additional metadata, emitted only by processing the
+                      messages.
+
+
+                      Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
                 description: >-
                   TxResponse defines a structure containing relevant tx data and
                   metadata. The
@@ -20726,7 +20696,7 @@ paths:
               BroadcastTxResponse is the response type for the
               Service.BroadcastTx method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -20951,7 +20921,7 @@ paths:
               RPC method.
       tags:
         - Service
-  '/cosmos/tx/v1beta1/txs/{hash}':
+  /cosmos/tx/v1beta1/txs/{hash}:
     get:
       summary: GetTx fetches a tx by hash.
       operationId: GetTx
@@ -20961,7 +20931,7 @@ paths:
           schema:
             $ref: '#/definitions/cosmos.tx.v1beta1.GetTxResponse'
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -21151,13 +21121,13 @@ paths:
                         }
       parameters:
         - name: hash
-          description: 'hash is the tx hash to query, encoded as a hex string.'
+          description: hash is the tx hash to query, encoded as a hex string.
           in: path
           required: true
           type: string
       tags:
         - Service
-  '/cosmos/upgrade/v1beta1/applied_plan/{name}':
+  /cosmos/upgrade/v1beta1/applied_plan/{name}:
     get:
       summary: AppliedPlan queries a previously applied upgrade plan by its name.
       operationId: AppliedPlan
@@ -21177,7 +21147,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -21614,7 +21584,7 @@ paths:
 
               method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -21807,6 +21777,7 @@ paths:
   /cosmos/upgrade/v1beta1/module_versions:
     get:
       summary: ModuleVersions queries the list of module versions from state.
+      description: 'Since: cosmos-sdk 0.43'
       operationId: ModuleVersions
       responses:
         '200':
@@ -21826,7 +21797,10 @@ paths:
                       type: string
                       format: uint64
                       title: consensus version of the app module
-                  description: ModuleVersion specifies a module and its consensus version.
+                  description: |-
+                    ModuleVersion specifies a module and its consensus version.
+
+                    Since: cosmos-sdk 0.43
                 description: >-
                   module_versions is a list of module names with their consensus
                   versions.
@@ -21835,8 +21809,11 @@ paths:
               Query/ModuleVersions
 
               RPC method.
+
+
+              Since: cosmos-sdk 0.43
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -22035,13 +22012,20 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/upgrade/v1beta1/upgraded_consensus_state/{last_height}':
+  /cosmos/upgrade/v1beta1/upgraded_consensus_state/{last_height}:
     get:
-      summary: |-
+      summary: >-
         UpgradedConsensusState queries the consensus state that will serve
+
         as a trusted kernel for the next version of this chain. It will only be
+
         stored at the last height of this chain.
+
         UpgradedConsensusState RPC not supported with legacy querier
+
+        This rpc is deprecated now that IBC has its own replacement
+
+        (https://github.com/cosmos/ibc-go/blob/2c880a22e9f9cc75f62b527ca94aa75ce1106001/proto/ibc/core/client/v1/query.proto#L54)
       operationId: UpgradedConsensusState
       responses:
         '200':
@@ -22052,13 +22036,14 @@ paths:
               upgraded_consensus_state:
                 type: string
                 format: byte
+                title: 'Since: cosmos-sdk 0.43'
             description: >-
               QueryUpgradedConsensusStateResponse is the response type for the
               Query/UpgradedConsensusState
 
               RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -22259,7 +22244,7 @@ paths:
         - Query
   /cosmos/authz/v1beta1/grants:
     get:
-      summary: 'Returns list of `Authorization`, granted to the grantee by the granter.'
+      summary: Returns list of `Authorization`, granted to the grantee by the granter.
       operationId: Grants
       responses:
         '200':
@@ -22480,7 +22465,7 @@ paths:
               QueryGrantsResponse is the response type for the
               Query/Authorizations RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -22730,18 +22715,19 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
-  '/cosmos/feegrant/v1beta1/allowance/{granter}/{grantee}':
+  /cosmos/feegrant/v1beta1/allowance/{granter}/{grantee}:
     get:
       summary: Allowance returns fee granted to the grantee by the granter.
       operationId: Allowance
@@ -22840,7 +22826,7 @@ paths:
               QueryAllowanceResponse is the response type for the
               Query/Allowance RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -23045,7 +23031,7 @@ paths:
           type: string
       tags:
         - Query
-  '/cosmos/feegrant/v1beta1/allowances/{grantee}':
+  /cosmos/feegrant/v1beta1/allowances/{grantee}:
     get:
       summary: Allowances returns all the grants for address.
       operationId: Allowances
@@ -23166,7 +23152,7 @@ paths:
               QueryAllowancesResponse is the response type for the
               Query/Allowances RPC method.
         default:
-          description: An unexpected error response
+          description: An unexpected error response.
           schema:
             type: object
             properties:
@@ -23405,15 +23391,16 @@ paths:
           in: query
           required: false
           type: boolean
-          format: boolean
         - name: pagination.reverse
           description: >-
             reverse is set to true if results are to be returned in the
             descending order.
+
+
+            Since: cosmos-sdk 0.43
           in: query
           required: false
           type: boolean
-          format: boolean
       tags:
         - Query
 securityDefinitions:
@@ -24329,7 +24316,7 @@ definitions:
         description: Sender address or Keybase name to generate a transaction
       memo:
         type: string
-        example: "Sent via Cosmos Voyager \U0001F680"
+        example: Sent via Cosmos Voyager 🚀
       chain_id:
         type: string
         example: Cosmos-Hub
@@ -25070,6 +25057,9 @@ definitions:
     description: >-
       QueryAccountsResponse is the response type for the Query/Accounts RPC
       method.
+
+
+      Since: cosmos-sdk 0.43
   cosmos.auth.v1beta1.QueryParamsResponse:
     type: object
     properties:
@@ -25120,7 +25110,6 @@ definitions:
           If left empty it will default to a value to be set by each app.
       count_total:
         type: boolean
-        format: boolean
         description: >-
           count_total is set to true  to indicate that the result set should
           include
@@ -25133,10 +25122,12 @@ definitions:
           is set.
       reverse:
         type: boolean
-        format: boolean
         description: >-
           reverse is set to true if results are to be returned in the descending
           order.
+
+
+          Since: cosmos-sdk 0.43
     description: |-
       message SomeRequest {
                Foo some_parameter = 1;
@@ -25497,28 +25488,6 @@ definitions:
                   "@type": "type.googleapis.com/google.protobuf.Duration",
                   "value": "1.212s"
                 }
-  cosmos.bank.v1beta1.DenomOwner:
-    type: object
-    properties:
-      address:
-        type: string
-        description: address defines the address that owns a particular denomination.
-      balance:
-        type: object
-        properties:
-          denom:
-            type: string
-          amount:
-            type: string
-        description: |-
-          Coin defines a token with a denomination and an amount.
-
-          NOTE: The amount field is an Int which implements the custom method
-          signatures required by gogoproto.
-    description: |-
-      DenomOwner defines structure representing an account that owns or holds a
-      particular denominated token. It contains the account address and account
-      balance of the denominated token.
   cosmos.bank.v1beta1.DenomUnit:
     type: object
     properties:
@@ -25598,6 +25567,7 @@ definitions:
           displayed in clients.
       name:
         type: string
+        description: 'Since: cosmos-sdk 0.43'
         title: 'name defines the name of the token (eg: Cosmos Atom)'
       symbol:
         type: string
@@ -25606,18 +25576,9 @@ definitions:
           can
 
           be the same as the display.
-      uri:
-        type: string
-        description: >-
-          URI to a document (on or off-chain) that contains additional
-          information. Optional.
-      uri_hash:
-        type: string
-        description: >-
-          URIHash is a sha256 hash of a document pointed by URI. It's used to
-          verify that
 
-          the document didn't change. Optional.
+
+          Since: cosmos-sdk 0.43
     description: |-
       Metadata represents a struct that describes
       a basic token.
@@ -25633,7 +25594,6 @@ definitions:
               type: string
             enabled:
               type: boolean
-              format: boolean
           description: >-
             SendEnabled maps coin denom to a send_enabled status (whether a
             denom is
@@ -25641,7 +25601,6 @@ definitions:
             sendable).
       default_send_enabled:
         type: boolean
-        format: boolean
     description: Params defines the parameters for the bank module.
   cosmos.bank.v1beta1.QueryAllBalancesResponse:
     type: object
@@ -25756,6 +25715,7 @@ definitions:
               displayed in clients.
           name:
             type: string
+            description: 'Since: cosmos-sdk 0.43'
             title: 'name defines the name of the token (eg: Cosmos Atom)'
           symbol:
             type: string
@@ -25764,18 +25724,9 @@ definitions:
               This can
 
               be the same as the display.
-          uri:
-            type: string
-            description: >-
-              URI to a document (on or off-chain) that contains additional
-              information. Optional.
-          uri_hash:
-            type: string
-            description: >-
-              URIHash is a sha256 hash of a document pointed by URI. It's used
-              to verify that
 
-              the document didn't change. Optional.
+
+              Since: cosmos-sdk 0.43
         description: |-
           Metadata represents a struct that describes
           a basic token.
@@ -25784,61 +25735,6 @@ definitions:
       Query/DenomMetadata RPC
 
       method.
-  cosmos.bank.v1beta1.QueryDenomOwnersResponse:
-    type: object
-    properties:
-      denom_owners:
-        type: array
-        items:
-          type: object
-          properties:
-            address:
-              type: string
-              description: address defines the address that owns a particular denomination.
-            balance:
-              type: object
-              properties:
-                denom:
-                  type: string
-                amount:
-                  type: string
-              description: >-
-                Coin defines a token with a denomination and an amount.
-
-
-                NOTE: The amount field is an Int which implements the custom
-                method
-
-                signatures required by gogoproto.
-          description: >-
-            DenomOwner defines structure representing an account that owns or
-            holds a
-
-            particular denominated token. It contains the account address and
-            account
-
-            balance of the denominated token.
-      pagination:
-        description: pagination defines the pagination in the response.
-        type: object
-        properties:
-          next_key:
-            type: string
-            format: byte
-            title: |-
-              next_key is the key to be passed to PageRequest.key to
-              query the next page most efficiently
-          total:
-            type: string
-            format: uint64
-            title: >-
-              total is total number of results available if
-              PageRequest.count_total
-
-              was set, its value is undefined otherwise
-    description: >-
-      QueryDenomOwnersResponse defines the RPC response of a DenomOwners RPC
-      query.
   cosmos.bank.v1beta1.QueryDenomsMetadataResponse:
     type: object
     properties:
@@ -25895,6 +25791,7 @@ definitions:
                 displayed in clients.
             name:
               type: string
+              description: 'Since: cosmos-sdk 0.43'
               title: 'name defines the name of the token (eg: Cosmos Atom)'
             symbol:
               type: string
@@ -25903,18 +25800,9 @@ definitions:
                 ATOM). This can
 
                 be the same as the display.
-            uri:
-              type: string
-              description: >-
-                URI to a document (on or off-chain) that contains additional
-                information. Optional.
-            uri_hash:
-              type: string
-              description: >-
-                URIHash is a sha256 hash of a document pointed by URI. It's used
-                to verify that
 
-                the document didn't change. Optional.
+
+                Since: cosmos-sdk 0.43
           description: |-
             Metadata represents a struct that describes
             a basic token.
@@ -25959,7 +25847,6 @@ definitions:
                   type: string
                 enabled:
                   type: boolean
-                  format: boolean
               description: >-
                 SendEnabled maps coin denom to a send_enabled status (whether a
                 denom is
@@ -25967,7 +25854,6 @@ definitions:
                 sendable).
           default_send_enabled:
             type: boolean
-            format: boolean
         description: Params defines the parameters for the bank module.
     description: >-
       QueryParamsResponse defines the response type for querying x/bank
@@ -26009,7 +25895,10 @@ definitions:
             signatures required by gogoproto.
         title: supply is the supply of the coins
       pagination:
-        description: pagination defines the pagination in the response.
+        description: |-
+          pagination defines the pagination in the response.
+
+          Since: cosmos-sdk 0.43
         type: object
         properties:
           next_key:
@@ -26038,7 +25927,6 @@ definitions:
         type: string
       enabled:
         type: boolean
-        format: boolean
     description: |-
       SendEnabled maps coin denom to a send_enabled status (whether a denom is
       sendable).
@@ -27436,6 +27324,7 @@ definitions:
               title: Module is the type for VersionInfo
           cosmos_sdk_version:
             type: string
+            title: 'Since: cosmos-sdk 0.43'
         description: VersionInfo is the type for the GetNodeInfoResponse message.
     description: >-
       GetNodeInfoResponse is the request type for the Query/GetNodeInfo RPC
@@ -27445,7 +27334,6 @@ definitions:
     properties:
       syncing:
         type: boolean
-        format: boolean
     description: >-
       GetSyncingResponse is the response type for the Query/GetSyncing RPC
       method.
@@ -27875,6 +27763,7 @@ definitions:
           title: Module is the type for VersionInfo
       cosmos_sdk_version:
         type: string
+        title: 'Since: cosmos-sdk 0.43'
     description: VersionInfo is the type for the GetNodeInfoResponse message.
   tendermint.crypto.PublicKey:
     type: object
@@ -30310,7 +30199,6 @@ definitions:
         type: string
       withdraw_addr_enabled:
         type: boolean
-        format: boolean
     description: Params defines the set of params for the distribution module.
   cosmos.distribution.v1beta1.QueryCommunityPoolResponse:
     type: object
@@ -30417,6 +30305,27 @@ definitions:
     description: |-
       QueryDelegatorValidatorsResponse is the response type for the
       Query/DelegatorValidators RPC method.
+  cosmos.distribution.v1beta1.QueryDelegatorVestingLockedRewardsResponse:
+    type: object
+    properties:
+      rewards:
+        type: array
+        items:
+          type: object
+          properties:
+            denom:
+              type: string
+            amount:
+              type: string
+          description: |-
+            DecCoin defines a token with a denomination and a decimal amount.
+
+            NOTE: The amount field is an Dec which implements the custom method
+            signatures required by gogoproto.
+        description: rewards defines the rewards accrued by a delegation.
+    description: |-
+      QueryDelegatorVestingLockedRewardsResponse is the response type for the
+      Query/DelegatorVestingLockedRewards RPC method.
   cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse:
     type: object
     properties:
@@ -30441,7 +30350,6 @@ definitions:
             type: string
           withdraw_addr_enabled:
             type: boolean
-            format: boolean
     description: QueryParamsResponse is the response type for the Query/Params RPC method.
   cosmos.distribution.v1beta1.QueryValidatorCommissionResponse:
     type: object
@@ -31988,7 +31896,11 @@ definitions:
                      - VOTE_OPTION_NO_WITH_VETO: VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option.
                 weight:
                   type: string
-              description: WeightedVoteOption defines a unit of vote for vote split.
+              description: |-
+                WeightedVoteOption defines a unit of vote for vote split.
+
+                Since: cosmos-sdk 0.43
+            title: 'Since: cosmos-sdk 0.43'
         description: |-
           Vote defines a vote on a governance proposal.
           A Vote consists of a proposal ID, the voter, and the vote option.
@@ -32048,7 +31960,11 @@ definitions:
                        - VOTE_OPTION_NO_WITH_VETO: VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option.
                   weight:
                     type: string
-                description: WeightedVoteOption defines a unit of vote for vote split.
+                description: |-
+                  WeightedVoteOption defines a unit of vote for vote split.
+
+                  Since: cosmos-sdk 0.43
+              title: 'Since: cosmos-sdk 0.43'
           description: |-
             Vote defines a vote on a governance proposal.
             A Vote consists of a proposal ID, the voter, and the vote option.
@@ -32156,7 +32072,11 @@ definitions:
                  - VOTE_OPTION_NO_WITH_VETO: VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option.
             weight:
               type: string
-          description: WeightedVoteOption defines a unit of vote for vote split.
+          description: |-
+            WeightedVoteOption defines a unit of vote for vote split.
+
+            Since: cosmos-sdk 0.43
+        title: 'Since: cosmos-sdk 0.43'
     description: |-
       Vote defines a vote on a governance proposal.
       A Vote consists of a proposal ID, the voter, and the vote option.
@@ -32208,7 +32128,10 @@ definitions:
            - VOTE_OPTION_NO_WITH_VETO: VOTE_OPTION_NO_WITH_VETO defines a no with veto vote option.
       weight:
         type: string
-    description: WeightedVoteOption defines a unit of vote for vote split.
+    description: |-
+      WeightedVoteOption defines a unit of vote for vote split.
+
+      Since: cosmos-sdk 0.43
   cosmos.mint.v1beta1.Params:
     type: object
     properties:
@@ -32376,7 +32299,6 @@ definitions:
               downtime.
           tombstoned:
             type: boolean
-            format: boolean
             description: >-
               Whether or not a validator has been tombstoned (killed out of
               validator set). It is set
@@ -32435,7 +32357,6 @@ definitions:
                 downtime.
             tombstoned:
               type: boolean
-              format: boolean
               description: >-
                 Whether or not a validator has been tombstoned (killed out of
                 validator set). It is set
@@ -32514,7 +32435,6 @@ definitions:
           downtime.
       tombstoned:
         type: boolean
-        format: boolean
         description: >-
           Whether or not a validator has been tombstoned (killed out of
           validator set). It is set
@@ -32560,7 +32480,7 @@ definitions:
         properties:
           rate:
             type: string
-            description: 'rate is the commission rate charged to delegators, as a fraction.'
+            description: rate is the commission rate charged to delegators, as a fraction.
           max_rate:
             type: string
             description: >-
@@ -32581,7 +32501,7 @@ definitions:
     properties:
       rate:
         type: string
-        description: 'rate is the commission rate charged to delegators, as a fraction.'
+        description: rate is the commission rate charged to delegators, as a fraction.
       max_rate:
         type: string
         description: >-
@@ -32929,7 +32849,6 @@ definitions:
                     }
             jailed:
               type: boolean
-              format: boolean
               description: >-
                 jailed defined whether the validator has been jailed from bonded
                 status or not.
@@ -33075,6 +32994,11 @@ definitions:
       bond_denom:
         type: string
         description: bond_denom defines the bondable coin denomination.
+      min_global_self_delegation:
+        type: string
+        description: >-
+          min_global_self_delegation is the validators' self declared minimum
+          self delegation.
     description: Params defines the parameters for the staking module.
   cosmos.staking.v1beta1.Pool:
     type: object
@@ -33464,7 +33388,6 @@ definitions:
                   }
           jailed:
             type: boolean
-            format: boolean
             description: >-
               jailed defined whether the validator has been jailed from bonded
               status or not.
@@ -33762,7 +33685,6 @@ definitions:
                     }
             jailed:
               type: boolean
-              format: boolean
               description: >-
                 jailed defined whether the validator has been jailed from bonded
                 status or not.
@@ -34168,7 +34090,6 @@ definitions:
                         }
                 jailed:
                   type: boolean
-                  format: boolean
                   description: >-
                     jailed defined whether the validator has been jailed from
                     bonded status or not.
@@ -34315,6 +34236,11 @@ definitions:
           bond_denom:
             type: string
             description: bond_denom defines the bondable coin denomination.
+          min_global_self_delegation:
+            type: string
+            description: >-
+              min_global_self_delegation is the validators' self declared
+              minimum self delegation.
     description: QueryParamsResponse is response type for the Query/Params RPC method.
   cosmos.staking.v1beta1.QueryPoolResponse:
     type: object
@@ -34762,7 +34688,6 @@ definitions:
                   }
           jailed:
             type: boolean
-            format: boolean
             description: >-
               jailed defined whether the validator has been jailed from bonded
               status or not.
@@ -35129,7 +35054,6 @@ definitions:
                     }
             jailed:
               type: boolean
-              format: boolean
               description: >-
                 jailed defined whether the validator has been jailed from bonded
                 status or not.
@@ -35708,7 +35632,6 @@ definitions:
               }
       jailed:
         type: boolean
-        format: boolean
         description: >-
           jailed defined whether the validator has been jailed from bonded
           status or not.
@@ -35911,7 +35834,6 @@ definitions:
                     format: byte
                   index:
                     type: boolean
-                    format: boolean
                 description: >-
                   EventAttribute is a single key-value pair, associated with an
                   event.
@@ -35968,7 +35890,7 @@ definitions:
         description: Response code.
       data:
         type: string
-        description: 'Result bytes, if any.'
+        description: Result bytes, if any.
       raw_log:
         type: string
         description: |-
@@ -36201,6 +36123,50 @@ definitions:
           == 1,
 
           it's genesis time.
+      events:
+        type: array
+        items:
+          type: object
+          properties:
+            type:
+              type: string
+            attributes:
+              type: array
+              items:
+                type: object
+                properties:
+                  key:
+                    type: string
+                    format: byte
+                  value:
+                    type: string
+                    format: byte
+                  index:
+                    type: boolean
+                description: >-
+                  EventAttribute is a single key-value pair, associated with an
+                  event.
+          description: >-
+            Event allows application developers to attach additional information
+            to
+
+            ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and
+            ResponseDeliverTx.
+
+            Later, transactions may be queried using these events.
+        description: >-
+          Events defines all the events emitted by processing a transaction.
+          Note,
+
+          these events include those emitted by processing all the messages and
+          those
+
+          emitted from the ante handler. Whereas Logs contains the events, with
+
+          additional metadata, emitted only by processing the messages.
+
+
+          Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
     description: >-
       TxResponse defines a structure containing relevant tx data and metadata.
       The
@@ -36391,7 +36357,7 @@ definitions:
             description: Response code.
           data:
             type: string
-            description: 'Result bytes, if any.'
+            description: Result bytes, if any.
           raw_log:
             type: string
             description: |-
@@ -36631,6 +36597,51 @@ definitions:
               height == 1,
 
               it's genesis time.
+          events:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                attributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        format: byte
+                      value:
+                        type: string
+                        format: byte
+                      index:
+                        type: boolean
+                    description: >-
+                      EventAttribute is a single key-value pair, associated with
+                      an event.
+              description: >-
+                Event allows application developers to attach additional
+                information to
+
+                ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and
+                ResponseDeliverTx.
+
+                Later, transactions may be queried using these events.
+            description: >-
+              Events defines all the events emitted by processing a transaction.
+              Note,
+
+              these events include those emitted by processing all the messages
+              and those
+
+              emitted from the ante handler. Whereas Logs contains the events,
+              with
+
+              additional metadata, emitted only by processing the messages.
+
+
+              Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
         description: >-
           TxResponse defines a structure containing relevant tx data and
           metadata. The
@@ -36718,7 +36729,7 @@ definitions:
             description: Response code.
           data:
             type: string
-            description: 'Result bytes, if any.'
+            description: Result bytes, if any.
           raw_log:
             type: string
             description: |-
@@ -36958,6 +36969,51 @@ definitions:
               height == 1,
 
               it's genesis time.
+          events:
+            type: array
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                attributes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        format: byte
+                      value:
+                        type: string
+                        format: byte
+                      index:
+                        type: boolean
+                    description: >-
+                      EventAttribute is a single key-value pair, associated with
+                      an event.
+              description: >-
+                Event allows application developers to attach additional
+                information to
+
+                ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and
+                ResponseDeliverTx.
+
+                Later, transactions may be queried using these events.
+            description: >-
+              Events defines all the events emitted by processing a transaction.
+              Note,
+
+              these events include those emitted by processing all the messages
+              and those
+
+              emitted from the ante handler. Whereas Logs contains the events,
+              with
+
+              additional metadata, emitted only by processing the messages.
+
+
+              Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
         description: >-
           TxResponse defines a structure containing relevant tx data and
           metadata. The
@@ -36993,7 +37049,7 @@ definitions:
               description: Response code.
             data:
               type: string
-              description: 'Result bytes, if any.'
+              description: Result bytes, if any.
             raw_log:
               type: string
               description: |-
@@ -37237,6 +37293,51 @@ definitions:
                 height == 1,
 
                 it's genesis time.
+            events:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                  attributes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                          format: byte
+                        value:
+                          type: string
+                          format: byte
+                        index:
+                          type: boolean
+                      description: >-
+                        EventAttribute is a single key-value pair, associated
+                        with an event.
+                description: >-
+                  Event allows application developers to attach additional
+                  information to
+
+                  ResponseBeginBlock, ResponseEndBlock, ResponseCheckTx and
+                  ResponseDeliverTx.
+
+                  Later, transactions may be queried using these events.
+              description: >-
+                Events defines all the events emitted by processing a
+                transaction. Note,
+
+                these events include those emitted by processing all the
+                messages and those
+
+                emitted from the ante handler. Whereas Logs contains the events,
+                with
+
+                additional metadata, emitted only by processing the messages.
+
+
+                Since: cosmos-sdk 0.42.11, 0.44.5, 0.45
           description: >-
             TxResponse defines a structure containing relevant tx data and
             metadata. The
@@ -37563,7 +37664,10 @@ definitions:
       tx_bytes:
         type: string
         format: byte
-        description: tx_bytes is the raw transaction.
+        description: |-
+          tx_bytes is the raw transaction.
+
+          Since: cosmos-sdk 0.43
     description: |-
       SimulateRequest is the request type for the Service.Simulate
       RPC method.
@@ -37622,7 +37726,6 @@ definitions:
                         format: byte
                       index:
                         type: boolean
-                        format: boolean
                     description: >-
                       EventAttribute is a single key-value pair, associated with
                       an event.
@@ -38793,8 +38896,7 @@ definitions:
               format: byte
             index:
               type: boolean
-              format: boolean
-          description: 'EventAttribute is a single key-value pair, associated with an event.'
+          description: EventAttribute is a single key-value pair, associated with an event.
     description: >-
       Event allows application developers to attach additional information to
 
@@ -38813,8 +38915,7 @@ definitions:
         format: byte
       index:
         type: boolean
-        format: boolean
-    description: 'EventAttribute is a single key-value pair, associated with an event.'
+    description: EventAttribute is a single key-value pair, associated with an event.
   cosmos.upgrade.v1beta1.ModuleVersion:
     type: object
     properties:
@@ -38825,7 +38926,10 @@ definitions:
         type: string
         format: uint64
         title: consensus version of the app module
-    description: ModuleVersion specifies a module and its consensus version.
+    description: |-
+      ModuleVersion specifies a module and its consensus version.
+
+      Since: cosmos-sdk 0.43
   cosmos.upgrade.v1beta1.Plan:
     type: object
     properties:
@@ -39281,7 +39385,10 @@ definitions:
               type: string
               format: uint64
               title: consensus version of the app module
-          description: ModuleVersion specifies a module and its consensus version.
+          description: |-
+            ModuleVersion specifies a module and its consensus version.
+
+            Since: cosmos-sdk 0.43
         description: >-
           module_versions is a list of module names with their consensus
           versions.
@@ -39290,12 +39397,16 @@ definitions:
       Query/ModuleVersions
 
       RPC method.
+
+
+      Since: cosmos-sdk 0.43
   cosmos.upgrade.v1beta1.QueryUpgradedConsensusStateResponse:
     type: object
     properties:
       upgraded_consensus_state:
         type: string
         format: byte
+        title: 'Since: cosmos-sdk 0.43'
     description: >-
       QueryUpgradedConsensusStateResponse is the response type for the
       Query/UpgradedConsensusState

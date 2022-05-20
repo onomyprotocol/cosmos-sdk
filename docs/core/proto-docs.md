@@ -263,6 +263,8 @@
     - [QueryDelegationTotalRewardsResponse](#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse)
     - [QueryDelegatorValidatorsRequest](#cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest)
     - [QueryDelegatorValidatorsResponse](#cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse)
+    - [QueryDelegatorVestingLockedRewardsRequest](#cosmos.distribution.v1beta1.QueryDelegatorVestingLockedRewardsRequest)
+    - [QueryDelegatorVestingLockedRewardsResponse](#cosmos.distribution.v1beta1.QueryDelegatorVestingLockedRewardsResponse)
     - [QueryDelegatorWithdrawAddressRequest](#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest)
     - [QueryDelegatorWithdrawAddressResponse](#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse)
     - [QueryParamsRequest](#cosmos.distribution.v1beta1.QueryParamsRequest)
@@ -4048,6 +4050,38 @@ Query/DelegatorValidators RPC method.
 
 
 
+<a name="cosmos.distribution.v1beta1.QueryDelegatorVestingLockedRewardsRequest"></a>
+
+### QueryDelegatorVestingLockedRewardsRequest
+QueryDelegatorVestingLockedRewardsRequest is the request type for the
+Query/DelegatorVestingLockedRewards RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `delegator_address` | [string](#string) |  | delegator_address defines the delegator address to query for. |
+
+
+
+
+
+
+<a name="cosmos.distribution.v1beta1.QueryDelegatorVestingLockedRewardsResponse"></a>
+
+### QueryDelegatorVestingLockedRewardsResponse
+QueryDelegatorVestingLockedRewardsResponse is the response type for the
+Query/DelegatorVestingLockedRewards RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `rewards` | [cosmos.base.v1beta1.DecCoin](#cosmos.base.v1beta1.DecCoin) | repeated | rewards defines the rewards accrued by a delegation. |
+
+
+
+
+
+
 <a name="cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest"></a>
 
 ### QueryDelegatorWithdrawAddressRequest
@@ -4223,6 +4257,7 @@ Query defines the gRPC querier service for distribution module.
 | `ValidatorCommission` | [QueryValidatorCommissionRequest](#cosmos.distribution.v1beta1.QueryValidatorCommissionRequest) | [QueryValidatorCommissionResponse](#cosmos.distribution.v1beta1.QueryValidatorCommissionResponse) | ValidatorCommission queries accumulated commission for a validator. | GET|/cosmos/distribution/v1beta1/validators/{validator_address}/commission|
 | `ValidatorSlashes` | [QueryValidatorSlashesRequest](#cosmos.distribution.v1beta1.QueryValidatorSlashesRequest) | [QueryValidatorSlashesResponse](#cosmos.distribution.v1beta1.QueryValidatorSlashesResponse) | ValidatorSlashes queries slash events of a validator. | GET|/cosmos/distribution/v1beta1/validators/{validator_address}/slashes|
 | `DelegationRewards` | [QueryDelegationRewardsRequest](#cosmos.distribution.v1beta1.QueryDelegationRewardsRequest) | [QueryDelegationRewardsResponse](#cosmos.distribution.v1beta1.QueryDelegationRewardsResponse) | DelegationRewards queries the total rewards accrued by a delegation. | GET|/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards/{validator_address}|
+| `DelegatorVestingLockedRewards` | [QueryDelegatorVestingLockedRewardsRequest](#cosmos.distribution.v1beta1.QueryDelegatorVestingLockedRewardsRequest) | [QueryDelegatorVestingLockedRewardsResponse](#cosmos.distribution.v1beta1.QueryDelegatorVestingLockedRewardsResponse) | DelegatorVestingLockedRewards queries the total vesting locked rewards accrued by a delegation. | GET|/cosmos/distribution/v1beta1/delegators/{delegator_address}/vesting-locked-rewards|
 | `DelegationTotalRewards` | [QueryDelegationTotalRewardsRequest](#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsRequest) | [QueryDelegationTotalRewardsResponse](#cosmos.distribution.v1beta1.QueryDelegationTotalRewardsResponse) | DelegationTotalRewards queries the total rewards accrued by a each validator. | GET|/cosmos/distribution/v1beta1/delegators/{delegator_address}/rewards|
 | `DelegatorValidators` | [QueryDelegatorValidatorsRequest](#cosmos.distribution.v1beta1.QueryDelegatorValidatorsRequest) | [QueryDelegatorValidatorsResponse](#cosmos.distribution.v1beta1.QueryDelegatorValidatorsResponse) | DelegatorValidators queries the validators of a delegator. | GET|/cosmos/distribution/v1beta1/delegators/{delegator_address}/validators|
 | `DelegatorWithdrawAddress` | [QueryDelegatorWithdrawAddressRequest](#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressRequest) | [QueryDelegatorWithdrawAddressResponse](#cosmos.distribution.v1beta1.QueryDelegatorWithdrawAddressResponse) | DelegatorWithdrawAddress queries withdraw address of a delegator. | GET|/cosmos/distribution/v1beta1/delegators/{delegator_address}/withdraw_address|

@@ -156,6 +156,28 @@ func (k Keeper) DelegationRewards(c context.Context, req *types.QueryDelegationR
 	return &types.QueryDelegationRewardsResponse{Rewards: rewards}, nil
 }
 
+// DelegationRewards the total vesting locked rewards accrued by a delegation.
+func (k Keeper) DelegatorVestingLockedRewards(c context.Context, req *types.QueryDelegatorVestingLockedRewardsRequest) (*types.QueryDelegatorVestingLockedRewardsResponse, error) {
+	if req == nil {
+		return nil, status.Error(codes.InvalidArgument, "invalid request")
+	}
+
+	if req.DelegatorAddress == "" {
+		return nil, status.Error(codes.InvalidArgument, "empty delegator address")
+	}
+
+	ctx := sdk.UnwrapSDKContext(c)
+
+	delAdr, err := sdk.AccAddressFromBech32(req.DelegatorAddress)
+	if err != nil {
+		return nil, err
+	}
+
+	rewards := k.GetDelegatorVestingLockedRewards(ctx, delAdr).Rewards
+
+	return &types.QueryDelegatorVestingLockedRewardsResponse{Rewards: rewards}, nil
+}
+
 // DelegationTotalRewards the total rewards accrued by a each validator
 func (k Keeper) DelegationTotalRewards(c context.Context, req *types.QueryDelegationTotalRewardsRequest) (*types.QueryDelegationTotalRewardsResponse, error) {
 	if req == nil {

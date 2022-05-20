@@ -128,7 +128,7 @@ func (s *IntegrationTestSuite) TestGetCmdQueryValidatorOutstandingRewards() {
 				fmt.Sprintf("--%s=json", tmcli.OutputFlag),
 			},
 			false,
-			`{"rewards":[{"denom":"stake","amount":"1164.240000000000000000"}]}`,
+			`{"rewards":[{"denom":"stake","amount":"1396.500000000000000000"}]}`,
 		},
 		{
 			"text output",
@@ -139,7 +139,7 @@ func (s *IntegrationTestSuite) TestGetCmdQueryValidatorOutstandingRewards() {
 			},
 			false,
 			`rewards:
-- amount: "1164.240000000000000000"
+- amount: "1396.500000000000000000"
   denom: stake`,
 		},
 	}
@@ -191,7 +191,7 @@ func (s *IntegrationTestSuite) TestGetCmdQueryValidatorCommission() {
 				fmt.Sprintf("--%s=json", tmcli.OutputFlag),
 			},
 			false,
-			`{"commission":[{"denom":"stake","amount":"464.520000000000000000"}]}`,
+			`{"commission":[{"denom":"stake","amount":"582.120000000000000000"}]}`,
 		},
 		{
 			"text output",
@@ -202,7 +202,7 @@ func (s *IntegrationTestSuite) TestGetCmdQueryValidatorCommission() {
 			},
 			false,
 			`commission:
-- amount: "464.520000000000000000"
+- amount: "582.120000000000000000"
   denom: stake`,
 		},
 	}
@@ -392,6 +392,69 @@ total:
 
 		s.Run(tc.name, func() {
 			cmd := cli.GetCmdQueryDelegatorRewards()
+			clientCtx := val.ClientCtx
+
+			out, err := clitestutil.ExecTestCLICmd(clientCtx, cmd, tc.args)
+			if tc.expectErr {
+				s.Require().Error(err)
+			} else {
+				s.Require().NoError(err)
+				s.Require().Equal(tc.expectedOutput, strings.TrimSpace(out.String()))
+			}
+		})
+	}
+}
+
+func (s *IntegrationTestSuite) TestGetCmdQueryDelegatorVestingLockedRewards() {
+	val := s.network.Validators[0]
+	addr := val.Address
+	valAddr := sdk.ValAddress(addr)
+
+	err := s.network.WaitForNextBlock()
+	s.Require().NoError(err)
+
+	testCases := []struct {
+		name           string
+		args           []string
+		expectErr      bool
+		expectedOutput string
+	}{
+		{
+			"invalid delegator address",
+			[]string{
+				fmt.Sprintf("--%s=5", flags.FlagHeight),
+				"foo", valAddr.String(),
+			},
+			true,
+			"",
+		},
+		{
+			"json output",
+			[]string{
+				fmt.Sprintf("--%s=5", flags.FlagHeight),
+				addr.String(),
+				fmt.Sprintf("--%s=json", tmcli.OutputFlag),
+			},
+			false,
+			`{"rewards":[]}`,
+		},
+		{
+			"text output",
+			[]string{
+				fmt.Sprintf("--%s=text", tmcli.OutputFlag),
+				fmt.Sprintf("--%s=5", flags.FlagHeight),
+				addr.String(),
+			},
+			false,
+			"rewards: []",
+		},
+	}
+
+	for _, tc := range testCases {
+		tc := tc
+
+		s.Run(tc.name, func() {
+			cmd := cli.GetCmdQueryDelegatorVestingLockedRewards()
 			clientCtx := val.ClientCtx
 
 			out, err := clitestutil.ExecTestCLICmd(clientCtx, cmd, tc.args)

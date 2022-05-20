@@ -30,6 +30,7 @@ func GetQueryCmd() *cobra.Command {
 		GetCmdQueryValidatorCommission(),
 		GetCmdQueryValidatorSlashes(),
 		GetCmdQueryDelegatorRewards(),
+		GetCmdQueryDelegatorVestingLockedRewards(),
 		GetCmdQueryCommunityPool(),
 	)
 
@@ -272,6 +273,52 @@ $ %s query distribution rewards %s1gghjut3ccd8ay0zduzj64hwre2fxs9ld75ru9p %s1ggh
 			res, err := queryClient.DelegationTotalRewards(
 				ctx,
 				&types.QueryDelegationTotalRewardsRequest{DelegatorAddress: delegatorAddr.String()},
+			)
+			if err != nil {
+				return err
+			}
+
+			return clientCtx.PrintProto(res)
+		},
+	}
+
+	flags.AddQueryFlagsToCmd(cmd)
+	return cmd
+}
+
+// GetCmdQueryDelegatorVestingLockedRewards implements the query delegator vesting locked rewards command.
+func GetCmdQueryDelegatorVestingLockedRewards() *cobra.Command {
+	bech32PrefixAccAddr := sdk.GetConfig().GetBech32AccountAddrPrefix()
+
+	cmd := &cobra.Command{
+		Use:   "vesting-locked-rewards [delegator-addr]",
+		Args:  cobra.RangeArgs(1, 2),
+		Short: "Query vesting account locked rewards",
+		Long: strings.TrimSpace(
+			fmt.Sprintf(`Query vesting account locked rewards.
+Example:
+$ %s query distribution vesting-locked-rewards %s1gghjut3ccd8ay0zduzj64hwre2fxs9ld75ru9p
+`,
+				version.AppName, bech32PrefixAccAddr,
+			),
+		),
+		RunE: func(cmd *cobra.Command, args []string) error {
+			clientCtx, err := client.GetClientQueryContext(cmd)
+			if err != nil {
+				return err
+			}
+			queryClient := types.NewQueryClient(clientCtx)
+
+			delegatorAddr, err := sdk.AccAddressFromBech32(args[0])
+			if err != nil {
+				return err
+			}
+
+			// query for rewards from a particular delegation
+			ctx := cmd.Context()
+			res, err := queryClient.DelegatorVestingLockedRewards(
+				ctx,
+				&types.QueryDelegatorVestingLockedRewardsRequest{DelegatorAddress: delegatorAddr.String()},
 			)
 			if err != nil {
 				return err

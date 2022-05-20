@@ -40,6 +40,11 @@ service Query {
                                    "{validator_address}";
   }
 
+  // DelegatorVestingLockedRewards queries the total vesting locked rewards accrued by a delegation.
+  rpc DelegatorVestingLockedRewards(QueryDelegatorVestingLockedRewardsRequest) returns (QueryDelegatorVestingLockedRewardsResponse) {
+    option (google.api.http).get = "/cosmos/distribution/v1beta1/delegators/{delegator_address}/vesting-locked-rewards";
+  }
+
   // DelegationTotalRewards queries the total rewards accrued by a each
   // validator.
   rpc DelegationTotalRewards(QueryDelegationTotalRewardsRequest) returns (QueryDelegationTotalRewardsResponse) {
@@ -144,6 +149,24 @@ message QueryDelegationRewardsResponse {
   // rewards defines the rewards accrued by a delegation.
   repeated cosmos.base.v1beta1.DecCoin rewards = 1
       [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"];
+}
+
+// QueryDelegatorVestingLockedRewardsRequest is the request type for the
+// Query/DelegatorVestingLockedRewards RPC method.
+message QueryDelegatorVestingLockedRewardsRequest {
+  option (gogoproto.equal)           = false;
+  option (gogoproto.goproto_getters) = false;
+
+  // delegator_address defines the delegator address to query for.
+  string delegator_address = 1;
+}
+
+// QueryDelegatorVestingLockedRewardsResponse is the response type for the
+// Query/DelegatorVestingLockedRewards RPC method.
+message QueryDelegatorVestingLockedRewardsResponse {
+  // rewards defines the rewards accrued by a delegation.
+  repeated cosmos.base.v1beta1.DecCoin rewards = 1
+  [(gogoproto.nullable) = false, (gogoproto.castrepeated) = "github.com/cosmos/cosmos-sdk/types.DecCoins"];
 }
 
 // QueryDelegationTotalRewardsRequest is the request type for the
