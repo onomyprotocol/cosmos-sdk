@@ -137,6 +137,17 @@ func (k Keeper) CalculateDelegationRewards(ctx sdk.Context, val stakingtypes.Val
 	return rewards
 }
 
+// calculate the total rewards accrued by a delegation with the vesting accounts limitation
+func (k Keeper) CalculateDelegationRewardsWithVesting(ctx sdk.Context, val stakingtypes.ValidatorI, del stakingtypes.DelegationI, endingPeriod uint64) (rewards sdk.DecCoins) {
+	rewards = k.CalculateDelegationRewards(ctx, val, del, endingPeriod)
+	vacc, ok := k.authKeeper.GetAccount(ctx, del.GetDelegatorAddr()).(vestexported.VestingAccount)
+	if !ok {
+		return rewards
+	}
+	rewards, _, _ = k.calculateVestedRewards(ctx, vacc, rewards)
+	return rewards
+}
+
 func (k Keeper) withdrawDelegationRewards(ctx sdk.Context, val stakingtypes.ValidatorI, del stakingtypes.DelegationI) (sdk.Coins, error) {
 	// check existence of delegator starting info
 	if !k.HasDelegatorStartingInfo(ctx, del.GetValidatorAddr(), del.GetDelegatorAddr()) {
@@ -164,7 +175,7 @@ func (k Keeper) withdrawDelegationRewards(ctx sdk.Context, val stakingtypes.Vali
 
 	// the updated rewards might be increased or decreased, in any case we shouldn't update the 'rewards' variable
 	// because we need it's original value for the ValidatorOutstandingRewards calculation
-	updatedRewards := k.updateWithVestingRewards(ctx, del.GetDelegatorAddr(), rewards)
+	updatedRewards := k.setVestingRewards(ctx, del.GetDelegatorAddr(), rewards)
 
 	// truncate coins, return remainder to community pool
 	coins, remainder := updatedRewards.TruncateDecimal()
@@ -195,13 +206,13 @@ func (k Keeper) withdrawDelegationRewards(ctx sdk.Context, val stakingtypes.Vali
 	return coins, nil
 }
 
-func (k Keeper) updateWithVestingRewards(ctx sdk.Context, delAddr sdk.AccAddress, rewards sdk.DecCoins) sdk.DecCoins {
+func (k Keeper) setVestingRewards(ctx sdk.Context, delAddr sdk.AccAddress, rewards sdk.DecCoins) sdk.DecCoins {
 	vacc, ok := k.authKeeper.GetAccount(ctx, delAddr).(vestexported.VestingAccount)
 	if !ok {
 		return rewards
 	}
 
-	rewards, lockedRewardAmt, vestedRatio := k.calculateVestedReward(ctx, vacc, rewards)
+	rewards, lockedRewardAmt, vestedRatio := k.calculateVestedRewards(ctx, vacc, rewards)
 
 	if !lockedRewardAmt.IsZero() {
 		bondDenom := k.stakingKeeper.BondDenom(ctx)
@@ -218,7 +229,7 @@ func (k Keeper) updateWithVestingRewards(ctx sdk.Context, delAddr sdk.AccAddress
 	return rewards
 }
 
-func (k Keeper) calculateVestedReward(ctx sdk.Context, vacc vestexported.VestingAccount, rewards sdk.DecCoins) (sdk.DecCoins, sdk.Dec, sdk.Dec) {
+func (k Keeper) calculateVestedRewards(ctx sdk.Context, vacc vestexported.VestingAccount, rewards sdk.DecCoins) (sdk.DecCoins, sdk.Dec, sdk.Dec) {
 	bondDenom := k.stakingKeeper.BondDenom(ctx)
 
 	vestedAmt := vacc.GetVestedCoins(ctx.BlockTime()).AmountOf(bondDenom).ToDec()

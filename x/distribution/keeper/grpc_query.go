@@ -151,7 +151,7 @@ func (k Keeper) DelegationRewards(c context.Context, req *types.QueryDelegationR
 	}
 
 	endingPeriod := k.IncrementValidatorPeriod(ctx, val)
-	rewards := k.CalculateDelegationRewards(ctx, val, del, endingPeriod)
+	rewards := k.CalculateDelegationRewardsWithVesting(ctx, val, del, endingPeriod)
 
 	return &types.QueryDelegationRewardsResponse{Rewards: rewards}, nil
 }
@@ -182,7 +182,7 @@ func (k Keeper) DelegationTotalRewards(c context.Context, req *types.QueryDelega
 			valAddr := del.GetValidatorAddr()
 			val := k.stakingKeeper.Validator(ctx, valAddr)
 			endingPeriod := k.IncrementValidatorPeriod(ctx, val)
-			delReward := k.CalculateDelegationRewards(ctx, val, del, endingPeriod)
+			delReward := k.CalculateDelegationRewardsWithVesting(ctx, val, del, endingPeriod)
 
 			delRewards = append(delRewards, types.NewDelegationDelegatorReward(valAddr, delReward))
 			total = total.Add(delReward...)
