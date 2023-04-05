@@ -669,7 +669,7 @@ func TestSlashValidatorAtCurrentHeightWithSlashingProtection(t *testing.T) {
 	// increase the block number to be able to get the reward
 	ctx = app.BaseApp.NewContext(false, tmproto.Header{Height: app.LastBlockHeight() + 1})
 	// now slash based on the current power
-	app.StakingKeeper.Slash(ctx, vaConsAddr, ctx.BlockHeight(), power, fraction)
+	app.StakingKeeper.Slash(ctx, vaConsAddr, ctx.BlockHeight(), power, fraction, types.InfractionEmpty)
 	// end block
 	applyValidatorSetUpdates(t, ctx, app.StakingKeeper, 1)
 
