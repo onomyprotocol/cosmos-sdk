@@ -128,10 +128,18 @@ func TestQueryParametersPool(t *testing.T) {
 
 	var pool types.Pool
 	bondedPool := app.StakingKeeper.GetBondedPool(ctx)
+	bondedSupply := app.BankKeeper.GetBalance(ctx, bondedPool.GetAddress(), bondDenom).Amount
+
+	daoAddr := app.AccountKeeper.GetModuleAddress("dao")
+	if daoAddr != nil {
+		daoSupply := app.BankKeeper.GetBalance(ctx, daoAddr, bondDenom)
+		bondedSupply = bondedSupply.Add(daoSupply.Amount)
+	}
+
 	notBondedPool := app.StakingKeeper.GetNotBondedPool(ctx)
 	require.NoError(t, cdc.UnmarshalJSON(res, &pool))
 	require.Equal(t, app.BankKeeper.GetBalance(ctx, notBondedPool.GetAddress(), bondDenom).Amount, pool.NotBondedTokens)
-	require.Equal(t, app.BankKeeper.GetBalance(ctx, bondedPool.GetAddress(), bondDenom).Amount, pool.BondedTokens)
+	require.Equal(t, bondedSupply, pool.BondedTokens)
 }
 
 func TestQueryValidators(t *testing.T) {

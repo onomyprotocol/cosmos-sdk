@@ -419,9 +419,17 @@ func queryPool(ctx sdk.Context, k Keeper, legacyQuerierCdc *codec.LegacyAmino) (
 		return nil, errors.New("pool accounts haven't been set")
 	}
 
+	bondedSupply := k.bankKeeper.GetBalance(ctx, bondedPool.GetAddress(), bondDenom).Amount
+	daoAddr := k.authKeeper.GetModuleAddress("dao")
+
+	if daoAddr != nil {
+		daoSupply := k.bankKeeper.GetBalance(ctx, daoAddr, k.BondDenom(ctx))
+		bondedSupply = bondedSupply.Add(daoSupply.Amount)
+	}
+
 	pool := types.NewPool(
 		k.bankKeeper.GetBalance(ctx, notBondedPool.GetAddress(), bondDenom).Amount,
-		k.bankKeeper.GetBalance(ctx, bondedPool.GetAddress(), bondDenom).Amount,
+		bondedSupply,
 	)
 
 	res, err := codec.MarshalJSONIndent(legacyQuerierCdc, pool)
