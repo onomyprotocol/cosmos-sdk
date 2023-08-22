@@ -64,7 +64,14 @@ func (k Keeper) TotalBondedTokens(ctx sdk.Context) sdk.Int {
 
 // StakingTokenSupply staking tokens from the total supply
 func (k Keeper) StakingTokenSupply(ctx sdk.Context) sdk.Int {
-	return k.bankKeeper.GetSupply(ctx, k.BondDenom(ctx)).Amount
+	stakeSupply := k.bankKeeper.GetSupply(ctx, k.BondDenom(ctx)).Amount
+	daoAddr := k.authKeeper.GetModuleAddress("dao")
+	if daoAddr != nil {
+		daoSupply := k.bankKeeper.GetBalance(ctx, daoAddr, k.BondDenom(ctx))
+		stakeSupply = stakeSupply.Sub(daoSupply.Amount)
+	}
+
+	return stakeSupply
 }
 
 // BondedRatio the fraction of the staking tokens which are currently bonded
