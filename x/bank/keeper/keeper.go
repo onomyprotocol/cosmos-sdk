@@ -90,7 +90,7 @@ func NewBaseKeeper(
 	logger log.Logger,
 ) BaseKeeper {
 	if _, err := ak.AddressCodec().StringToBytes(authority); err != nil {
-		panic(fmt.Errorf("invalid bank authority address: %w", err))
+		panic(fmt.Errorf("invalid bank authority address 00=%s: %w", authority, err))
 	}
 
 	// add the module name to the logger

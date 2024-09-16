@@ -26,3 +26,10 @@ type HandlerRoute struct {
 
 // IsManyPerContainerType implements the depinject.ManyPerContainerType interface.
 func (HandlerRoute) IsManyPerContainerType() {}
+
+// ContentWithProposer embeds Content interface and adds the GetProposer method used to validate
+// that proposer in the content is equal to proposer in the MsgSubmitProposal.
+type ContentWithProposer interface {
+	Content
+	GetProposer() string
+}

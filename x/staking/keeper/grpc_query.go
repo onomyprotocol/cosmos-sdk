@@ -481,9 +481,16 @@ func (k Querier) Pool(ctx context.Context, _ *types.QueryPoolRequest) (*types.Qu
 	bondedPool := k.GetBondedPool(ctx)
 	notBondedPool := k.GetNotBondedPool(ctx)
 
+	bondedSupply := k.bankKeeper.GetBalance(ctx, bondedPool.GetAddress(), bondDenom).Amount
+	daoAddr := k.authKeeper.GetModuleAddress("dao")
+
+	if daoAddr != nil {
+		daoSupply := k.bankKeeper.GetBalance(ctx, daoAddr, bondDenom)
+		bondedSupply = bondedSupply.Add(daoSupply.Amount)
+	}
 	pool := types.NewPool(
 		k.bankKeeper.GetBalance(ctx, notBondedPool.GetAddress(), bondDenom).Amount,
-		k.bankKeeper.GetBalance(ctx, bondedPool.GetAddress(), bondDenom).Amount,
+		bondedSupply,
 	)
 
 	return &types.QueryPoolResponse{Pool: pool}, nil

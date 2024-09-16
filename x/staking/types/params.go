@@ -32,17 +32,22 @@ const (
 )
 
 // DefaultMinCommissionRate is set to 0%
-var DefaultMinCommissionRate = math.LegacyZeroDec()
+var (
+	DefaultMinCommissionRate = math.LegacyZeroDec()
+	// DefaultMinGlobalSelfDelegation is zero.
+	DefaultMinGlobalSelfDelegation = math.ZeroInt()
+)
 
 // NewParams creates a new Params instance
-func NewParams(unbondingTime time.Duration, maxValidators, maxEntries, historicalEntries uint32, bondDenom string, minCommissionRate math.LegacyDec) Params {
+func NewParams(unbondingTime time.Duration, maxValidators, maxEntries, historicalEntries uint32, bondDenom string, minCommissionRate math.LegacyDec, minGlobalSelfDelegation math.Int) Params {
 	return Params{
-		UnbondingTime:     unbondingTime,
-		MaxValidators:     maxValidators,
-		MaxEntries:        maxEntries,
-		HistoricalEntries: historicalEntries,
-		BondDenom:         bondDenom,
-		MinCommissionRate: minCommissionRate,
+		UnbondingTime:           unbondingTime,
+		MaxValidators:           maxValidators,
+		MaxEntries:              maxEntries,
+		HistoricalEntries:       historicalEntries,
+		BondDenom:               bondDenom,
+		MinCommissionRate:       minCommissionRate,
+		MinGlobalSelfDelegation: minGlobalSelfDelegation,
 	}
 }
 
@@ -55,6 +60,7 @@ func DefaultParams() Params {
 		DefaultHistoricalEntries,
 		sdk.DefaultBondDenom,
 		DefaultMinCommissionRate,
+		DefaultMinGlobalSelfDelegation,
 	)
 }
 
@@ -101,6 +107,10 @@ func (p Params) Validate() error {
 	}
 
 	if err := validateHistoricalEntries(p.HistoricalEntries); err != nil {
+		return err
+	}
+
+	if err := validateMinGlobalSelfDelegation(p.MinGlobalSelfDelegation); err != nil {
 		return err
 	}
 
@@ -199,6 +209,19 @@ func validateMinCommissionRate(i interface{}) error {
 	}
 	if v.GT(math.LegacyOneDec()) {
 		return fmt.Errorf("minimum commission rate cannot be greater than 100%%: %s", v)
+	}
+
+	return nil
+}
+
+func validateMinGlobalSelfDelegation(i interface{}) error {
+	v, ok := i.(math.Int)
+	if !ok {
+		return fmt.Errorf("invalid parameter type: %T", i)
+	}
+
+	if v.LT(math.NewInt(0)) {
+		return fmt.Errorf("power reduction cannot be lower than or equal 0")
 	}
 
 	return nil

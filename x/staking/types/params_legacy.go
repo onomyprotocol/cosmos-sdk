@@ -3,12 +3,13 @@ package types
 import paramtypes "github.com/cosmos/cosmos-sdk/x/params/types"
 
 var (
-	KeyUnbondingTime     = []byte("UnbondingTime")
-	KeyMaxValidators     = []byte("MaxValidators")
-	KeyMaxEntries        = []byte("MaxEntries")
-	KeyBondDenom         = []byte("BondDenom")
-	KeyHistoricalEntries = []byte("HistoricalEntries")
-	KeyMinCommissionRate = []byte("MinCommissionRate")
+	KeyUnbondingTime           = []byte("UnbondingTime")
+	KeyMaxValidators           = []byte("MaxValidators")
+	KeyMaxEntries              = []byte("MaxEntries")
+	KeyBondDenom               = []byte("BondDenom")
+	KeyHistoricalEntries       = []byte("HistoricalEntries")
+	KeyMinCommissionRate       = []byte("MinCommissionRate")
+	KeyMinGlobalSelfDelegation = []byte("MinGlobalSelfDelegation")
 )
 
 var _ paramtypes.ParamSet = (*Params)(nil)
@@ -28,5 +29,6 @@ func (p *Params) ParamSetPairs() paramtypes.ParamSetPairs {
 		paramtypes.NewParamSetPair(KeyHistoricalEntries, &p.HistoricalEntries, validateHistoricalEntries),
 		paramtypes.NewParamSetPair(KeyBondDenom, &p.BondDenom, validateBondDenom),
 		paramtypes.NewParamSetPair(KeyMinCommissionRate, &p.MinCommissionRate, validateMinCommissionRate),
+		paramtypes.NewParamSetPair(KeyMinGlobalSelfDelegation, &p.MinGlobalSelfDelegation, validateMinGlobalSelfDelegation),
 	}
 }

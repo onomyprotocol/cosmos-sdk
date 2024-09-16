@@ -226,10 +226,49 @@ func (cva ContinuousVestingAccount) GetVestingCoins(blockTime time.Time) sdk.Coi
 	return cva.OriginalVesting.Sub(cva.GetVestedCoins(blockTime)...)
 }
 
+// AddOriginalVesting increases the original vesting spreading the amount according to the
+// vesting account strategy.
+func (cva *ContinuousVestingAccount) AddOriginalVesting(amount sdk.Coins) {
+	cva.OriginalVesting = cva.OriginalVesting.Add(amount...)
+}
+
 // LockedCoins returns the set of coins that are not spendable (i.e. locked),
 // defined as the vesting coins that are not delegated.
 func (cva ContinuousVestingAccount) LockedCoins(blockTime time.Time) sdk.Coins {
 	return cva.BaseVestingAccount.LockedCoinsFromVesting(cva.GetVestingCoins(blockTime))
+}
+
+// AddOriginalVesting increases the original vesting spreading the amount according to the
+// vesting account strategy. For the periodic vesting it also equally increases the periods amount based on
+// the period amount and total vesting amount.
+func (pva *PeriodicVestingAccount) AddOriginalVesting(amount sdk.Coins) {
+	amount = amount.Sort()
+	incSum := sdk.NewCoins()
+	for i, period := range pva.VestingPeriods {
+		for _, incCoin := range amount {
+			incDenom := incCoin.Denom
+			prevOriginalAmt := pva.OriginalVesting.AmountOf(incDenom)
+			periodAmt := period.Amount.AmountOf(incDenom)
+			if periodAmt.IsZero() {
+				continue
+			}
+			incPeriodAmt := incCoin.Amount.ToLegacyDec().Mul(periodAmt.ToLegacyDec()).Quo(prevOriginalAmt.ToLegacyDec()).TruncateInt()
+			incPeriodCoin := sdk.NewCoin(incDenom, incPeriodAmt)
+			period.Amount = period.Amount.Add(incPeriodCoin)
+			incSum = incSum.Add(incPeriodCoin)
+			pva.VestingPeriods[i] = period
+		}
+	}
+
+	// new denoms and truncation remainder will be added to the last period
+	remainder := amount.Sub(incSum...)
+	if !remainder.IsZero() && len(pva.VestingPeriods) != 0 {
+		lastPeriod := pva.VestingPeriods[len(pva.VestingPeriods)-1]
+		lastPeriod.Amount = lastPeriod.Amount.Add(remainder...)
+		pva.VestingPeriods[len(pva.VestingPeriods)-1] = lastPeriod
+	}
+
+	pva.OriginalVesting = pva.OriginalVesting.Add(amount...)
 }
 
 // TrackDelegation tracks a desired delegation amount by setting the appropriate
@@ -424,6 +463,12 @@ func (dva DelayedVestingAccount) GetVestedCoins(blockTime time.Time) sdk.Coins {
 	return nil
 }
 
+// AddOriginalVesting increases the original vesting spreading the amount according to the
+// vesting account strategy.
+func (dva *DelayedVestingAccount) AddOriginalVesting(amount sdk.Coins) {
+	dva.OriginalVesting = dva.OriginalVesting.Add(amount...)
+}
+
 // GetVestingCoins returns the total number of vesting coins for a delayed
 // vesting account.
 func (dva DelayedVestingAccount) GetVestingCoins(blockTime time.Time) sdk.Coins {
@@ -484,6 +529,12 @@ func (plva PermanentLockedAccount) GetVestedCoins(_ time.Time) sdk.Coins {
 // vesting account.
 func (plva PermanentLockedAccount) GetVestingCoins(_ time.Time) sdk.Coins {
 	return plva.OriginalVesting
+}
+
+// AddOriginalVesting increases the original vesting spreading the amount according to the
+// vesting account strategy.
+func (plva *PermanentLockedAccount) AddOriginalVesting(amount sdk.Coins) {
+	plva.OriginalVesting = plva.OriginalVesting.Add(amount...)
 }
 
 // LockedCoins returns the set of coins that are not spendable (i.e. locked),

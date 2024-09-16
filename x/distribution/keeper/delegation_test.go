@@ -2,6 +2,7 @@ package keeper_test
 
 import (
 	"testing"
+	// "time"
 
 	cmtproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	"github.com/golang/mock/gomock"
@@ -333,6 +334,192 @@ func TestCalculateRewardsAfterManySlashes(t *testing.T) {
 	require.NoError(t, err)
 	require.Equal(t, sdk.DecCoins{{Denom: sdk.DefaultBondDenom, Amount: math.LegacyNewDecFromInt(initial)}},
 		valCommission.Commission)
+}
+
+func TestWithdrawDelegationRewardsVesting(t *testing.T) {
+	// ctrl := gomock.NewController(t)
+	// key := storetypes.NewKVStoreKey(disttypes.StoreKey)
+	// storeService := runtime.NewKVStoreService(key)
+	// testCtx := testutil.DefaultContextWithDB(t, key, storetypes.NewTransientStoreKey("transient_test"))
+	// encCfg := moduletestutil.MakeTestEncodingConfig(distribution.AppModuleBasic{})
+	// ctx := testCtx.Ctx.WithBlockHeader(cmtproto.Header{Height: 1})
+
+	// bankKeeper := distrtestutil.NewMockBankKeeper(ctrl)
+	// stakingKeeper := distrtestutil.NewMockStakingKeeper(ctrl)
+	// accountKeeper := distrtestutil.NewMockAccountKeeper(ctrl)
+
+	// accountKeeper.EXPECT().GetModuleAddress("distribution").Return(distrAcc.GetAddress())
+	// stakingKeeper.EXPECT().ValidatorAddressCodec().Return(address.NewBech32Codec(sdk.Bech32PrefixValAddr)).AnyTimes()
+	// accountKeeper.EXPECT().AddressCodec().Return(address.NewBech32Codec(sdk.Bech32MainPrefix)).AnyTimes()
+
+	// distrKeeper := keeper.NewKeeper(
+	// 	encCfg.Codec,
+	// 	storeService,
+	// 	accountKeeper,
+	// 	bankKeeper,
+	// 	stakingKeeper,
+	// 	"fee_collector",
+	// 	authtypes.NewModuleAddress("gov").String(),
+	// )
+
+	// val1BalAmt := sdk.TokensFromConsensusPower(1000, sdk.DefaultPowerReduction)
+	// val1VestingAmt := val1BalAmt.QuoRaw(4)
+	// val1VestingRatio := val1VestingAmt.ToLegacyDec().Quo(val1BalAmt.ToLegacyDec()) // 25% locked in vesting
+	// val1DelAmt := sdk.TokensFromConsensusPower(100, sdk.DefaultPowerReduction)
+	// val1Commission := math.LegacyNewDecWithPrec(5, 1) // 50%
+
+	// del1BalAmt := sdk.TokensFromConsensusPower(1000, sdk.DefaultPowerReduction)
+	// del1VestingAmt := del1BalAmt // all coins vested
+	// del1DelAmt := del1BalAmt     // full delegation
+
+	// del2BalAmt := sdk.TokensFromConsensusPower(1000, sdk.DefaultPowerReduction)
+	// del2VestingAmt := math.ZeroInt() // zero in vesting
+	// del2DelAmt := del2BalAmt         // full delegation
+
+	// allocatedReward := sdk.TokensFromConsensusPower(200, sdk.DefaultPowerReduction)
+	// allocatedRewardWithoutCommission := allocatedReward.ToLegacyDec().Mul(val1Commission)
+
+	// delTotalAmt := val1DelAmt.Add(del1DelAmt).Add(del2DelAmt)
+
+	// val1FullReward := val1DelAmt.ToLegacyDec().Quo(delTotalAmt.ToLegacyDec()).Mul(allocatedRewardWithoutCommission)
+	// del1FullReward := del1DelAmt.ToLegacyDec().Quo(delTotalAmt.ToLegacyDec()).Mul(allocatedRewardWithoutCommission)
+	// del2FullReward := del2DelAmt.ToLegacyDec().Quo(delTotalAmt.ToLegacyDec()).Mul(allocatedRewardWithoutCommission)
+
+	// valAddr1 := sdk.ValAddress(valConsAddr0)
+	// addr1 := sdk.AccAddress(valAddr1)
+	// valAddr2 := sdk.ValAddress(valConsAddr1)
+	// addr2 := sdk.AccAddress(valAddr2)
+
+	// // tstaking := teststaking.NewHelper(t, ctx, stakingKeeper)
+
+	// // set module account coins
+	// // distrAcc := distrKeeper.GetDistributionAccount(ctx)
+	// // require.NoError(t, simapp.FundModuleAccount(bankKeeper, ctx, distrAcc.GetName(), sdk.NewCoins(sdk.NewCoin(sdk.DefaultBondDenom, allocatedReward))))
+	// // accountKeeper.SetModuleAccount(ctx, distrAcc)
+
+	// // create validator with 50% commission
+	// val1, err := distrtestutil.CreateValidator(valConsPk0, math.NewInt(1000))
+	// require.NoError(t, err)
+	// val1.Commission = stakingtypes.NewCommission(math.LegacyNewDecWithPrec(5, 1), math.LegacyNewDecWithPrec(5, 1), math.LegacyNewDec(0))
+	// val2, err := distrtestutil.CreateValidator(valConsPk1, math.NewInt(1000))
+	// require.NoError(t, err)
+	// val2.Commission = stakingtypes.NewCommission(math.LegacyNewDecWithPrec(5, 1), math.LegacyNewDecWithPrec(5, 1), math.LegacyNewDec(0))
+
+	// del1 := stakingtypes.NewDelegation(addr1.String(), valAddr1.String(), val1.DelegatorShares)
+	// stakingKeeper.EXPECT().Validator(gomock.Any(), valAddr1).Return(val1, nil).Times(3)
+	// stakingKeeper.EXPECT().Delegation(gomock.Any(), addr1, valAddr1).Return(del1, nil)
+
+	// del2 := stakingtypes.NewDelegation(addr2.String(), valAddr2.String(), val2.DelegatorShares)
+	// stakingKeeper.EXPECT().Validator(gomock.Any(), valAddr2).Return(val2, nil).Times(3)
+	// stakingKeeper.EXPECT().Delegation(gomock.Any(), addr2, valAddr2).Return(del2, nil)
+
+	// // assert correct initial balance
+	// expTokens := val1BalAmt.Sub(val1DelAmt)
+	// require.Equal(t,
+	// 	sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, expTokens)},
+	// 	bankKeeper.GetAllBalances(ctx, sdk.AccAddress(valAddr1)),
+	// )
+
+	// // end block to bond validator
+	// staking.EndBlocker(ctx, stakingKeeper)
+
+	// // next block
+	// ctx = ctx.WithBlockHeight(ctx.BlockHeight() + 1)
+
+	// // fetch validator and delegation
+	// val1, err := stakingKeeper.Validator(ctx, val1Addr)
+	// require.NoError(t, err)
+
+	// // allocate some rewards
+	// distrKeeper.AllocateTokensToValidator(ctx, val1, sdk.DecCoins{sdk.NewDecCoin(sdk.DefaultBondDenom, allocatedReward)})
+
+	// require.Equal(t, uint64(6), distrKeeper.GetValidatorHistoricalReferenceCount(ctx))
+
+	// // withdraw rewards
+
+	// // val1
+	// val1Reward, err := distrKeeper.WithdrawDelegationRewards(ctx, sdk.AccAddress(val1Addr), val1Addr)
+	// require.NoError(t, err)
+	// require.Equal(t, val1FullReward.TruncateInt(), val1Reward.AmountOf(sdk.DefaultBondDenom))
+	// // locked based on ratio
+	// require.Equal(t, val1VestingAmt.Sub(val1DelAmt).Add(val1FullReward.Mul(val1VestingRatio).TruncateInt()),
+	// 	bankKeeper.LockedCoins(ctx, sdk.AccAddress(val1Addr)).AmountOf(sdk.DefaultBondDenom))
+	// // full on balance
+	// val1ExpBalance := val1BalAmt.Sub(val1DelAmt).Add(val1FullReward.TruncateInt())
+	// require.Equal(t,
+	// 	sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, val1ExpBalance)},
+	// 	bankKeeper.GetAllBalances(ctx, sdk.AccAddress(val1Addr)),
+	// )
+
+	// // del1
+	// del1Reward, err := distrKeeper.WithdrawDelegationRewards(ctx, del1Addr, val1Addr)
+	// require.NoError(t, err)
+	// require.Equal(t, del1FullReward.TruncateInt(), del1Reward.AmountOf(sdk.DefaultBondDenom))
+	// // full reward locked
+	// require.Equal(t, del1FullReward.TruncateInt(), bankKeeper.LockedCoins(ctx, del1Addr).AmountOf(sdk.DefaultBondDenom))
+	// // only reward on balance
+	// require.Equal(t, del1FullReward.TruncateInt(), bankKeeper.GetAllBalances(ctx, del1Addr).AmountOf(sdk.DefaultBondDenom))
+
+	// // del2
+	// del2Reward, err := distrKeeper.WithdrawDelegationRewards(ctx, del2Addr, val1Addr)
+	// require.NoError(t, err)
+	// require.Equal(t, del2FullReward.TruncateInt(), del2Reward.AmountOf(sdk.DefaultBondDenom))
+	// // nothing locked
+	// require.Equal(t, math.ZeroInt(), bankKeeper.LockedCoins(ctx, del2Addr).AmountOf(sdk.DefaultBondDenom))
+	// // only reward on balance
+	// require.Equal(t, del2Reward, bankKeeper.GetAllBalances(ctx, del2Addr))
+
+	// // validator commission
+
+	// valCommissionReward, err := distrKeeper.WithdrawValidatorCommission(ctx, val1Addr)
+	// require.Equal(t, allocatedReward.ToLegacyDec().Mul(val1Commission).TruncateInt(), valCommissionReward.AmountOf(sdk.DefaultBondDenom))
+	// require.NoError(t, err)
+
+	// // assert correct validator balance + commission
+	// valExpFinalBalance := val1BalAmt.Sub(val1DelAmt).
+	// 	Add(val1FullReward.TruncateInt()).                                   // reward
+	// 	Add(allocatedReward.ToLegacyDec().Mul(val1Commission).TruncateInt()) // commission
+
+	// require.Equal(t,
+	// 	sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, valExpFinalBalance)},
+	// 	bankKeeper.GetAllBalances(ctx, sdk.AccAddress(val1Addr)),
+	// )
+
+	// // ----- check when all vested
+
+	// // next block
+	// ctx = ctx.WithBlockHeight(ctx.BlockHeight() + 1)
+	// ctx = ctx.WithBlockTime(ctx.BlockTime().Add(time.Minute)) // increase time to pass the vesting periods
+
+	// // val1
+	// val1Reward, err = distrKeeper.WithdrawDelegationRewards(ctx, sdk.AccAddress(val1Addr), val1Addr)
+	// require.NoError(t, err)
+	// require.Equal(t, math.ZeroInt(), val1Reward.AmountOf(sdk.DefaultBondDenom))
+	// // locked based on ratio
+	// require.Equal(t, math.ZeroInt(), bankKeeper.LockedCoins(ctx, sdk.AccAddress(val1Addr)).AmountOf(sdk.DefaultBondDenom))
+	// // full on balance
+	// require.Equal(t,
+	// 	sdk.Coins{sdk.NewCoin(sdk.DefaultBondDenom, valExpFinalBalance)},
+	// 	bankKeeper.GetAllBalances(ctx, sdk.AccAddress(val1Addr)),
+	// )
+
+	// // del1
+	// del1Reward, err = distrKeeper.WithdrawDelegationRewards(ctx, del1Addr, val1Addr)
+	// require.NoError(t, err)
+	// require.Equal(t, math.ZeroInt(), del1Reward.AmountOf(sdk.DefaultBondDenom))
+	// // nothing locked
+	// require.Equal(t, math.ZeroInt(), bankKeeper.LockedCoins(ctx, del1Addr).AmountOf(sdk.DefaultBondDenom))
+	// // only reward on balance
+	// require.Equal(t, del1FullReward.TruncateInt(), bankKeeper.GetAllBalances(ctx, del1Addr).AmountOf(sdk.DefaultBondDenom))
+
+	// // del2
+	// del2Reward, err = distrKeeper.WithdrawDelegationRewards(ctx, del2Addr, val1Addr)
+	// require.NoError(t, err)
+	// require.Equal(t, math.ZeroInt(), del2Reward.AmountOf(sdk.DefaultBondDenom))
+	// // nothing locked
+	// require.Equal(t, math.ZeroInt(), bankKeeper.LockedCoins(ctx, del2Addr).AmountOf(sdk.DefaultBondDenom))
+	// // only reward on balance
+	// require.Equal(t, del2FullReward.TruncateInt(), bankKeeper.GetAllBalances(ctx, del2Addr).AmountOf(sdk.DefaultBondDenom))
 }
 
 func TestCalculateRewardsMultiDelegator(t *testing.T) {

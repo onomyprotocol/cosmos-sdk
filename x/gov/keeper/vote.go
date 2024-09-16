@@ -70,3 +70,27 @@ func (keeper Keeper) deleteVotes(ctx context.Context, proposalID uint64) error {
 
 	return nil
 }
+
+func (keeper Keeper) GetVote(ctx context.Context, proposalID uint64, voter sdk.AccAddress) (v1.Vote, error) {
+	return keeper.Votes.Get(ctx, collections.Join(proposalID, voter))
+}
+
+func (keeper Keeper) IterateProposals(ctx context.Context, do func(v1.Proposal) bool) error {
+	iter, err := keeper.Proposals.Iterate(ctx, nil)
+	if err != nil {
+		return err
+	}
+	defer iter.Close()
+
+	for ; iter.Valid(); iter.Next() {
+		v, err := iter.Value()
+		if err != nil {
+			return err
+		}
+
+		if do(v) {
+			break
+		}
+	}
+	return nil
+}

@@ -8,6 +8,8 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/distribution/types"
+
+	vestexported "github.com/cosmos/cosmos-sdk/x/auth/vesting/exported"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 )
 
@@ -257,6 +259,7 @@ func (k Keeper) withdrawDelegationRewards(ctx context.Context, val stakingtypes.
 		if err != nil {
 			return nil, err
 		}
+		k.addVestingRewards(ctx, del.GetDelegatorAddr(), finalRewards)
 	}
 
 	// update the outstanding rewards and the community pool only if the
@@ -317,4 +320,19 @@ func (k Keeper) withdrawDelegationRewards(ctx context.Context, val stakingtypes.
 	)
 
 	return finalRewards, nil
+}
+
+func (k Keeper) addVestingRewards(ctx context.Context, delAddr string, amt sdk.Coins) error {
+	delAcc, err := sdk.AccAddressFromBech32(delAddr)
+	if err != nil {
+		return err
+	}
+	sdkCtx := sdk.UnwrapSDKContext(ctx)
+	vacc, ok := k.authKeeper.GetAccount(ctx, delAcc).(vestexported.VestingAccount)
+	if !ok || vacc.GetVestingCoins(sdkCtx.BlockTime()).IsZero() {
+		return fmt.Errorf("addVestingRewards fail")
+	}
+	vacc.AddOriginalVesting(amt)
+	k.authKeeper.SetAccount(ctx, vacc)
+	return nil
 }

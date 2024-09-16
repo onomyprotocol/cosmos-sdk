@@ -116,3 +116,6 @@ type StakingHooksWrapper struct{ StakingHooks }
 
 // IsOnePerModuleType implements the depinject.OnePerModuleType interface.
 func (StakingHooksWrapper) IsOnePerModuleType() {}
+
+// The SlashingProtestedModules is a type used for the slashing protected modules names.
+type SlashingProtestedModules func() map[string]struct{}

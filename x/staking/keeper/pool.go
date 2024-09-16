@@ -91,7 +91,14 @@ func (k Keeper) StakingTokenSupply(ctx context.Context) (math.Int, error) {
 	if err != nil {
 		return math.ZeroInt(), err
 	}
-	return k.bankKeeper.GetSupply(ctx, bondDenom).Amount, nil
+	stakeSupply := k.bankKeeper.GetSupply(ctx, bondDenom).Amount
+	daoAddr := k.authKeeper.GetModuleAddress("dao")
+	if daoAddr != nil {
+		daoSupply := k.bankKeeper.GetBalance(ctx, daoAddr, bondDenom)
+		stakeSupply = stakeSupply.Sub(daoSupply.Amount)
+	}
+
+	return stakeSupply, nil
 }
 
 // BondedRatio the fraction of the staking tokens which are currently bonded
@@ -101,12 +108,22 @@ func (k Keeper) BondedRatio(ctx context.Context) (math.LegacyDec, error) {
 		return math.LegacyZeroDec(), err
 	}
 
+	bondedSupply, err := k.TotalBondedTokens(ctx)
+	if err != nil {
+		return math.LegacyZeroDec(), err
+	}
+	bonDenom, err := k.BondDenom(ctx)
+	if err != nil {
+		return math.LegacyZeroDec(), err
+	}
+	daoAddr := k.authKeeper.GetModuleAddress("dao")
+	if daoAddr != nil {
+		daoSupply := k.bankKeeper.GetBalance(ctx, daoAddr, bonDenom)
+		bondedSupply = bondedSupply.Add(daoSupply.Amount)
+	}
+
 	if stakeSupply.IsPositive() {
-		totalBonded, err := k.TotalBondedTokens(ctx)
-		if err != nil {
-			return math.LegacyZeroDec(), err
-		}
-		return math.LegacyNewDecFromInt(totalBonded).QuoInt(stakeSupply), nil
+		return math.LegacyNewDecFromInt(bondedSupply).QuoInt(stakeSupply), nil
 	}
 
 	return math.LegacyZeroDec(), nil

@@ -32,6 +32,8 @@ type Keeper struct {
 	authority             string
 	validatorAddressCodec addresscodec.Codec
 	consensusAddressCodec addresscodec.Codec
+
+	spm types.SlashingProtestedModules
 }
 
 // NewKeeper creates a new staking Keeper instance
@@ -72,6 +74,18 @@ func NewKeeper(
 		validatorAddressCodec: validatorAddressCodec,
 		consensusAddressCodec: consensusAddressCodec,
 	}
+}
+
+// SetSlashingProtestedModules sets the set of the modules which are protected from the slashing and will be automatically
+// unbonded before the slashing.
+func (k *Keeper) SetSlashingProtestedModules(spm types.SlashingProtestedModules) *Keeper {
+	if k.spm != nil {
+		panic("cannot set slashing protested modules twice")
+	}
+
+	k.spm = spm
+
+	return k
 }
 
 // Logger returns a module-specific logger.

@@ -99,6 +99,12 @@ func (m *MockAccountKeeper) SetModuleAccount(arg0 context.Context, arg1 types.Mo
 	m.ctrl.Call(m, "SetModuleAccount", arg0, arg1)
 }
 
+// SetAccount mocks base method.
+func (m *MockAccountKeeper) SetAccount(arg0 context.Context, arg1 types.AccountI) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetAccount", arg0, arg1)
+}
+
 // SetModuleAccount indicates an expected call of SetModuleAccount.
 func (mr *MockAccountKeeperMockRecorder) SetModuleAccount(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
